@@ -9,7 +9,7 @@ def check_user_from_file(username):
 
     Returns:
         [str]: [Returns the passwprd of user if found]
-    """   
+    """
     try:
         userpth = os.getcwd() + '\\resources\\ users.elsa'
         file = open(userpth, 'r')
@@ -36,7 +36,7 @@ def write_to_file(username, password):
 
     Returns:
         [int]: [1 if it is a success and -1 if the process is a failure]
-    """    
+    """
     try:
         userpth = os.getcwd() + '\\resources\\ users.elsa'
         file = open(userpth)

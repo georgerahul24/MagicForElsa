@@ -7,7 +7,7 @@ def read_theme():
 
     Returns:
         [bg_colour,text_colour,button_colour]: [The background,text/font and the button colour found]
-    """    
+    """
     try:
         initpth = os.getcwd() + '\\resources\\ initial.elsa'
         f = open(initpth)
@@ -38,7 +38,7 @@ def theme_selector(event=''):
 
     Args:
         event (str, optional): [Not important]. Defaults to ''.
-    """    
+    """
     from tkinter.colorchooser import askcolor
     import Magic.tkinterlib as tkinterlib
     from functools import partial

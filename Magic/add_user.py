@@ -9,7 +9,7 @@ from functools import partial
 
 def user_page():
     """[This function is used to implement the GUI of the add user page]
-    """    
+    """
     userpage = Tk()
 
     bg_colour, text_color, button_colour = theme.read_theme()
@@ -24,7 +24,7 @@ def user_page():
 
     def add_user_layout():
         """[Placing the elemnts in the settings page]
-        """        
+        """
         lu.grid(row=0, column=0)
         eu.grid(row=0, column=1)
         lp.grid(row=1, column=0)
@@ -35,7 +35,7 @@ def user_page():
 
         Args:
             event (str, optional): [Not important]. Defaults to ''.
-        """        
+        """
 
         new_user = eu.get()
         new_password = ep.get()

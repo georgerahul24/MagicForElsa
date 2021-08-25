@@ -9,7 +9,7 @@ def popups(srch):
 
     Args:
         srch ([str]): [The term to be searched in internet]
-    """    
+    """
     popups = Tk()
     bg_colour, text_color, button_colour = theme.read_theme()
     screen_height = popups.winfo_screenheight()

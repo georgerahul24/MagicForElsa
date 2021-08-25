@@ -22,7 +22,7 @@ def index(pathn):
 
     Args:
         pathn ([str]): [Path of the parent folder to index]
-    """    
+    """
     cache = open(indexerpth, 'a')
     try:
 
@@ -50,7 +50,7 @@ def index(pathn):
 
 def index_files():
     """[Check if the indexer.elsa file exists.If it exists,no action is taken.If it doesnt exists,files are indexed]
-    """    
+    """
     cache_file = Path(indexerpth)
 
     if cache_file.exists() == True:
@@ -69,7 +69,7 @@ def search_indexed_file(filename):
 
     Args:
         filename ([str]): [Name of the file to be opened]
-    """    
+    """
     try:
 
         cache = open(indexerpth, 'r')

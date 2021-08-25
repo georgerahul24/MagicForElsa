@@ -6,7 +6,7 @@ from functools import partial
 
 def about_page():
     """[This function is used to implement the GUI of the about page]
-    """    
+    """
     bg_colour, text_color, button_colour = theme.read_theme()
     aboutpage = Tk()
 

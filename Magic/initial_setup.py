@@ -4,7 +4,7 @@ import pathlib
 
 def install_files():
     """[Installs the neccessary files for Elsa to work]
-    """    
+    """
     #Making a relative folder called resources
     folderpath = os.getcwd() + '\\resources'
     folderpath = pathlib.Path(folderpath)

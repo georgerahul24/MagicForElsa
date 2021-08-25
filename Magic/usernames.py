@@ -12,7 +12,7 @@ def verify_usernames():
 
 def check_user():
     """[Security process]
-    """    
+    """
     try:
         # initialise the security variable
         check_user.security = verify_usernames.verify
