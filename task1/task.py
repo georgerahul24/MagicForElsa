@@ -3,7 +3,8 @@ Contains all the necessary code to run various features'''
 import pyttsx3, datetime, subprocess, webbrowser, random, os
 from pathlib import Path
 from talk1 import talk1
-talk=talk1.talk
+
+talk = talk1.talk
 
 
 # .....Time and Greeting............

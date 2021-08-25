@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='magicForElsa',
-    packages=['Magic','task1','talk1'],
+    packages=['Magic', 'task1', 'talk1'],
     version='1.4',
     license='MIT',
     description='A package for the personal assistant Elsa',
@@ -12,7 +12,6 @@ setup(
     keywords=['program', 'automate', 'task', 'magic'],
     install_requires=[
         'pyttsx3',
-        
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
