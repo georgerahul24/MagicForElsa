@@ -1,5 +1,5 @@
 '''Created by George Rahul
-Contains all the necessary code to run various features'''
+Contains all the necessary code to run various features like searching in net,running files,etc'''
 import pyttsx3, datetime, subprocess, webbrowser, random, os
 from pathlib import Path
 from talk1 import talk1

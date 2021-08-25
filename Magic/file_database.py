@@ -1,6 +1,5 @@
+'''This module deals with adding and verifying usernames'''
 import os
-
-
 def check_user_from_file(username):
     """[This extension is used to check if the user is vaid or not ]
 
@@ -11,6 +10,7 @@ def check_user_from_file(username):
         [str]: [Returns the passwprd of user if found]
     """
     try:
+        #Get the path of users.elsa
         userpth = os.getcwd() + '\\resources\\ users.elsa'
         file = open(userpth, 'r')
         lines = file.read().splitlines()
@@ -44,6 +44,7 @@ def write_to_file(username, password):
         #Check if username is new or old with count variable
         count = 0
         for line in lines:
+            #split the username and password from the line
             parts = line.split('-')
             part1 = parts[0]  # username
             part2 = parts[1]  # passwords
@@ -53,7 +54,7 @@ def write_to_file(username, password):
         #username should not be empty as it can cause problems when reading it
         #usernames shld not be have the name of program file as history files will overwrite the program files
         if count == 0 and len(username) != 0 and username not in [
-                'initial', 'cache', 'users', 'user', 'theme', 'indexer'
+                'initial', 'cache', 'users', 'user', 'theme', 'indexer','resources'
         ]:
             userpth = os.getcwd() + '\\resources\\ users.elsa'
             file = open(userpth, 'a')
