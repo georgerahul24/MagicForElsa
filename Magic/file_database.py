@@ -1,5 +1,7 @@
 '''This module deals with adding and verifying usernames'''
 import os
+
+
 def check_user_from_file(username):
     """[This extension is used to check if the user is vaid or not ]
 
@@ -54,7 +56,8 @@ def write_to_file(username, password):
         #username should not be empty as it can cause problems when reading it
         #usernames shld not be have the name of program file as history files will overwrite the program files
         if count == 0 and len(username) != 0 and username not in [
-                'initial', 'cache', 'users', 'user', 'theme', 'indexer','resources'
+                'initial', 'cache', 'users', 'user', 'theme', 'indexer',
+                'resources'
         ]:
             userpth = os.getcwd() + '\\resources\\ users.elsa'
             file = open(userpth, 'a')
