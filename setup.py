@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
   name = 'magicForElsa',         
   packages = ['Magic'],   
-  version = '1.1',      
+  version = '1.2',      
   license='MIT',        
   description = 'A package for the personal assistant Elsa',   
   author = 'George Rahul',                   
