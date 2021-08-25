@@ -22,6 +22,6 @@ def install_files():
     # writing the users folder with default user admin and default password 1234
     userpth = os.getcwd() + "\\resources\\ users.elsa"
     f = open(userpth, 'w')
-    json.dump({'admin':"1234"},f)
+    json.dump({'admin': "1234"}, f)
     f.close()
     print("added file 'initial.Elsa'")
