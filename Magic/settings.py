@@ -10,6 +10,13 @@ from talk1.talk1 import talk
 
 
 def setting_page(event="", username='', state=True):
+    """[GUI for the settings page]
+
+    Args:
+        event (str, optional): [Not important]. Defaults to "".
+        username (str, optional): [Username of the user using the GUI]. Defaults to ''.
+        state (bool, optional): [Not important]. Defaults to True.
+    """    
     settingspage = Tk()
     bg_colour, text_color, button_colour = theme.read_theme()
     tkinterlib.tkinter_initialise(settingspage, 400, 340, top=0)
@@ -17,6 +24,7 @@ def setting_page(event="", username='', state=True):
     a.pack()
 
     def usr_page(event=''):
+        
         talk('Please add a new user')
         add_user.user_page()
 

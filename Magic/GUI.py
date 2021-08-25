@@ -10,6 +10,11 @@ from Magic.add_user import user_page
 
 
 def SecurityUI():
+    """[Login page]
+
+    Returns:
+        [str,str]: [Returns the password and username entered in the login page]
+    """    
     bg_colour, text_color, button_colour = theme.read_theme()
     #.................initialising tkinter........................
     t = Tk()
@@ -48,6 +53,11 @@ def SecurityUI():
     #win1.attributes("-topmost", 1)
 
     def password(event=''):
+        """[Used to get the username and passowrd enerted]
+
+        Args:
+            event (str, optional): [Not important]. Defaults to ''.
+        """        
         password.passgui = e.get()
         password.usergui = e1.get()
 

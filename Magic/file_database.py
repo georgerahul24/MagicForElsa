@@ -2,6 +2,14 @@ import os
 
 
 def check_user_from_file(username):
+    """[This extension is used to check if the user is vaid or not ]
+
+    Args:
+        username ([str]): [Username to search]
+
+    Returns:
+        [str]: [Returns the passwprd of user if found]
+    """   
     try:
         userpth = os.getcwd() + '\\resources\\ users.elsa'
         file = open(userpth, 'r')
@@ -20,6 +28,15 @@ def check_user_from_file(username):
 
 
 def write_to_file(username, password):
+    """[Writes the username and password to users.elsa file]
+
+    Args:
+        username ([str]): [Username to be added]
+        password ([str]): [Password to be added]
+
+    Returns:
+        [int]: [1 if it is a success and -1 if the process is a failure]
+    """    
     try:
         userpth = os.getcwd() + '\\resources\\ users.elsa'
         file = open(userpth)

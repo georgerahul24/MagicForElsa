@@ -8,6 +8,8 @@ from functools import partial
 
 
 def user_page():
+    """[This function is used to implement the GUI of the add user page]
+    """    
     userpage = Tk()
 
     bg_colour, text_color, button_colour = theme.read_theme()
@@ -21,12 +23,19 @@ def user_page():
     ep = Entry(s)
 
     def add_user_layout():
+        """[Placing the elemnts in the settings page]
+        """        
         lu.grid(row=0, column=0)
         eu.grid(row=0, column=1)
         lp.grid(row=1, column=0)
         ep.grid(row=1, column=1)
 
     def add(event=''):
+        """[Adds the user]
+
+        Args:
+            event (str, optional): [Not important]. Defaults to ''.
+        """        
 
         new_user = eu.get()
         new_password = ep.get()

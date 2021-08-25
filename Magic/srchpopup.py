@@ -5,6 +5,11 @@ import Magic.theme as theme
 
 
 def popups(srch):
+    """[A yes or no gui box to know if the user needs to search things in the internet]
+
+    Args:
+        srch ([str]): [The term to be searched in internet]
+    """    
     popups = Tk()
     bg_colour, text_color, button_colour = theme.read_theme()
     screen_height = popups.winfo_screenheight()

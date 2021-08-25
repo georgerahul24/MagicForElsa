@@ -3,6 +3,11 @@ import os
 
 
 def read_theme():
+    """[Reads the theme from the initial.elsa file]
+
+    Returns:
+        [bg_colour,text_colour,button_colour]: [The background,text/font and the button colour found]
+    """    
     try:
         initpth = os.getcwd() + '\\resources\\ initial.elsa'
         f = open(initpth)
@@ -29,6 +34,11 @@ def theme_writer(bg_colour, font_colour, button_colour):
 
 
 def theme_selector(event=''):
+    """[GUI to select a new theme]
+
+    Args:
+        event (str, optional): [Not important]. Defaults to ''.
+    """    
     from tkinter.colorchooser import askcolor
     import Magic.tkinterlib as tkinterlib
     from functools import partial
