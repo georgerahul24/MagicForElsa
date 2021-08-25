@@ -9,7 +9,9 @@ def popups(srch):
     bg_colour, text_color, button_colour = theme.read_theme()
     screen_height = popups.winfo_screenheight()
     screen_width = popups.winfo_screenwidth()
-    tkinterlib.tkinter_initialise(popups, x=screen_width-130, y=screen_height-130)
+    tkinterlib.tkinter_initialise(popups,
+                                  x=screen_width - 130,
+                                  y=screen_height - 130)
 
     def srchYes(event=''):
         popups.destroy()
@@ -20,6 +22,7 @@ def popups(srch):
                  bg=button_colour,
                  fg=text_color,
                  command=srchYes)
+
     #function also  refernced in elsa.py
     def destroyPop():
         popups.destroy()

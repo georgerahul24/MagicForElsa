@@ -2,6 +2,7 @@ import os, webbrowser
 from talk1 import talk1
 from difflib import get_close_matches
 from pathlib import Path
+
 indexerpth = os.getcwd() + f'\\resources\\ indexer.elsa'
 # get path of the current file os.getcwd
 # convert it into path use path(os.getcwd) use is_file() to check if it is a file
@@ -84,4 +85,3 @@ def search_indexed_file(filename):
 
 #run index files when indexer module is imported in Elsa
 index_files()
-

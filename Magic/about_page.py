@@ -37,5 +37,3 @@ def about_page():
     ex.bind('<Leave>', partial(tkinterlib.on_leave, but=ex))
 
     aboutpage.mainloop()
-
-

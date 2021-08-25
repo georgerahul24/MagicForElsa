@@ -1,8 +1,9 @@
 import os
 
+
 def check_user_from_file(username):
     try:
-        userpth=os.getcwd()+'\\resources\\ users.elsa'
+        userpth = os.getcwd() + '\\resources\\ users.elsa'
         file = open(userpth, 'r')
         lines = file.read().splitlines()
         part2 = None
@@ -52,4 +53,3 @@ def write_to_file(username, password):
         return state
     except Exception as e:
         print(e, 'Try again')
-

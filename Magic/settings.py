@@ -66,7 +66,7 @@ def setting_page(event="", username='', state=True):
                          bd=0,
                          bg=bg_colour,
                          fg=text_color,
-                         command=partial(history.user_read,username=username))
+                         command=partial(history.user_read, username=username))
 
         showhis.pack(fill='x')
         #hover effect
@@ -96,5 +96,3 @@ def setting_page(event="", username='', state=True):
     close.bind('<Enter>', partial(tkinterlib.on_enter, but=close))
     close.bind('<Leave>', partial(tkinterlib.on_leave, but=close))
     settingspage.mainloop()
-
-

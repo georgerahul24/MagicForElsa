@@ -66,5 +66,3 @@ def user_page():
                                          but=close_button))
     userpage.bind("<Return>", add)
     userpage.mainloop()
-
-

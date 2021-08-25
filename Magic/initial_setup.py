@@ -4,7 +4,7 @@ import pathlib
 
 def install_files():
     #Making a relative folder called resources
-    folderpath = os.getcwd()+'\\resources'
+    folderpath = os.getcwd() + '\\resources'
     folderpath = pathlib.Path(folderpath)
     if not os.path.exists(folderpath):
         os.makedirs(folderpath)

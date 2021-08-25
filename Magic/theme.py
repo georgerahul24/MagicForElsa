@@ -1,6 +1,7 @@
 from tkinter import *
 import os
 
+
 def read_theme():
     try:
         initpth = os.getcwd() + '\\resources\\ initial.elsa'
@@ -109,4 +110,3 @@ def theme_selector(event=''):
     close.bind('<Enter>', partial(tkinterlib.on_enter, but=close))
     close.bind('<Leave>', partial(tkinterlib.on_leave, but=close))
     selectorpage.mainloop()
-
