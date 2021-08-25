@@ -1,8 +1,9 @@
-import datetime, webbrowser
+import datetime, webbrowser,os
 
 
 def user_file(username, command, task_did):
-    history = open(f'{username}.elsa', 'a')
+    userpth = os.getcwd() + f'\\resources\\ {username}.elsa'
+    history = open(userpth, 'a')
     history.write(
         f'{datetime.datetime.now()} user input: {command}, output: {task_did}')
     history.write('\n')
@@ -10,11 +11,12 @@ def user_file(username, command, task_did):
 
 
 def user_read(event="", username="admin"):
-
-    webbrowser.open(f"{username}.elsa")
+    userpth = os.getcwd() + f'\\resources\\ {username}.elsa'
+    webbrowser.open(userpth)
 
 
 def clear_history(name):
-    history = open(f'{name}.elsa', 'w')
+    userpth = os.getcwd() + f'\\resources\\ {name}.elsa'
+    history = open(userpth, 'w')
     history.write('')
     history.close()

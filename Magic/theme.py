@@ -1,9 +1,10 @@
 from tkinter import *
-
+import os
 
 def read_theme():
     try:
-        f = open("initial.elsa")
+        initpth = os.getcwd() + '\\resources\\ initial.elsa'
+        f = open(initpth)
         datas = f.read()
         colours = datas.split(';')
         bg_colour = colours[0].rstrip().lstrip()
@@ -18,7 +19,8 @@ def read_theme():
 
 
 def theme_writer(bg_colour, font_colour, button_colour):
-    f = open('initial.elsa', 'w')
+    initpth = os.getcwd() + '\\resources\\ initial.elsa'
+    f = open(initpth, 'w')
     f.write(
         f"{bg_colour};{font_colour};{button_colour}\n #The order is bg,font color,button colour \n#Please remember to use ';' to separate colours :D"
     )
@@ -65,7 +67,7 @@ def theme_selector(event=''):
                                bg=bg_colour,
                                fg=text_color,
                                command=new_background_colour)
-    background_colour.pack()
+    background_colour.pack(fill='x')
     background_colour.bind('<Enter>',
                            partial(tkinterlib.on_enter, but=background_colour))
     background_colour.bind('<Leave>',
@@ -77,7 +79,7 @@ def theme_selector(event=''):
                              bg=bg_colour,
                              fg=text_color,
                              command=font_colour)
-    new_text_colour.pack()
+    new_text_colour.pack(fill='x')
     new_text_colour.bind('<Enter>',
                          partial(tkinterlib.on_enter, but=new_text_colour))
     new_text_colour.bind('<Leave>',
@@ -89,7 +91,7 @@ def theme_selector(event=''):
                                bg=bg_colour,
                                fg=text_color,
                                command=new_button_colour)
-    new_button_colour.pack()
+    new_button_colour.pack(fil='x')
     new_button_colour.bind('<Enter>',
                            partial(tkinterlib.on_enter, but=new_button_colour))
     new_button_colour.bind('<Leave>',

@@ -2,7 +2,7 @@ import os, webbrowser
 from talk1 import talk1
 from difflib import get_close_matches
 from pathlib import Path
-
+indexerpth = os.getcwd() + f'\\resources\\ indexer.elsa'
 # get path of the current file os.getcwd
 # convert it into path use path(os.getcwd) use is_file() to check if it is a file
 desktop = Path(os.path.join(os.path.join(os.environ['USERPROFILE']),
@@ -17,7 +17,7 @@ directories = [desktop, documents, downloads, music, videos]
 
 
 def index(pathn):
-    cache = open('indexer.elsa', 'a')
+    cache = open(indexerpth, 'a')
     try:
 
         for name in os.listdir(pathn):
@@ -43,12 +43,12 @@ def index(pathn):
 
 
 def index_files():
-    cache_file = Path("indexer.elsa")
+    cache_file = Path(indexerpth)
 
     if cache_file.exists() == True:
         print("'indexer.elsa' found")
     else:
-        cache = open('indexer.elsa', 'w')
+        cache = open(indexerpth, 'w')
         cache.close()
         print("'indexer.elsa' not found")
         print("Indexing files...Wait a moment...")
@@ -59,7 +59,7 @@ def index_files():
 def search_indexed_file(filename):
     try:
 
-        cache = open('indexer.elsa', 'r')
+        cache = open(indexerpth, 'r')
         datas = cache.readlines()
         cache.close()
         cachedict = dict()

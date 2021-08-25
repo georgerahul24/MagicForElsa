@@ -28,7 +28,7 @@ def popups(srch):
                 text='No',
                 bg=button_colour,
                 fg=text_color,
-                command=destroyPop)
+                command=popups.destroy)
     Yes.grid(row=1, column=0)
     No.grid(row=1, column=1)
     popups.mainloop()
