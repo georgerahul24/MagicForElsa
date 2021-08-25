@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name='magicForElsa',
     packages=['Magic', 'task1', 'talk1'],
-    version='1.4',
+    version='1.5',
     license='MIT',
     description='A package for the personal assistant Elsa',
     author='George Rahul',

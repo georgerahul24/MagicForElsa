@@ -1,7 +1,10 @@
+
+
 '''This module deals with adding and verifying usernames'''
 import os
-
-
+import json
+#Get the path of users.elsa
+userpth = os.getcwd() + '\\resources\\ users.elsa'
 def check_user_from_file(username):
     """[This extension is used to check if the user is vaid or not ]
 
@@ -12,21 +15,15 @@ def check_user_from_file(username):
         [str]: [Returns the passwprd of user if found]
     """
     try:
-        #Get the path of users.elsa
-        userpth = os.getcwd() + '\\resources\\ users.elsa'
+       
         file = open(userpth, 'r')
-        lines = file.read().splitlines()
-        part2 = None
-        for line in lines:
-            parts = line.split('-')
-            part1 = parts[0]  #username
-            part2 = parts[1]  #passwords
-            if part1 == username:
-                break
-        #Returns password if username is found else returns None
+        data=json.load(file)
+        part2=data.get(username,None)
+        file.close()
         return part2
     except Exception as e:
         print('It seems that some error has happened', e)
+
 
 
 def write_to_file(username, password):
@@ -40,28 +37,20 @@ def write_to_file(username, password):
         [int]: [1 if it is a success and -1 if the process is a failure]
     """
     try:
-        userpth = os.getcwd() + '\\resources\\ users.elsa'
-        file = open(userpth)
-        lines = file.read().splitlines()
-        #Check if username is new or old with count variable
-        count = 0
-        for line in lines:
-            #split the username and password from the line
-            parts = line.split('-')
-            part1 = parts[0]  # username
-            part2 = parts[1]  # passwords
-            if part1 == username:
-                count += 1
-        #if count is zero,it mens that the username exists
-        #username should not be empty as it can cause problems when reading it
-        #usernames shld not be have the name of program file as history files will overwrite the program files
-        if count == 0 and len(username) != 0 and username not in [
+        
+        file = open(userpth,'r')
+        data=json.load(file)
+        print(file)
+        file.close()
+        file = open(userpth,'w')
+        if len(username) != 0 and username not in [
                 'initial', 'cache', 'users', 'user', 'theme', 'indexer',
                 'resources'
         ]:
-            userpth = os.getcwd() + '\\resources\\ users.elsa'
-            file = open(userpth, 'a')
-            file.write(f"\n{username}-{password}")
+
+
+            data[username]=password
+            json.dump(data,file)
             file.close()
             print(f"Added user {username} ")
             #returns state = 1 so that program knows that writing was succesful
