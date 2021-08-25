@@ -13,3 +13,7 @@ Magic\srchpopup.py
 Magic\theme.py
 Magic\tkinterlib.py
 Magic\usernames.py
+talk1\__init__.py
+talk1\talk1.py
+task1\__init__.py
+task1\task.py

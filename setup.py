@@ -2,8 +2,8 @@ from distutils.core import setup
 
 setup(
     name='magicForElsa',
-    packages=['Magic'],
-    version='1.3',
+    packages=['Magic','task1','talk1'],
+    version='1.4',
     license='MIT',
     description='A package for the personal assistant Elsa',
     author='George Rahul',
@@ -11,8 +11,8 @@ setup(
     url='https://github.com/georgerahul24/MagicForElsa',
     keywords=['program', 'automate', 'task', 'magic'],
     install_requires=[
-        'task1',
-        'talk1',
+        'pyttsx3',
+        
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
