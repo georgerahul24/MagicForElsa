@@ -9,7 +9,6 @@ Magic\history.py
 Magic\indexer.py
 Magic\initial_setup.py
 Magic\settings.py
-Magic\splashscreen.py
 Magic\srchpopup.py
 Magic\theme.py
 Magic\tkinterlib.py
