@@ -134,12 +134,14 @@ def youtube(srch):
     webbrowser.open(f"https://www.youtube.com/results?search_query={srch}")
     talk(f"Here is what you requested")
 
+
 def ordShortenSrch(ord):
-     ord = ord.replace("search", "")
-     ord = ord.replace("SEARCH", "")
-     ord = ord.replace("browser", "")
-     ord = ord.replace("srch", "")
-     return ord 
+    ord = ord.replace("search", "")
+    ord = ord.replace("SEARCH", "")
+    ord = ord.replace("browser", "")
+    ord = ord.replace("srch", "")
+    return ord
+
 
 # .............folders......................
 def download():

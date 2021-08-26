@@ -22,7 +22,6 @@ def check_user():
         username, password = SecurityUI()
         # verifying with database
 
-
         if password == file_database.check_user_from_file(username):
             check_user.security = True
         else:
