@@ -21,12 +21,10 @@ def check_user():
         # ...running GUI.py............
         username, password = SecurityUI()
         # verifying with database
-        passw = file_database.check_user_from_file(username)
 
-        if password == passw:
+
+        if password == file_database.check_user_from_file(username):
             check_user.security = True
-
-            pass
         else:
             check_user.security = False
 

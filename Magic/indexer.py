@@ -75,7 +75,7 @@ def search_indexed_file(filename):
         cache = open(indexerpth, 'r')
         datas = cache.readlines()
         cache.close()
-        cachedict = dict()
+        cachedict = {}
         filenames = []
         for data in datas:
             data = data.split(' @#$%^& ')

@@ -8,6 +8,7 @@ Magic\file_database.py
 Magic\history.py
 Magic\indexer.py
 Magic\initial_setup.py
+Magic\program_run.py
 Magic\settings.py
 Magic\srchpopup.py
 Magic\theme.py
