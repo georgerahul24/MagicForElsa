@@ -45,11 +45,6 @@ def SecurityUI():
                fg=text_color,
                font="Nebula 10 bold").place(x=20, y=30)
 
-    win1 = Toplevel(t)
-    win1.withdraw()
-    win1.lift()
-
-    #win1.attributes("-topmost", 1)
 
     def password(event=''):
         """[Used to get the username and passowrd enerted]
