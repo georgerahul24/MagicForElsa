@@ -1,11 +1,7 @@
 from functools import partial
 from tkinter import *
 
-import Magic.about_page as about_page
-import Magic.add_user as add_user
-import Magic.history as history
-import Magic.theme as theme
-import Magic.tkinterlib as tkinterlib
+from Magic import about_page,add_user,history,theme,tkinterlib
 from talk1.talk1 import talk
 
 

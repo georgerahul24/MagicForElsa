@@ -1,4 +1,5 @@
 import datetime, webbrowser, os
+from pathlib import Path
 
 
 def user_file(username, command, task_did):
@@ -17,7 +18,7 @@ def user_file(username, command, task_did):
     history.close()
 
 
-def user_read(event="", username="admin"):
+def user_read(event="", username="dummy"):
     """[Open the user history file]
 
     Args:
@@ -25,7 +26,12 @@ def user_read(event="", username="admin"):
         username (str, optional): [Name of the user to be opened]. Defaults to "admin".
     """
     userpth = os.getcwd() + f'\\resources\\ {username}.elsa'
-    webbrowser.open(userpth)
+    if Path(userpth).exists():
+     webbrowser.open(userpth)
+    else:
+        userpth=os.getcwd() + '\\resources\\ dummy.elsa'
+        webbrowser.open(userpth)
+
 
 
 def clear_history(name):

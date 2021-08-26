@@ -3,8 +3,7 @@ GUI for the login page'''
 
 from tkinter import *
 
-import Magic.theme as theme
-import Magic.tkinterlib as tkinterlib
+from Magic import theme,tkinterlib
 from functools import partial
 from Magic.add_user import user_page
 

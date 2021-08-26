@@ -1,9 +1,9 @@
 from tkinter import *
-import Magic.tkinterlib as tkinterlib
+from Magic import tkinterlib,file_database,theme
 from talk1.talk1 import talk
 
-import Magic.file_database as file_database
-import Magic.theme as theme
+
+
 from functools import partial
 
 
