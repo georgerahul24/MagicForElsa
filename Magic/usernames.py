@@ -3,7 +3,7 @@ Calls the login page and verifies the username and password entered'''
 
 from Magic.GUI import SecurityUI
 from talk1.talk1 import talk
-from Magic import file_database 
+from Magic import file_database
 
 
 def verify_usernames():

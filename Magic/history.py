@@ -27,9 +27,8 @@ def user_read(event="", username="dummy"):
     """
     userpth = os.getcwd() + f'\\resources\\ {username}.elsa'
     if not Path(userpth).exists():
-        userpth=os.getcwd() + '\\resources\\ dummy.elsa'
+        userpth = os.getcwd() + '\\resources\\ dummy.elsa'
     webbrowser.open(userpth)
-
 
 
 def clear_history(name):

@@ -11,10 +11,10 @@ def install_files():
     folderpath = pathlib.Path(folderpath)
     if not os.path.exists(folderpath):
         os.makedirs(folderpath)
-    dummytpth = os.getcwd() + '\\resources\\ dummy.elsa'        
-    f=open(dummytpth,'w')
+    dummytpth = os.getcwd() + '\\resources\\ dummy.elsa'
+    f = open(dummytpth, 'w')
     f.write("Hey!The file you are looking is not found.Try again later")
-    f.close()    
+    f.close()
     # Writing the default theme
     initpth = os.getcwd() + '\\resources\\ initial.elsa'
     f = open(initpth, 'w')

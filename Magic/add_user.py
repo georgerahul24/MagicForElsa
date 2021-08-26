@@ -1,8 +1,6 @@
-from tkinter import Tk,Label,LabelFrame,Button,Entry
-from Magic import tkinterlib,file_database,theme
+from tkinter import Tk, Label, LabelFrame, Button, Entry
+from Magic import tkinterlib, file_database, theme
 from talk1.talk1 import talk
-
-
 
 from functools import partial
 

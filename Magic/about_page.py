@@ -1,5 +1,5 @@
-from tkinter import Tk,Label,LabelFrame,Button
-from Magic import theme,tkinterlib
+from tkinter import Tk, Label, LabelFrame, Button
+from Magic import theme, tkinterlib
 from functools import partial
 
 

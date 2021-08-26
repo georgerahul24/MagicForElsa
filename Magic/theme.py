@@ -1,4 +1,4 @@
-from tkinter import Tk,LabelFrame,Button
+from tkinter import Tk, LabelFrame, Button
 import os
 
 
@@ -40,7 +40,7 @@ def theme_selector(event=''):
         event (str, optional): [Not important]. Defaults to ''.
     """
     from tkinter.colorchooser import askcolor
-    from Magic import  tkinterlib
+    from Magic import tkinterlib
     from functools import partial
 
     bg_colour, text_color, button_colour = read_theme()
