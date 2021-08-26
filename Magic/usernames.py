@@ -7,7 +7,8 @@ import Magic.file_database as file_database
 
 
 def verify_usernames():
-    verify_usernames.verify = False
+    verify = False
+    return verify
 
 
 def check_user():
@@ -15,7 +16,7 @@ def check_user():
     """
     try:
         # initialise the security variable
-        check_user.security = verify_usernames.verify
+        check_user.security = verify_usernames()
         # .....accept the username and password.......
         talk("Please enter the username and password")
         # ...running GUI.py............
