@@ -45,7 +45,6 @@ def SecurityUI():
                fg=text_color,
                font="Nebula 10 bold").place(x=20, y=30)
 
-
     def password(event=''):
         """[Used to get the username and passowrd enerted]
 

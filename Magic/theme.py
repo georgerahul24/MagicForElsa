@@ -32,6 +32,7 @@ def theme_writer(bg_colour, font_colour, button_colour):
     )
     f.close()
 
+
 #...............no need for this function......
 #...............This function is implemeneted in the settings page.......
 def theme_selector(event=''):
