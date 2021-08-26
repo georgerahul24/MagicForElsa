@@ -1,6 +1,5 @@
-from tkinter import *
-import Magic.theme as theme
-import Magic.tkinterlib as tkinterlib
+from tkinter import Tk,Label,LabelFrame,Button
+from Magic import theme,tkinterlib
 from functools import partial
 
 

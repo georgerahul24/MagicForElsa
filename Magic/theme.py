@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import Tk,LabelFrame,Button
 import os
 
 
@@ -40,11 +40,10 @@ def theme_selector(event=''):
         event (str, optional): [Not important]. Defaults to ''.
     """
     from tkinter.colorchooser import askcolor
-    import Magic.tkinterlib as tkinterlib
+    from Magic import  tkinterlib
     from functools import partial
-    import Magic.theme as theme
 
-    bg_colour, text_color, button_colour = theme.read_theme()
+    bg_colour, text_color, button_colour = read_theme()
 
     selectorpage = Tk()
     tkinterlib.tkinter_initialise(selectorpage, 600, 340, top=0)
@@ -56,19 +55,19 @@ def theme_selector(event=''):
 
     def new_background_colour(event=''):
         color = askcolor()
-        bg_colour, text_color, button_colour = theme.read_theme()
+        bg_colour, text_color, button_colour = read_theme()
         if color[1] != None:
             theme_writer(color[1], text_color, button_colour)
 
     def font_colour(event=''):
         color = askcolor()
-        bg_colour, text_color, button_colour = theme.read_theme()
+        bg_colour, text_color, button_colour = read_theme()
         if color[1] != None:
             theme_writer(bg_colour, color[1], button_colour)
 
     def new_button_colour(event=''):
         color = askcolor()
-        bg_colour, text_color, button_colour = theme.read_theme()
+        bg_colour, text_color, button_colour = read_theme()
         if color[1] != None:
             theme_writer(bg_colour, text_color, color[1])
 

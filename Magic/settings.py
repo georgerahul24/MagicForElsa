@@ -1,5 +1,5 @@
 from functools import partial
-from tkinter import *
+from tkinter import Tk,Label,LabelFrame,Button
 
 from Magic import about_page,add_user,history,theme,tkinterlib
 from talk1.talk1 import talk

@@ -1,4 +1,4 @@
-import Magic.theme as theme
+from Magic import theme
 
 
 def tkinter_initialise(a, x=0, y=0, top=1, noborders=True, opacity=0.9):

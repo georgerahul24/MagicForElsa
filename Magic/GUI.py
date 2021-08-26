@@ -1,7 +1,7 @@
 '''Created by George Rahul
 GUI for the login page'''
 
-from tkinter import *
+from tkinter import Tk,Toplevel,Entry,Label,Button
 
 from Magic import theme,tkinterlib
 from functools import partial

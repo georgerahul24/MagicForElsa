@@ -1,7 +1,7 @@
-from tkinter import *
+from tkinter import Tk,Button
 from task1.task import web
-import Magic.tkinterlib as tkinterlib
-import Magic.theme as theme
+from Magic import tkinterlib,theme
+
 
 
 def popups(srch):

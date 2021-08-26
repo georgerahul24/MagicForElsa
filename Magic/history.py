@@ -26,11 +26,9 @@ def user_read(event="", username="dummy"):
         username (str, optional): [Name of the user to be opened]. Defaults to "admin".
     """
     userpth = os.getcwd() + f'\\resources\\ {username}.elsa'
-    if Path(userpth).exists():
-     webbrowser.open(userpth)
-    else:
+    if not Path(userpth).exists():
         userpth=os.getcwd() + '\\resources\\ dummy.elsa'
-        webbrowser.open(userpth)
+    webbrowser.open(userpth)
 
 
 
