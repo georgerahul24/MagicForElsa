@@ -134,7 +134,8 @@ def add_indexer_folders(event='', path=''):
     try:
         removepth = indexerpth = os.getcwd() + f'\\resources\\ indexer.elsa'
         os.remove(removepth)
-    except:pass
+    except:
+        pass
 
 
 def read_indexer_folders(event=''):
