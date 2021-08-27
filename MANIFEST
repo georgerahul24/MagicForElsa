@@ -2,7 +2,6 @@
 setup.py
 Magic\GUI.py
 Magic\__init__.py
-Magic\about_page.py
 Magic\add_user.py
 Magic\file_database.py
 Magic\history.py

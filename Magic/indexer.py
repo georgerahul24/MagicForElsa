@@ -110,7 +110,7 @@ def search_indexed_file(filename):
 def add_indexer_folders(event='',path=''):
     try:
         import json
-        folderpth = indexerpth = os.getcwd() + f'\\resources\\ indexerpaths.elsa'
+        folderpth = os.getcwd() + f'\\resources\\ indexerpaths.elsa'
         f=open(folderpth)
         folders=json.load(f)
         folders.append(path)
@@ -124,7 +124,8 @@ def add_indexer_folders(event='',path=''):
         f = open(folderpth, 'w')
         json.dump([path], f)
         f.close()
-
+    removepth = indexerpth = os.getcwd() + f'\\resources\\ indexer.elsa'
+    os.remove(removepth)
 
 def read_indexer_folders(event=''):
     try:
