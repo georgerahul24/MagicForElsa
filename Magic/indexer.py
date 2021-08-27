@@ -16,6 +16,15 @@ music = Path(os.path.join(os.path.join(os.environ['USERPROFILE']), 'Music'))
 videos = Path(os.path.join(os.path.join(os.environ['USERPROFILE']), 'Videos'))
 directories = [desktop, documents, downloads, music, videos]
 
+def indexer_folders():
+    try:
+        import json
+        folderpth=indexerpth = os.getcwd() + f'\\resources\\ indexerpaths.elsa'
+        f=open(folderpth)
+        folders=json.load(f)
+        f.close()
+        return folders
+    except:pass
 
 def index(pathn):
     """[Used to index files]
@@ -60,6 +69,10 @@ def index_files():
         cache.close()
         print("'indexer.elsa' not found")
         print("Indexing files...Wait a moment...")
+        folders=indexer_folders()
+        try:
+         directories.extend(folders)
+        except:pass
         for paths in directories:
             index(paths)
 
@@ -93,6 +106,36 @@ def search_indexed_file(filename):
             talk1.talk(f'Could not find any files')
     except Exception as e:
         print('Error:', e)
+
+def add_indexer_folders(event='',path=''):
+    try:
+        import json
+        folderpth = indexerpth = os.getcwd() + f'\\resources\\ indexerpaths.elsa'
+        f=open(folderpth)
+        folders=json.load(f)
+        folders.append(path)
+        f.close()
+        f=open(folderpth,'w')
+        json.dump(folders,f)
+        f.close()
+    except:
+        import json
+        folderpth = indexerpth = os.getcwd() + f'\\resources\\ indexerpaths.elsa'
+        f = open(folderpth, 'w')
+        json.dump([path], f)
+        f.close()
+
+
+def read_indexer_folders(event=''):
+    try:
+        import json
+        folderpth = indexerpth = os.getcwd() + f'\\resources\\ indexerpaths.elsa'
+        f = open(folderpth)
+        folders = json.load(f)
+        f.close()
+        return folders
+    except:pass
+
 
 
 #run index files when indexer module is imported in Elsa

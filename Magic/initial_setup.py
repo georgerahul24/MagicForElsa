@@ -22,7 +22,9 @@ def install_files():
         "black;purple;light green\n#The order is bg,font color,button colour\n#Please remember to use ';' to separate colours :D"
     )
     f.close()
-
+    indexerpth= os.getcwd() + f'\\resources\\ indexerpaths.elsa'
+    f=open(indexerpth,'w')
+    f.close()
     # writing the users folder with default user admin and default password 1234
     userpth = os.getcwd() + "\\resources\\ users.elsa"
     f = open(userpth, 'w')

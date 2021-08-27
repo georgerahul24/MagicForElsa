@@ -2,10 +2,10 @@ from functools import partial
 from tkinter import *
 from tkinter import ttk
 from tkinter.colorchooser import askcolor
-
+from tkinter.filedialog import askdirectory
 from talk1.talk1 import talk
 
-from Magic import tkinterlib, add_user, theme, history
+from Magic import tkinterlib, add_user, theme, history,indexer
 
 
 def setting_page(event="", username='', state=True):
@@ -22,7 +22,7 @@ def setting_page(event="", username='', state=True):
 
     settings = Tk()
     bg_colour, text_color, button_colour = theme.read_theme()
-    tkinterlib.tkinter_initialise(settings, x=500, y=300)
+    tkinterlib.tkinter_initialise(settings, x=500, y=300,top=0)
 
     #...title bar...
     # for title bar refer https://stackoverflow.com/questions/23836000/can-i-change-the-title-bar-in-tkinter
@@ -52,6 +52,7 @@ def setting_page(event="", username='', state=True):
     theme_tab = Frame(settings, bg=bg_colour)
     history_tab = Frame(settings, bg=bg_colour)
     about_tab = Frame(settings, bg=bg_colour)
+    indexer_tab = Frame(settings, bg=bg_colour)
     # ...settings_tab......
     # ....add user.........
     adduser = Button(settings_tab,
@@ -161,16 +162,43 @@ def setting_page(event="", username='', state=True):
     a = Label(ab, text="Austin Bert", bg=bg_colour, fg=text_color).pack()
     e = Label(ab, text="Elizabeth Jaison", bg=bg_colour, fg=text_color).pack()
     g = Label(ab, text="George Rahul", bg=bg_colour, fg=text_color).pack()
+    #.........indexer tab.............
+    def folderlabels():
+        try:
+            folders=indexer.read_indexer_folders()
+            for folder in folders:
+                foldername=folder.split('/')[-1]
+                Label(indexer_tab, text=foldername, bg=bg_colour, fg=text_color).pack()
+        except:pass
+    def folderchooser():
+        folderpath=askdirectory()
+        indexer.add_indexer_folders(path=folderpath)
+        settings.destroy()
+        setting_page()
+    indexerbutton = Button(indexer_tab,
+                   text="Add a folder",
+                   bd=0,
+                   bg=bg_colour,
+                   fg=text_color,
+                   command=folderchooser)
+    indexerbutton.pack()
+    # hover effect
+    indexerbutton.bind('<Enter>', partial(tkinterlib.on_enter, but=indexerbutton))
+    indexerbutton.bind('<Leave>', partial(tkinterlib.on_leave, but=indexerbutton))
 
+    indexertitle=Label(indexer_tab,text='Additional Indexed folders',font='bold',bg=bg_colour, fg=text_color).pack()
+    folderlabels()
     #Packing the tabs
     settings_tab.pack(fill='both')
     theme_tab.pack(fill='both')
     history_tab.pack(fill='both')
     about_tab.pack(fill='both')
+    indexer_tab.pack(fill='both')
     tab.add(settings_tab, text="Settings")
     tab.add(theme_tab, text="Theme")
     tab.add(history_tab, text="History")
     tab.add(about_tab, text="About")
+    tab.add(indexer_tab,text='Indexer')
     # ....close button....
     close = Button(title_bar,
                    text="x",
@@ -183,6 +211,6 @@ def setting_page(event="", username='', state=True):
     # hover effect
     close.bind('<Enter>', partial(tkinterlib.on_enter, but=close))
     close.bind('<Leave>', partial(tkinterlib.on_leave, but=close))
-    #...moving titlebar...
+        #...moving titlebar...
     title_bar.bind('<B1-Motion>', move_window)
     settings.mainloop()
