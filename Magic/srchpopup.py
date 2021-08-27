@@ -27,7 +27,7 @@ def popups(srch):
                  fg=text_color,
                  command=srchYes)
 
-    #function also  refernced in elsa.py
+    #function refernced in elsa.py
     def destroyPop():
         popups.destroy()
 
