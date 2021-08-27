@@ -5,8 +5,7 @@ from tkinter.colorchooser import askcolor
 
 from talk1.talk1 import talk
 
-from Magic import tkinterlib, add_user, theme,history
-
+from Magic import tkinterlib, add_user, theme, history
 
 
 def setting_page(event="", username='', state=True):
@@ -17,18 +16,19 @@ def setting_page(event="", username='', state=True):
         username (str, optional): [Username of the user using the GUI]. Defaults to ''.
         state (bool, optional): [Not important]. Defaults to True.
     """
-
     def usr_page(event=''):
         talk('Please add a new user')
         add_user.user_page()
 
     settings = Tk()
     bg_colour, text_color, button_colour = theme.read_theme()
-    tkinterlib.tkinter_initialise(settings,x=500,y=300)
+    tkinterlib.tkinter_initialise(settings, x=500, y=300)
+
     #...title bar...
     # for title bar refer https://stackoverflow.com/questions/23836000/can-i-change-the-title-bar-in-tkinter
     def move_window(event):
         settings.geometry(f'+{event.x_root}+{event.y_root}')
+
     title_bar = Frame(settings, bg=bg_colour, bd=4)
     title_bar.pack(fill="x")
     tab = ttk.Notebook(settings)
@@ -37,9 +37,14 @@ def setting_page(event="", username='', state=True):
     #refer this https://www.pythontutorial.net/tkinter/ttk-style/ also
     noteStyle = ttk.Style()
     noteStyle.theme_use('default')
-    noteStyle.configure("TNotebook", background=bg_colour, borderwidth=0,foreground=text_color)
-    noteStyle.configure("TNotebook.Tab", background=button_colour, borderwidth=0,foreground=text_color)
-
+    noteStyle.configure("TNotebook",
+                        background=bg_colour,
+                        borderwidth=0,
+                        foreground=text_color)
+    noteStyle.configure("TNotebook.Tab",
+                        background=button_colour,
+                        borderwidth=0,
+                        foreground=text_color)
 
     tab.pack(fill="both")
     # differnt frames for tabs
@@ -157,11 +162,6 @@ def setting_page(event="", username='', state=True):
     e = Label(ab, text="Elizabeth Jaison", bg=bg_colour, fg=text_color).pack()
     g = Label(ab, text="George Rahul", bg=bg_colour, fg=text_color).pack()
 
-
-
-
-
-
     #Packing the tabs
     settings_tab.pack(fill='both')
     theme_tab.pack(fill='both')
@@ -186,6 +186,3 @@ def setting_page(event="", username='', state=True):
     #...moving titlebar...
     title_bar.bind('<B1-Motion>', move_window)
     settings.mainloop()
-
-
-
