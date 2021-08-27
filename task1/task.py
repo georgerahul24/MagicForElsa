@@ -136,11 +136,11 @@ def youtube(srch):
 
 
 def ordShortenSrch(ord):
-    parts=ord.split()
-    parts=parts[1:]
-    ord=''
+    parts = ord.split()
+    parts = parts[1:]
+    ord = ''
     for part in parts:
-        ord+=f'{part} '
+        ord += f'{part} '
     return ord
 
 
