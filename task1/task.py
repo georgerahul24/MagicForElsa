@@ -136,10 +136,11 @@ def youtube(srch):
 
 
 def ordShortenSrch(ord):
-    ord = ord.replace("search", "")
-    ord = ord.replace("SEARCH", "")
-    ord = ord.replace("browser", "")
-    ord = ord.replace("srch", "")
+    parts=ord.split()
+    parts=parts[1:]
+    ord=''
+    for part in parts:
+        ord+=f'{part} '
     return ord
 
 
