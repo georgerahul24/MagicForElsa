@@ -4,30 +4,29 @@ import pathlib
 
 
 def install_files():
-    """[Installs the neccessary files for Elsa to work]
-    """
-    #Making a relative folder called resources
-    folderpath = os.getcwd() + '\\resources'
+    """[Installs the neccessary files for Elsa to work]"""
+    # Making a relative folder called resources
+    folderpath = os.getcwd() + "\\resources"
     folderpath = pathlib.Path(folderpath)
     if not os.path.exists(folderpath):
         os.makedirs(folderpath)
-    dummytpth = os.getcwd() + '\\resources\\ dummy.elsa'
-    f = open(dummytpth, 'w')
+    dummytpth = os.getcwd() + "\\resources\\ dummy.elsa"
+    f = open(dummytpth, "w")
     f.write("Hey!The file you are looking is not found.Try again later")
     f.close()
     # Writing the default theme
-    initpth = os.getcwd() + '\\resources\\ initial.elsa'
-    f = open(initpth, 'w')
+    initpth = os.getcwd() + "\\resources\\ initial.elsa"
+    f = open(initpth, "w")
     f.write(
         "black;purple;light green\n#The order is bg,font color,button colour\n#Please remember to use ';' to separate colours :D"
     )
     f.close()
-    indexerpth = os.getcwd() + f'\\resources\\ indexerpaths.elsa'
-    f = open(indexerpth, 'w')
+    indexerpth = os.getcwd() + f"\\resources\\ indexerpaths.elsa"
+    f = open(indexerpth, "w")
     f.close()
     # writing the users folder with default user admin and default password 1234
     userpth = os.getcwd() + "\\resources\\ users.elsa"
-    f = open(userpth, 'w')
-    json.dump({'admin': "1234"}, f)
+    f = open(userpth, "w")
+    json.dump({"admin": "1234"}, f)
     f.close()
     print("added file 'initial.Elsa'")

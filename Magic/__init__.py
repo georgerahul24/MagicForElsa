@@ -1,4 +1,4 @@
-'''This package contains all the neccessary modules needed for Elsa
+"""This package contains all the neccessary modules needed for Elsa
 Modules in the package are:
 i)about_page
 ii)add_user
@@ -11,5 +11,5 @@ viii)settings
 ix)srchpopup
 x)theme
 xi)tkinterlib
-xii)usernames'''
-__version__=1.11
+xii)usernames"""
+__version__ = 1.11

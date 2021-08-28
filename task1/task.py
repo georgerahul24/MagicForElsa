@@ -1,5 +1,5 @@
-'''Created by George Rahul
-Contains all the necessary code to run various features like searching in net,running files,etc'''
+"""Created by George Rahul
+Contains all the necessary code to run various features like searching in net,running files,etc"""
 import pyttsx3, datetime, subprocess, webbrowser, random, os
 from pathlib import Path
 from talk1 import talk1
@@ -27,7 +27,7 @@ def tell_time():
 # ...........Programmes..........................
 def wordpad():
     try:
-        subprocess.Popen('C:\\Windows\\System32\\write.exe')
+        subprocess.Popen("C:\\Windows\\System32\\write.exe")
         talk(f"I have opened wordpad for you")
     except:
         print("Sorry i couldnt do what you requested Try again later")
@@ -37,8 +37,11 @@ def whatsapp():
     try:
 
         subprocess.Popen(
-            os.path.join(os.path.join(os.environ['USERPROFILE']),
-                         'AppData\\Local\\WhatsApp\\WhatsApp.exe'))
+            os.path.join(
+                os.path.join(os.environ["USERPROFILE"]),
+                "AppData\\Local\\WhatsApp\\WhatsApp.exe",
+            )
+        )
         print("Opened WhatsApp")
         talk(f"I have opened whatsapp for you")
 
@@ -56,7 +59,7 @@ def gimp():
 
 def firefox():
     try:
-        subprocess.Popen('C:\\Program Files\\Mozilla Firefox\\firefox.exe')
+        subprocess.Popen("C:\\Program Files\\Mozilla Firefox\\firefox.exe")
         talk("i have opened firefox for you")
     except Exception as e:
         talk("Sorry, could not open firefox")
@@ -65,7 +68,7 @@ def firefox():
 
 def photoshop():
     try:
-        os.system('photoshop')
+        os.system("photoshop")
         talk("i have opened photoshop for you")
     except Exception as e:
         talk("Sorry, could not open photoshop")
@@ -74,7 +77,7 @@ def photoshop():
 
 def vscode():
     try:
-        os.system('code')
+        os.system("code")
         talk("i have opened visual studio code for you")
     except Exception as e:
         talk("Sorry, could not open visual studio code")
@@ -83,7 +86,7 @@ def vscode():
 
 def vlc():
     try:
-        os.system('vlc')
+        os.system("vlc")
         talk("i have opened vlc for you")
     except Exception as e:
         talk("Sorry, could not open vlc")
@@ -92,7 +95,7 @@ def vlc():
 
 def telegram():
     try:
-        os.system('telegram')
+        os.system("telegram")
         talk("i have opened telegram for you")
     except Exception as e:
         talk("Sorry, could not open telegram ")
@@ -101,7 +104,7 @@ def telegram():
 
 def powerpoint():
     try:
-        os.system('powerpnt')
+        os.system("powerpnt")
         talk("i have opened powerpoint for you")
     except Exception as e:
         talk("Sorry, could not open powerpoint ")
@@ -110,7 +113,7 @@ def powerpoint():
 
 def msword():
     try:
-        os.system('winword')
+        os.system("winword")
         talk("i have opened word for you")
     except Exception as e:
         talk("Sorry, could not open word")
@@ -121,9 +124,9 @@ def msword():
 def web(a):
     try:
         searchword = a
-        webbrowser.open('https://www.google.com/search?client=firefox-b-d&q=' +
-                        searchword,
-                        new=1)
+        webbrowser.open(
+            "https://www.google.com/search?client=firefox-b-d&q=" + searchword, new=1
+        )
         talk(f"This is what I found for {a}")
     except:
         webbrowser.open(webbrowser.open(searchword, new=1))
@@ -138,9 +141,9 @@ def youtube(srch):
 def ordShortenSrch(ord):
     parts = ord.split()
     parts = parts[1:]
-    ord = ''
+    ord = ""
     for part in parts:
-        ord += f'{part} '
+        ord += f"{part} "
     return ord
 
 
@@ -148,9 +151,8 @@ def ordShortenSrch(ord):
 def download():
     try:
         os.startfile(
-            Path(
-                os.path.join(os.path.join(os.environ['USERPROFILE']),
-                             'Downloads')))
+            Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Downloads"))
+        )
         talk(f"Here is what you requested")
     except:
         talk("Sorry, could not open the downloads folder")
@@ -160,9 +162,8 @@ def download():
 def desktop():
     try:
         os.startfile(
-            Path(
-                os.path.join(os.path.join(os.environ['USERPROFILE']),
-                             'Desktop')))
+            Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Desktop"))
+        )
         talk(f"Here is what you requested")
     except:
         talk("Sorry, could not open the desktop folder")
@@ -172,8 +173,8 @@ def desktop():
 def musicFolder():
     try:
         os.startfile(
-            Path(os.path.join(os.path.join(os.environ['USERPROFILE']),
-                              'Music')))
+            Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Music"))
+        )
         talk(f"Here is what you requested")
     except:
         talk("Sorry, could not open the Music folder")
@@ -183,9 +184,8 @@ def musicFolder():
 def desktop():
     try:
         os.startfile(
-            Path(
-                os.path.join(os.path.join(os.environ['USERPROFILE']),
-                             'Desktop')))
+            Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Desktop"))
+        )
         talk(f"Here is what you requested")
     except:
         talk("Sorry, could not open the downloads folder")
@@ -195,32 +195,33 @@ def desktop():
 def joke():
     try:
         jokeslist = [
-            'My friend was explaining electricity to me, but I was like, wat ?',
-            'I failed math so many times at school, I can’t even count',
-            'Never trust atoms; they make up everything', 'George is a fool',
-            'The future, the present, and the past walk into a bar. Things got a little tense',
-            'It was an emotional wedding. Even the cake was in tiers'
+            "My friend was explaining electricity to me, but I was like, wat ?",
+            "I failed math so many times at school, I can’t even count",
+            "Never trust atoms; they make up everything",
+            "George is a fool",
+            "The future, the present, and the past walk into a bar. Things got a little tense",
+            "It was an emotional wedding. Even the cake was in tiers",
         ]
         jokeselected = random.choice(jokeslist)
         talk(jokeselected)
     except:
-        talk('Let me think. please try again')
+        talk("Let me think. please try again")
 
 
-#...........shutdown,restart and log off.....
+# ...........shutdown,restart and log off.....
 def shutdown():
     try:
-        #/s is for shutdown and 15 is for a 15 seconds delay when shutdowning
+        # /s is for shutdown and 15 is for a 15 seconds delay when shutdowning
         talk("Shutting down your computer in 15 seconds. Bye bye")
-        subprocess.call(["shutdown", '/s', '/t', "15"])
+        subprocess.call(["shutdown", "/s", "/t", "15"])
     except:
         talk("Sorry.Something went wrong")
 
 
 def restart():
     try:
-        #/r is for restart and 15 is for a 15 seconds delay when shutdowning
+        # /r is for restart and 15 is for a 15 seconds delay when shutdowning
         talk("Restarting your computer in 15 seconds. Bye bye")
-        subprocess.call(["shutdown", '/r', '/t', "15"])
+        subprocess.call(["shutdown", "/r", "/t", "15"])
     except:
         talk("Sorry.Something went wrong")

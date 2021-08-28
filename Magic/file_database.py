@@ -1,8 +1,9 @@
-'''This module deals with adding and verifying usernames'''
+"""This module deals with adding and verifying usernames"""
 import os
 import json
-#Get the path of users.elsa
-userpth = os.getcwd() + '\\resources\\ users.elsa'
+
+# Get the path of users.elsa
+userpth = os.getcwd() + "\\resources\\ users.elsa"
 
 
 def check_user_from_file(username):
@@ -16,13 +17,13 @@ def check_user_from_file(username):
     """
     try:
 
-        file = open(userpth, 'r')
+        file = open(userpth, "r")
         data = json.load(file)
         part2 = data.get(username, None)
         file.close()
         return part2
     except Exception as e:
-        print('It seems that some error has happened', e)
+        print("It seems that some error has happened", e)
 
 
 def write_to_file(username, password):
@@ -37,27 +38,34 @@ def write_to_file(username, password):
     """
     try:
 
-        file = open(userpth, 'r')
+        file = open(userpth, "r")
         data = json.load(file)
         print(file)
         file.close()
-        file = open(userpth, 'w')
+        file = open(userpth, "w")
         if len(username) != 0 and username not in [
-                'initial', 'cache', 'users', 'user', 'theme', 'indexer',
-                'resources', 'dummy', 'indexerpaths'
+            "initial",
+            "cache",
+            "users",
+            "user",
+            "theme",
+            "indexer",
+            "resources",
+            "dummy",
+            "indexerpaths",
         ]:
 
             data[username] = password
             json.dump(data, file)
             file.close()
             print(f"Added user {username} ")
-            #returns state = 1 so that program knows that writing was succesful
+            # returns state = 1 so that program knows that writing was succesful
             state = 1
 
         else:
-            print('User already exists')
-            #return state = -1 to know that user wasnt added successfully due to username repetitions,empty username,username conflicts,etc
+            print("User already exists")
+            # return state = -1 to know that user wasnt added successfully due to username repetitions,empty username,username conflicts,etc
             state = -1
         return state
     except Exception as e:
-        print(e, 'Try again')
+        print(e, "Try again")

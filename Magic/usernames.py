@@ -1,5 +1,5 @@
-'''Created by George Rahul
-Calls the login page and verifies the username and password entered'''
+"""Created by George Rahul
+Calls the login page and verifies the username and password entered"""
 
 from Magic.GUI import SecurityUI
 from talk1.talk1 import talk
@@ -12,8 +12,7 @@ def verify_usernames():
 
 
 def check_user():
-    """[Security process]
-    """
+    """[Security process]"""
     try:
         # initialise the security variable
         check_user.security = verify_usernames()

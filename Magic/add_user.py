@@ -6,8 +6,7 @@ from functools import partial
 
 
 def user_page():
-    """[This function is used to implement the GUI of the add user page]
-    """
+    """[This function is used to implement the GUI of the add user page]"""
     userpage = Tk()
 
     bg_colour, text_color, button_colour = theme.read_theme()
@@ -21,14 +20,13 @@ def user_page():
     ep = Entry(s)
 
     def add_user_layout():
-        """[Placing the elemnts in the settings page]
-        """
+        """[Placing the elemnts in the settings page]"""
         lu.grid(row=0, column=0)
         eu.grid(row=0, column=1)
         lp.grid(row=1, column=0)
         ep.grid(row=1, column=1)
 
-    def add(event=''):
+    def add(event=""):
         """[Adds the user]
 
         Args:
@@ -39,37 +37,32 @@ def user_page():
         new_password = ep.get()
         state = file_database.write_to_file(new_user, new_password)
         if state == 1:
-            talk(f'Successfully added {new_user}')
+            talk(f"Successfully added {new_user}")
 
         elif state == -1:
             talk("user aldready exists. Try again")
         userpage.destroy()
 
     add_user_layout()
-    add_user_button = Button(s,
-                             text="Add User",
-                             bd=0,
-                             command=add,
-                             bg=bg_colour,
-                             fg=text_color)
+    add_user_button = Button(
+        s, text="Add User", bd=0, command=add, bg=bg_colour, fg=text_color
+    )
     add_user_button.grid(row=3, column=1)
-    add_user_button.bind('<Enter>',
-                         partial(tkinterlib.on_enter, but=add_user_button))
-    add_user_button.bind('<Leave>',
-                         partial(tkinterlib.on_leave, but=add_user_button))
-    close_button = Button(s,
-                          text="X",
-                          font="Bold",
-                          bg=bg_colour,
-                          fg=text_color,
-                          command=userpage.destroy,
-                          bd=0)
+    add_user_button.bind("<Enter>", partial(tkinterlib.on_enter, but=add_user_button))
+    add_user_button.bind("<Leave>", partial(tkinterlib.on_leave, but=add_user_button))
+    close_button = Button(
+        s,
+        text="X",
+        font="Bold",
+        bg=bg_colour,
+        fg=text_color,
+        command=userpage.destroy,
+        bd=0,
+    )
 
     close_button.grid(row=3, column=0)
 
-    close_button.bind('<Enter>', partial(tkinterlib.on_enter,
-                                         but=close_button))
-    close_button.bind('<Leave>', partial(tkinterlib.on_leave,
-                                         but=close_button))
+    close_button.bind("<Enter>", partial(tkinterlib.on_enter, but=close_button))
+    close_button.bind("<Leave>", partial(tkinterlib.on_leave, but=close_button))
     userpage.bind("<Return>", add)
     userpage.mainloop()
