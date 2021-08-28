@@ -13,7 +13,7 @@ def tkinter_initialise(a, x=0, y=0, top=1, noborders=True, opacity=0.9):
         opacity (float, optional): [opacity ranges from 0 to 1. 0 being complete transparent]. Defaults to 0.9.
     """
     bg_colour, text_color, button_colour = theme.read_theme()
-    a.withdraw()  # Hide tkinter windows to finsih intialsa==zation
+    a.withdraw()  # Hide tkinter windows to finsih intialsazation
     a.attributes("-alpha", opacity)  # Opacity of tkinter window
     a.overrideredirect(noborders)  # Remove Borders and default title bars
     a.configure(bg=bg_colour)

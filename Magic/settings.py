@@ -221,7 +221,12 @@ def setting_page(event="", username="", state=True):
     tab.add(history_tab, text="History")
     tab.add(about_tab, text="About")
     tab.add(indexer_tab, text="Indexer")
+
     # ....close button....
+    def quitsettings(event=""):
+        settings.destroy()
+        indexer.index_files()
+
     close = Button(
         title_bar,
         text="x",
@@ -229,7 +234,7 @@ def setting_page(event="", username="", state=True):
         bd=0,
         bg=bg_colour,
         fg=text_color,
-        command=settings.destroy,
+        command=quitsettings,
     )
     close.pack(side=RIGHT)
     # hover effect

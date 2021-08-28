@@ -84,7 +84,6 @@ def search_indexed_file(filename):
         filename ([str]): [Name of the file to be opened]
     """
     try:
-
         cache = open(indexerpth, "r")
         datas = cache.readlines()
         cache.close()
@@ -95,6 +94,7 @@ def search_indexed_file(filename):
             cachedict[data[0]] = data[1]
             filenames.append(data[0])
         approx_file = get_close_matches(filename, filenames, n=1, cutoff=0.7)
+        print(cachedict)
         print(approx_file)
         if len(approx_file) != 0:
             srched_filepath = cachedict[approx_file[0]]

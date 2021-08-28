@@ -9,7 +9,7 @@ engine.setProperty(
     "voice", voices[1].id
 )  # changing index, changes voices. 1 for female
 rate = engine.getProperty("rate")  # getting details of current speaking rate
-engine.setProperty("rate", 130)  # setting up new voice rate
+engine.setProperty("rate", 135)  # setting up new voice rate
 
 
 def talk(speak):
