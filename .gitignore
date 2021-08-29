@@ -1,4 +1,8 @@
 *.pyc
-*.txt
 *.xml
 *.iml
+*.vira
+*.elsa
+*.json
+*.txt
+/.idea/*
