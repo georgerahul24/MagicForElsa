@@ -1,4 +1,6 @@
-import datetime, webbrowser, os
+import datetime
+import os
+import webbrowser
 from pathlib import Path
 
 
@@ -11,11 +13,12 @@ def user_file(username, command, task_did):
         task_did ([str]): [Action taken]
     """
     userpth = os.getcwd() + f"\\resources\\ {username}.elsa"
-    history = open(userpth, "a")
-    history.write(
-        f"{datetime.datetime.now()} user input: {command}, output: {task_did}")
-    history.write("\n")
-    history.close()
+    with open(userpth, "a") as history:
+        history.write(
+            f"""
+            ---------------------------------------------------------------------
+            DATE{datetime.datetime.now()} USER INPUT: {command} OUTPUT: {task_did}""")
+        history.write("\n")
 
 
 def user_read(event="", username="dummy"):
@@ -26,9 +29,14 @@ def user_read(event="", username="dummy"):
         username (str, optional): [Name of the user to be opened]. Defaults to "admin".
     """
     userpth = os.getcwd() + f"\\resources\\ {username}.elsa"
+
     if not Path(userpth).exists():
         userpth = os.getcwd() + "\\resources\\ dummy.elsa"
     webbrowser.open(userpth)
+
+
+
+
 
 
 def clear_history(name):
@@ -38,6 +46,5 @@ def clear_history(name):
         name ([str]): [Name of the user to clear]
     """
     userpth = os.getcwd() + f"\\resources\\ {name}.elsa"
-    history = open(userpth, "w")
-    history.write("")
-    history.close()
+    with open(userpth, "w") as history:
+        history.write("")
