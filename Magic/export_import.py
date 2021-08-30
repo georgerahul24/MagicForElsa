@@ -37,7 +37,8 @@ def import_data():
             indexfile.close()
             print('Imported the additional indexed folders')
             try:
-                removepth = indexerpth = os.getcwd() + f"\\resources\\ indexer.elsa"
+                removepth = indexerpth = os.getcwd(
+                ) + f"\\resources\\ indexer.elsa"
                 os.remove(removepth)
                 print("Deleted 'indexer.elsa'")
             except:
