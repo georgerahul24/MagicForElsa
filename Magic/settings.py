@@ -5,7 +5,7 @@ from tkinter.colorchooser import askcolor
 from tkinter.filedialog import askdirectory
 from talk1.talk1 import talk
 
-from Magic import tkinterlib, add_user, theme, history, indexer,export_import
+from Magic import tkinterlib, add_user, theme, history, indexer, export_import
 
 
 def setting_page(event="", username="", state=True):
@@ -94,8 +94,6 @@ def setting_page(event="", username="", state=True):
     # hover effect
     importdata.bind("<Enter>", partial(tkinterlib.on_enter, but=importdata))
     importdata.bind("<Leave>", partial(tkinterlib.on_leave, but=importdata))
-
-
 
     # ......theme tab..........
 
