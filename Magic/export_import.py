@@ -16,11 +16,14 @@ def export():
     if indexerdata is None:
         indexerdata = None
 
-    USERNAMEPATH = getcwd(
-    ) + f"\\resources\\ users.elsa"
+    USERNAMEPATH = getcwd() + f"\\resources\\ users.elsa"
     with open(USERNAMEPATH) as usernamefile:
-        username_data=json.load(usernamefile)
-    data = {'indexfolders': indexerdata, 'theme': themedata,'usernames':f"{username_data}"}
+        username_data = json.load(usernamefile)
+    data = {
+        'indexfolders': indexerdata,
+        'theme': themedata,
+        'usernames': f"{username_data}"
+    }
     json.dump(data, f)
     print('Successfully exported the data')
     f.close()
@@ -29,14 +32,14 @@ def export():
 def import_data():
     try:
         from tkinter import filedialog
-        from os import getcwd,remove
+        from os import getcwd, remove
         initpth = getcwd() + "\\resources\\ initial.elsa"
         indexerpth = getcwd() + f"\\resources\\ indexerpaths.elsa"
         f = filedialog.askopenfile(mode='r', defaultextension=".json")
         data = json.load(f)
         indexdata = data.get('indexfolders')
         themedata = data.get('theme')
-        usernamedata=data.get('usernames')
+        usernamedata = data.get('usernames')
         print(indexdata, themedata)
         if indexdata is not None:
             indexfile = open(indexerpth, 'w')
@@ -54,15 +57,14 @@ def import_data():
         themefile.write(f"{themedata[0]};{themedata[1]};{themedata[2]}")
         themefile.close()
         print('Imported the themes')
-        USERNAMEPATH = getcwd(
-        ) + f"\\resources\\ users.elsa"
-        userfile=open(USERNAMEPATH,'w')
+        USERNAMEPATH = getcwd() + f"\\resources\\ users.elsa"
+        userfile = open(USERNAMEPATH, 'w')
         # see https://stackoverflow.com/questions/39491420/python-jsonexpecting-property-name-enclosed-in-double-quotes
         #json doesn't allow single qoutes. Only allows double qoutes
         usernamedata = usernamedata.replace("\'", '\"')
-        usernamedata=json.loads(usernamedata)
+        usernamedata = json.loads(usernamedata)
 
-        json.dump(usernamedata,userfile)
+        json.dump(usernamedata, userfile)
         print('Imported usernames')
         f.close()
     except Exception as e:

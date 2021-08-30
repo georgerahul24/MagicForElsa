@@ -14,10 +14,10 @@ def user_file(username, command, task_did):
     """
     userpth = os.getcwd() + f"\\resources\\ {username}.elsa"
     with open(userpth, "a") as history:
-        history.write(
-            f"""
+        history.write(f"""
             ---------------------------------------------------------------------
-            DATE{datetime.datetime.now()} USER INPUT: {command} OUTPUT: {task_did}""")
+            DATE{datetime.datetime.now()} USER INPUT: {command} OUTPUT: {task_did}"""
+                      )
         history.write("\n")
 
 
@@ -33,10 +33,6 @@ def user_read(event="", username="dummy"):
     if not Path(userpth).exists():
         userpth = os.getcwd() + "\\resources\\ dummy.elsa"
     webbrowser.open(userpth)
-
-
-
-
 
 
 def clear_history(name):
