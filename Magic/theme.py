@@ -49,7 +49,10 @@ def theme_selector(event=""):
 
     selectorpage = Tk()
     tkinterlib.tkinter_initialise(selectorpage, 600, 340, top=0)
-    selector = LabelFrame(selectorpage, text="Theme", bg=bg_colour, fg=text_color)
+    selector = LabelFrame(selectorpage,
+                          text="Theme",
+                          bg=bg_colour,
+                          fg=text_color)
     selector.pack()
 
     def new_background_colour(event=""):
@@ -79,12 +82,10 @@ def theme_selector(event=""):
         command=new_background_colour,
     )
     background_colour.pack(fill="x")
-    background_colour.bind(
-        "<Enter>", partial(tkinterlib.on_enter, but=background_colour)
-    )
-    background_colour.bind(
-        "<Leave>", partial(tkinterlib.on_leave, but=background_colour)
-    )
+    background_colour.bind("<Enter>",
+                           partial(tkinterlib.on_enter, but=background_colour))
+    background_colour.bind("<Leave>",
+                           partial(tkinterlib.on_leave, but=background_colour))
 
     new_text_colour = Button(
         selector,
@@ -95,8 +96,10 @@ def theme_selector(event=""):
         command=font_colour,
     )
     new_text_colour.pack(fill="x")
-    new_text_colour.bind("<Enter>", partial(tkinterlib.on_enter, but=new_text_colour))
-    new_text_colour.bind("<Leave>", partial(tkinterlib.on_leave, but=new_text_colour))
+    new_text_colour.bind("<Enter>",
+                         partial(tkinterlib.on_enter, but=new_text_colour))
+    new_text_colour.bind("<Leave>",
+                         partial(tkinterlib.on_leave, but=new_text_colour))
 
     new_button_colour = Button(
         selector,
@@ -107,12 +110,10 @@ def theme_selector(event=""):
         command=new_button_colour,
     )
     new_button_colour.pack(fil="x")
-    new_button_colour.bind(
-        "<Enter>", partial(tkinterlib.on_enter, but=new_button_colour)
-    )
-    new_button_colour.bind(
-        "<Leave>", partial(tkinterlib.on_leave, but=new_button_colour)
-    )
+    new_button_colour.bind("<Enter>",
+                           partial(tkinterlib.on_enter, but=new_button_colour))
+    new_button_colour.bind("<Leave>",
+                           partial(tkinterlib.on_leave, but=new_button_colour))
 
     close = Button(
         selectorpage,

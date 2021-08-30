@@ -40,8 +40,7 @@ def whatsapp():
             os.path.join(
                 os.path.join(os.environ["USERPROFILE"]),
                 "AppData\\Local\\WhatsApp\\WhatsApp.exe",
-            )
-        )
+            ))
         print("Opened WhatsApp")
         talk(f"I have opened whatsapp for you")
 
@@ -124,9 +123,9 @@ def msword():
 def web(a):
     try:
         searchword = a
-        webbrowser.open(
-            "https://www.google.com/search?client=firefox-b-d&q=" + searchword, new=1
-        )
+        webbrowser.open("https://www.google.com/search?client=firefox-b-d&q=" +
+                        searchword,
+                        new=1)
         talk(f"This is what I found for {a}")
     except:
         webbrowser.open(webbrowser.open(searchword, new=1))
@@ -151,8 +150,9 @@ def ordShortenSrch(ord):
 def download():
     try:
         os.startfile(
-            Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Downloads"))
-        )
+            Path(
+                os.path.join(os.path.join(os.environ["USERPROFILE"]),
+                             "Downloads")))
         talk(f"Here is what you requested")
     except:
         talk("Sorry, could not open the downloads folder")
@@ -162,8 +162,9 @@ def download():
 def desktop():
     try:
         os.startfile(
-            Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Desktop"))
-        )
+            Path(
+                os.path.join(os.path.join(os.environ["USERPROFILE"]),
+                             "Desktop")))
         talk(f"Here is what you requested")
     except:
         talk("Sorry, could not open the desktop folder")
@@ -173,8 +174,8 @@ def desktop():
 def musicFolder():
     try:
         os.startfile(
-            Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Music"))
-        )
+            Path(os.path.join(os.path.join(os.environ["USERPROFILE"]),
+                              "Music")))
         talk(f"Here is what you requested")
     except:
         talk("Sorry, could not open the Music folder")
@@ -184,8 +185,9 @@ def musicFolder():
 def desktop():
     try:
         os.startfile(
-            Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Desktop"))
-        )
+            Path(
+                os.path.join(os.path.join(os.environ["USERPROFILE"]),
+                             "Desktop")))
         talk(f"Here is what you requested")
     except:
         talk("Sorry, could not open the downloads folder")

@@ -13,8 +13,7 @@ def user_file(username, command, task_did):
     userpth = os.getcwd() + f"\\resources\\ {username}.elsa"
     history = open(userpth, "a")
     history.write(
-        f"{datetime.datetime.now()} user input: {command}, output: {task_did}"
-    )
+        f"{datetime.datetime.now()} user input: {command}, output: {task_did}")
     history.write("\n")
     history.close()
 
