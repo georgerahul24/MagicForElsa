@@ -3,10 +3,12 @@ setup.py
 Magic\GUI.py
 Magic\__init__.py
 Magic\add_user.py
+Magic\export_import.py
 Magic\file_database.py
 Magic\history.py
 Magic\indexer.py
 Magic\initial_setup.py
+Magic\license.py
 Magic\program_run.py
 Magic\settings.py
 Magic\srchpopup.py
