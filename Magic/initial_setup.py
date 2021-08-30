@@ -2,12 +2,13 @@ import json
 import os
 import pathlib
 import time
-
-from Magic import add_user, theme
+from Magic import add_user, theme, license
 from talk1.talk1 import talk
 
 
 def install_files():
+    # Show the lisence window
+    license.licence_window()
     try:
         """[Installs the neccessary files for Elsa to work]"""
         # Making a relative folder called resources
