@@ -63,7 +63,6 @@ def import_data():
         #json doesn't allow single qoutes. Only allows double qoutes
         usernamedata = usernamedata.replace("\'", '\"')
         usernamedata = json.loads(usernamedata)
-
         json.dump(usernamedata, userfile)
         print('Imported usernames')
         f.close()

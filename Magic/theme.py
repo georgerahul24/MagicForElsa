@@ -12,12 +12,14 @@ def read_theme():
         initpth = os.getcwd() + "\\resources\\ initial.elsa"
         f = open(initpth)
         datas = f.read()
+        f.close()
         colours = datas.split(";")
         bg_colour = colours[0].rstrip().lstrip()
         text_color = colours[1].rstrip().lstrip()
         colours = colours[2].split("\n")
 
         button_colour = colours[0].rstrip().lstrip()
+
         return bg_colour, text_color, button_colour
     except Exception as e:
         print("initial.elsa is corrupted")
