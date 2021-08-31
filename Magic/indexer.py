@@ -24,9 +24,8 @@ def indexer_folders():
 
         folderpth = indexerpth = os.getcwd(
         ) + f"\\resources\\ indexerpaths.elsa"
-        f = open(folderpth)
-        folders = json.load(f)
-        f.close()
+        with open(folderpth) as f:
+            folders = json.load(f)
         return folders
     except:
         pass
@@ -38,24 +37,23 @@ def index(dataOfDirectories, pathn):
     Args:
         pathn ([str]): [Path of the parent folder to index]
     """
-    cache = open(indexerpth, "a")
+
     try:
 
         for name in os.listdir(pathn):
             ine = os.path.join(pathn, name)
             i = Path(ine)
-            if i.is_file() == True:
+            if i.is_file():
                 name = name.split(".")[0]
                 print(f'filename:{name},path={ine}')
                 dataOfDirectories[name.lower()] = ine
 
-            else:  # check for the files in a directories by calling the function recursively
-                if name.startswith(".") == False and name.startswith(
+            elif name.startswith(".") == False and name.startswith(
                         "__") == False:
-                    try:
-                        index(i)
-                    except Exception as e:
-                        print(e)
+                try:
+                    index(dataOfDirectories,i)
+                except Exception as e:
+                    print(e)
 
     except Exception as e:
         print(e)
@@ -65,49 +63,51 @@ def index_files():
     """[Check if the indexer.elsa file exists.If it exists,no action is taken.If it doesnt exists,files are indexed]"""
     cache_file = Path(indexerpth)
 
-    if cache_file.exists() == True:
-        print("'indexer.elsa' found")
+    if cache_file.exists() != True:
+        with open(indexerpth, "w") as cache:
+            print("'indexer.elsa' not found")
+            print("Indexing files...Wait a moment...")
+            folders = indexer_folders()
+            try:
+                directories.extend(folders)
+            except:
+                pass
+            dataOfDirectories = {}
+            for paths in directories:
+                index(dataOfDirectories, paths)
+            print(dataOfDirectories)
+            json.dump(dataOfDirectories, cache)
+            print('Json dumped')
     else:
-        cache = open(indexerpth, "w")
-        print("'indexer.elsa' not found")
-        print("Indexing files...Wait a moment...")
-        folders = indexer_folders()
-        try:
-            directories.extend(folders)
-        except:
-            pass
-        dataOfDirectories = {}
-        for paths in directories:
-            index(dataOfDirectories, paths)
-        print(dataOfDirectories)
-        json.dump(dataOfDirectories, cache)
-        print('Json dumped')
-        cache.close()
+        print("'indexer.elsa' found")
 
 
 def search_indexed_file(filename):
     import json
-    cache = open(indexerpth, "r")
-    cachedict = json.load(cache)
-    cache.close()
-    filenames = []
-    for data in cachedict:
-        filenames.append(data)
-    print(filenames)
+    with open(indexerpth, "r") as cache:
+        cachedict = json.load(cache)
+    filenames = [data for data in cachedict]
+
 
     approx_file = get_close_matches(filename, filenames, n=1, cutoff=0.7)
-    print('Approximate to', approx_file[0])
-    if len(approx_file) != 0:
 
-        srched_filepath = cachedict[approx_file[0]]
+    try:
+        print('Approximate to', approx_file[0])
+        if len(approx_file) != 0 and len(approx_file[0]) != 0:
 
-        webbrowser.open(srched_filepath)
+            srched_filepath = cachedict[approx_file[0]]
 
-        print(f"Opened {srched_filepath}")
-        talk1.talk(f"Opened {approx_file}")
-    else:
+            webbrowser.open(srched_filepath)
+
+            print(f"Opened {srched_filepath}")
+            talk1.talk(f"Opened {approx_file}")
+        else:
+            print(f"Could not find any files")
+            talk1.talk(f"Could not find any files")
+    except:
         print(f"Could not find any files")
         talk1.talk(f"Could not find any files")
+
 
 
 def add_indexer_folders(event="", path=""):
@@ -115,21 +115,18 @@ def add_indexer_folders(event="", path=""):
         import json
 
         folderpth = os.getcwd() + f"\\resources\\ indexerpaths.elsa"
-        f = open(folderpth)
-        folders = json.load(f)
-        folders.append(path)
-        f.close()
-        f = open(folderpth, "w")
-        json.dump(folders, f)
-        f.close()
+        with open(folderpth) as f:
+            folders = json.load(f)
+            folders.append(path)
+        with open(folderpth, "w") as f:
+            json.dump(folders, f)
     except:
         import json
 
         folderpth = indexerpth = os.getcwd(
         ) + f"\\resources\\ indexerpaths.elsa"
-        f = open(folderpth, "w")
-        json.dump([path], f)
-        f.close()
+        with open(folderpth, "w") as f:
+            json.dump([path], f)
     try:
         removepth = indexerpth = os.getcwd() + f"\\resources\\ indexer.elsa"
         os.remove(removepth)
@@ -142,9 +139,8 @@ def read_indexer_folders(event=""):
         import json
         folderpth = indexerpth = os.getcwd(
         ) + f"\\resources\\ indexerpaths.elsa"
-        f = open(folderpth)
-        folders = json.load(f)
-        f.close()
+        with open(folderpth) as f:
+            folders = json.load(f)
         return folders
     except:
         pass

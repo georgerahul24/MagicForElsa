@@ -17,10 +17,9 @@ def check_user_from_file(username):
     """
     try:
 
-        file = open(userpth, "r")
-        data = json.load(file)
-        part2 = data.get(username, None)
-        file.close()
+        with open(userpth, "r") as file:
+            data = json.load(file)
+            part2 = data.get(username, None)
         return part2
     except Exception as e:
         print("It seems that some error has happened", e)
@@ -38,10 +37,9 @@ def write_to_file(username, password):
     """
     try:
 
-        file = open(userpth, "r")
-        data = json.load(file)
-        print(file)
-        file.close()
+        with open(userpth, "r") as file:
+            data = json.load(file)
+            print(file)
         file = open(userpth, "w")
         if len(username) != 0 and username not in [
                 "initial",
@@ -60,12 +58,11 @@ def write_to_file(username, password):
             file.close()
             print(f"Added user {username} ")
             # returns state = 1 so that program knows that writing was succesful
-            state = 1
+            return 1
 
         else:
             print("User already exists")
             # return state = -1 to know that user wasnt added successfully due to username repetitions,empty username,username conflicts,etc
-            state = -1
-        return state
+            return -1
     except Exception as e:
         print(e, "Try again")

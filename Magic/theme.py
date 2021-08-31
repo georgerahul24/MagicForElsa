@@ -10,9 +10,8 @@ def read_theme():
     """
     try:
         initpth = os.getcwd() + "\\resources\\ initial.elsa"
-        f = open(initpth)
-        datas = f.read()
-        f.close()
+        with open(initpth) as f:
+            datas = f.read()
         colours = datas.split(";")
         bg_colour = colours[0].rstrip().lstrip()
         text_color = colours[1].rstrip().lstrip()
@@ -28,11 +27,10 @@ def read_theme():
 
 def theme_writer(bg_colour, font_colour, button_colour):
     initpth = os.getcwd() + "\\resources\\ initial.elsa"
-    f = open(initpth, "w")
-    f.write(
-        f"{bg_colour};{font_colour};{button_colour}\n #The order is bg,font color,button colour \n#Please remember to use ';' to separate colours :D"
-    )
-    f.close()
+    with open(initpth, "w") as f:
+        f.write(
+            f"{bg_colour};{font_colour};{button_colour}\n #The order is bg,font color,button colour \n#Please remember to use ';' to separate colours :D"
+        )
 
 
 # ...............no need for this function......

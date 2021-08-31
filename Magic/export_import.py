@@ -16,7 +16,7 @@ def export():
     if indexerdata is None:
         indexerdata = None
 
-    USERNAMEPATH = getcwd() + f"\\resources\\ users.elsa"
+    USERNAMEPATH = getcwd() + "\\resources\\ users.elsa"
     with open(USERNAMEPATH) as usernamefile:
         username_data = json.load(usernamefile)
     data = {
@@ -34,7 +34,7 @@ def import_data():
         from tkinter import filedialog
         from os import getcwd, remove
         initpth = getcwd() + "\\resources\\ initial.elsa"
-        indexerpth = getcwd() + f"\\resources\\ indexerpaths.elsa"
+        indexerpth = getcwd() + "\\resources\\ indexerpaths.elsa"
         f = filedialog.askopenfile(mode='r', defaultextension=".json")
         data = json.load(f)
         indexdata = data.get('indexfolders')
@@ -42,28 +42,27 @@ def import_data():
         usernamedata = data.get('usernames')
         print(indexdata, themedata)
         if indexdata is not None:
-            indexfile = open(indexerpth, 'w')
-            json.dump(indexdata, indexfile)
-            indexfile.close()
+            with open(indexerpth, 'w') as indexfile:
+                json.dump(indexdata, indexfile)
             print('Imported the additional indexed folders')
             try:
                 removepth = indexerpth = getcwd(
-                ) + f"\\resources\\ indexer.elsa"
+                ) + "\\resources\\ indexer.elsa"
                 remove(removepth)
                 print("Deleted 'indexer.elsa'")
             except:
                 pass
-        themefile = open(initpth, 'w')
-        themefile.write(f"{themedata[0]};{themedata[1]};{themedata[2]}")
-        themefile.close()
+        with open(initpth, 'w') as themefile:
+            themefile.write(f"{themedata[0]};{themedata[1]};{themedata[2]}")
         print('Imported the themes')
-        USERNAMEPATH = getcwd() + f"\\resources\\ users.elsa"
-        userfile = open(USERNAMEPATH, 'w')
+        USERNAMEPATH = getcwd() + "\\resources\\ users.elsa"
+
         # see https://stackoverflow.com/questions/39491420/python-jsonexpecting-property-name-enclosed-in-double-quotes
         #json doesn't allow single qoutes. Only allows double qoutes
         usernamedata = usernamedata.replace("\'", '\"')
         usernamedata = json.loads(usernamedata)
-        json.dump(usernamedata, userfile)
+        with open(USERNAMEPATH, 'w') as userfile:
+            json.dump(usernamedata, userfile)
         print('Imported usernames')
         f.close()
     except Exception as e:

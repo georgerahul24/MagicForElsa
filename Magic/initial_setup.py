@@ -17,31 +17,28 @@ def install_files():
         if not os.path.exists(folderpath):
             os.makedirs(folderpath)
         dummytpth = os.getcwd() + "\\resources\\ dummy.elsa"
-        f = open(dummytpth, "w")
-        f.write("Hey!The file you are looking is not found.Try again later")
-        f.close()
+        with open(dummytpth, "w") as f:
+            f.write("Hey!The file you are looking is not found.Try again later")
         # Writing the default theme
         initpth = os.getcwd() + "\\resources\\ initial.elsa"
-        f = open(initpth, "w")
-        f.write(
-            "black;purple;light green\n#The order is bg,font color,button colour\n#Please remember to use ';' to separate colours :D"
-        )
-        f.close()
+        with open(initpth, "w") as f:
+            f.write(
+                "black;purple;light green\n#The order is bg,font color,button colour\n#Please remember to use ';' to separate colours :D"
+            )
         indexerpth = os.getcwd() + f"\\resources\\ indexerpaths.elsa"
         f = open(indexerpth, "w")
         f.close()
         # writing the users folder with default user admin and default password 1234
         userpth = os.getcwd() + "\\resources\\ users.elsa"
-        f = open(userpth, "w")
-        talk("Hey new user. Let us get started")
-        talk("Please create an account to proceed")
-        try:
-            initusr, initpsswd = add_user.user_page_init()
-        except:
-            initusr = "admin"
-            initpsswd = "1234"
-        json.dump({initusr: initpsswd}, f)
-        f.close()
+        with open(userpth, "w") as f:
+            talk("Hey new user. Let us get started")
+            talk("Please create an account to proceed")
+            try:
+                initusr, initpsswd = add_user.user_page_init()
+            except:
+                initusr = "admin"
+                initpsswd = "1234"
+            json.dump({initusr: initpsswd}, f)
         talk("Now let us select a new theme")
         theme.theme_selector()
         print("added file 'initial.Elsa'")
