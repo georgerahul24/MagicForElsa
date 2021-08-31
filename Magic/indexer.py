@@ -45,13 +45,13 @@ def index(dataOfDirectories, pathn):
             i = Path(ine)
             if i.is_file():
                 name = name.split(".")[0]
-                print(f'filename:{name},path={ine}')
+                print(f"filename:{name},path={ine}")
                 dataOfDirectories[name.lower()] = ine
 
             elif name.startswith(".") == False and name.startswith(
-                        "__") == False:
+                    "__") == False:
                 try:
-                    index(dataOfDirectories,i)
+                    index(dataOfDirectories, i)
                 except Exception as e:
                     print(e)
 
@@ -77,22 +77,22 @@ def index_files():
                 index(dataOfDirectories, paths)
             print(dataOfDirectories)
             json.dump(dataOfDirectories, cache)
-            print('Json dumped')
+            print("Json dumped")
     else:
         print("'indexer.elsa' found")
 
 
 def search_indexed_file(filename):
     import json
+
     with open(indexerpth, "r") as cache:
         cachedict = json.load(cache)
     filenames = [data for data in cachedict]
 
-
     approx_file = get_close_matches(filename, filenames, n=1, cutoff=0.7)
 
     try:
-        print('Approximate to', approx_file[0])
+        print("Approximate to", approx_file[0])
         if len(approx_file) != 0 and len(approx_file[0]) != 0:
 
             srched_filepath = cachedict[approx_file[0]]
@@ -107,7 +107,6 @@ def search_indexed_file(filename):
     except:
         print(f"Could not find any files")
         talk1.talk(f"Could not find any files")
-
 
 
 def add_indexer_folders(event="", path=""):
@@ -137,6 +136,7 @@ def add_indexer_folders(event="", path=""):
 def read_indexer_folders(event=""):
     try:
         import json
+
         folderpth = indexerpth = os.getcwd(
         ) + f"\\resources\\ indexerpaths.elsa"
         with open(folderpth) as f:

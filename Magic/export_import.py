@@ -5,9 +5,10 @@ from Magic import theme, indexer
 def export():
     from os import getcwd
     from tkinter import filedialog
+
     # see https://stackoverflow.com/questions/19476232/save-file-dialog-in-tkinter
-    f = filedialog.asksaveasfile(mode='w', defaultextension=".json")
-    print('Starting to save file in', f)
+    f = filedialog.asksaveasfile(mode="w", defaultextension=".json")
+    print("Starting to save file in", f)
     # theme
     themedata = theme.read_theme()
 
@@ -20,12 +21,12 @@ def export():
     with open(USERNAMEPATH) as usernamefile:
         username_data = json.load(usernamefile)
     data = {
-        'indexfolders': indexerdata,
-        'theme': themedata,
-        'usernames': f"{username_data}"
+        "indexfolders": indexerdata,
+        "theme": themedata,
+        "usernames": f"{username_data}",
     }
     json.dump(data, f)
-    print('Successfully exported the data')
+    print("Successfully exported the data")
     f.close()
 
 
@@ -33,18 +34,19 @@ def import_data():
     try:
         from tkinter import filedialog
         from os import getcwd, remove
+
         initpth = getcwd() + "\\resources\\ initial.elsa"
         indexerpth = getcwd() + "\\resources\\ indexerpaths.elsa"
-        f = filedialog.askopenfile(mode='r', defaultextension=".json")
+        f = filedialog.askopenfile(mode="r", defaultextension=".json")
         data = json.load(f)
-        indexdata = data.get('indexfolders')
-        themedata = data.get('theme')
-        usernamedata = data.get('usernames')
+        indexdata = data.get("indexfolders")
+        themedata = data.get("theme")
+        usernamedata = data.get("usernames")
         print(indexdata, themedata)
         if indexdata is not None:
-            with open(indexerpth, 'w') as indexfile:
+            with open(indexerpth, "w") as indexfile:
                 json.dump(indexdata, indexfile)
-            print('Imported the additional indexed folders')
+            print("Imported the additional indexed folders")
             try:
                 removepth = indexerpth = getcwd(
                 ) + "\\resources\\ indexer.elsa"
@@ -52,18 +54,18 @@ def import_data():
                 print("Deleted 'indexer.elsa'")
             except:
                 pass
-        with open(initpth, 'w') as themefile:
+        with open(initpth, "w") as themefile:
             themefile.write(f"{themedata[0]};{themedata[1]};{themedata[2]}")
-        print('Imported the themes')
+        print("Imported the themes")
         USERNAMEPATH = getcwd() + "\\resources\\ users.elsa"
 
         # see https://stackoverflow.com/questions/39491420/python-jsonexpecting-property-name-enclosed-in-double-quotes
-        #json doesn't allow single qoutes. Only allows double qoutes
-        usernamedata = usernamedata.replace("\'", '\"')
+        # json doesn't allow single qoutes. Only allows double qoutes
+        usernamedata = usernamedata.replace("'", '"')
         usernamedata = json.loads(usernamedata)
-        with open(USERNAMEPATH, 'w') as userfile:
+        with open(USERNAMEPATH, "w") as userfile:
             json.dump(usernamedata, userfile)
-        print('Imported usernames')
+        print("Imported usernames")
         f.close()
     except Exception as e:
-        print('Some error happened', e)
+        print("Some error happened", e)

@@ -67,8 +67,8 @@ def setting_page(event="", username="", state=True):
     # hover effect
     adduser.bind("<Enter>", partial(tkinterlib.on_enter, but=adduser))
     adduser.bind("<Leave>", partial(tkinterlib.on_leave, but=adduser))
-    #...import export themes.....
-    #....Export data...........
+    # ...import export themes.....
+    # ....Export data...........
     exportdata = Button(
         settings_tab,
         text="Export Data",
@@ -81,7 +81,7 @@ def setting_page(event="", username="", state=True):
     # hover effect
     exportdata.bind("<Enter>", partial(tkinterlib.on_enter, but=exportdata))
     exportdata.bind("<Leave>", partial(tkinterlib.on_leave, but=exportdata))
-    #.......import data......
+    # .......import data......
     importdata = Button(
         settings_tab,
         text="Import Data",
