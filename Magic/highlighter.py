@@ -1,7 +1,8 @@
 from Magic import theme
 from tkinter import END
-def syntax_highlighting(event="",Search_box=None) -> None:
 
+
+def syntax_highlighting(event="", Search_box=None) -> None:
 
     try:
         ord = Search_box.get()

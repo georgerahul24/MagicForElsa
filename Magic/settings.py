@@ -1,5 +1,5 @@
 from functools import partial
-from tkinter import Tk,Frame,Label,Button,LabelFrame,RIGHT
+from tkinter import Tk, Frame, Label, Button, LabelFrame, RIGHT
 from tkinter import ttk
 from tkinter.colorchooser import askcolor
 from tkinter.filedialog import askdirectory
