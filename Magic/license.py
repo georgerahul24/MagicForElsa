@@ -1,12 +1,11 @@
-from Magic import tkinterlib
-from tkinter import Tk, Text, END, Button, Label
+from tkinter import Tk, Button, Label
 from talk1.talk1 import talk
-from threading import Thread
 
 
 def licence_window(event=""):
     lisc = Tk()
     lisc.resizable(False, False)
+    lisc.overrideredirect(True)
 
     text = Label(text="""MIT License
 
@@ -38,9 +37,9 @@ SOFTWARE.
         lisc.destroy()
 
     def quit(event=""):
-
         exit()
 
     Button(text="Agree", command=agree).pack(fill="y")
     Button(text="Disagree", command=quit).pack(fill="y")
     lisc.mainloop()
+

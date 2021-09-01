@@ -9,6 +9,7 @@ from talk1.talk1 import talk
 def install_files():
     # Show the lisence window
     license.licence_window()
+    print('Licence accepted')
     try:
         """[Installs the neccessary files for Elsa to work]"""
         # Making a relative folder called resources
