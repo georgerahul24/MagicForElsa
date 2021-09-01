@@ -48,8 +48,7 @@ def import_data():
                 json.dump(indexdata, indexfile)
             print("Imported the additional indexed folders")
             try:
-                removepth = indexerpth = getcwd(
-                ) + "\\resources\\ indexer.elsa"
+                removepth = getcwd() + "\\resources\\ indexer.elsa"
                 remove(removepth)
                 print("Deleted 'indexer.elsa'")
             except:
