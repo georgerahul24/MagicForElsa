@@ -42,4 +42,3 @@ SOFTWARE.
     Button(text="Agree", command=agree).pack(fill="y")
     Button(text="Disagree", command=quit).pack(fill="y")
     lisc.mainloop()
-
