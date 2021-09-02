@@ -2,8 +2,9 @@ import json
 import os
 import pathlib
 import time
-from Magic import add_user, theme, license
+from Magic import usergui, theme, license
 from talk1.talk1 import talk
+from sys import exit
 
 
 def install_files():
@@ -36,7 +37,7 @@ def install_files():
             talk("Hey new user. Let us get started")
             talk("Please create an account to proceed")
             try:
-                initusr, initpsswd = add_user.user_page_init()
+                initusr, initpsswd = usergui.user_page_init()
             except:
                 initusr = "admin"
                 initpsswd = "1234"

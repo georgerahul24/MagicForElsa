@@ -5,7 +5,7 @@ from tkinter import Tk, Toplevel, Entry, Label, Button
 
 from Magic import theme, tkinterlib
 from functools import partial
-from Magic.add_user import user_page
+from Magic.usergui import user_page
 
 
 def SecurityUI():
@@ -91,3 +91,6 @@ def SecurityUI():
     win.bind("<Return>", password)
     t.mainloop()
     return password.usergui, password.passgui
+
+
+

@@ -1,3 +1,6 @@
+"""
+This module is for syntax highlighting
+"""
 from Magic import theme
 from tkinter import END
 

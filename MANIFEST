@@ -10,11 +10,13 @@ Magic\history.py
 Magic\indexer.py
 Magic\initial_setup.py
 Magic\license.py
+Magic\popups.py
 Magic\program_run.py
 Magic\settings.py
 Magic\srchpopup.py
 Magic\theme.py
 Magic\tkinterlib.py
+Magic\usergui.py
 Magic\usernames.py
 talk1\__init__.py
 talk1\talk1.py

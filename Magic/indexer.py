@@ -127,7 +127,7 @@ def add_indexer_folders(event="", path=""):
         with open(folderpth, "w") as f:
             json.dump([path], f)
     try:
-        removepth = indexerpth = os.getcwd() + f"\\resources\\ indexer.elsa"
+        removepth = os.getcwd() + f"\\resources\\ indexer.elsa"
         os.remove(removepth)
     except:
         pass

@@ -1,11 +1,14 @@
+"""
+This module contains the GUI for settings
+"""
+import os
 from functools import partial
 from tkinter import Tk, Frame, Label, Button, LabelFrame, RIGHT
 from tkinter import ttk
 from tkinter.colorchooser import askcolor
 from tkinter.filedialog import askdirectory
 from talk1.talk1 import talk
-
-from Magic import tkinterlib, add_user, theme, history, indexer, export_import
+from Magic import tkinterlib, usergui, theme, history, indexer, export_import,popups
 
 
 def setting_page(event="", username="", state=True):
@@ -18,7 +21,7 @@ def setting_page(event="", username="", state=True):
     """
     def usr_page(event=""):
         talk("Please add a new user")
-        add_user.user_page()
+        usergui.user_page()
 
     settings = Tk()
     bg_colour, text_color, button_colour = theme.read_theme()
@@ -32,20 +35,6 @@ def setting_page(event="", username="", state=True):
     title_bar = Frame(settings, bg=bg_colour, bd=4)
     title_bar.pack(fill="x")
     tab = ttk.Notebook(settings)
-    # refer https://stackoverflow.com/questions/23038356/change-color-of-tab-header-in-ttk-notebook
-    # slightly edited that
-    # refer this https://www.pythontutorial.net/tkinter/ttk-style/ also
-    noteStyle = ttk.Style()
-    noteStyle.theme_use("default")
-    noteStyle.configure("TNotebook",
-                        background=bg_colour,
-                        borderwidth=0,
-                        foreground=text_color)
-    noteStyle.configure("TNotebook.Tab",
-                        background=button_colour,
-                        borderwidth=0,
-                        foreground=text_color)
-
     tab.pack(fill="both")
     # differnt frames for tabs
     settings_tab = Frame(settings, bg=bg_colour)
@@ -67,6 +56,34 @@ def setting_page(event="", username="", state=True):
     # hover effect
     adduser.bind("<Enter>", partial(tkinterlib.on_enter, but=adduser))
     adduser.bind("<Leave>", partial(tkinterlib.on_leave, but=adduser))
+    #.....delete a user............
+    deleteusr = Button(
+        settings_tab,
+        text="Delete User",
+        bd=0,
+        command=usergui.deleteuser,
+        bg=bg_colour,
+        fg=text_color,
+    )
+    deleteusr.pack(fill="x")
+    # hover effect
+    deleteusr.bind("<Enter>", partial(tkinterlib.on_enter, but=deleteusr))
+    deleteusr.bind("<Leave>", partial(tkinterlib.on_leave, but=deleteusr))
+
+
+    #.....reset vira............
+    reset=Button(
+        settings_tab,
+        text="Reset Elsa",
+        bd=0,
+        command=popups.resetelsapopup,
+        bg=bg_colour,
+        fg=text_color,
+    )
+    reset.pack(fill="x")
+    # hover effect
+    reset.bind("<Enter>", partial(tkinterlib.on_enter, but=reset))
+    reset.bind("<Leave>", partial(tkinterlib.on_leave, but=reset))
     # ...import export themes.....
     # ....Export data...........
     exportdata = Button(
@@ -235,6 +252,25 @@ def setting_page(event="", username="", state=True):
                        partial(tkinterlib.on_enter, but=indexerbutton))
     indexerbutton.bind("<Leave>",
                        partial(tkinterlib.on_leave, but=indexerbutton))
+    #....Reset indexerparthlib.....
+    def resetindexercache():
+        talk("Reseted the cache")
+        os.remove((os.getcwd()+"\\resources\\ indexer.elsa"))
+        print("'indexer.elsa' is removed")
+    resetindexerpathlib=Button(
+        indexer_tab,
+        text="Reset Indexer Cache",
+        bd=0,
+        bg=bg_colour,
+        fg=text_color,
+        command=resetindexercache,
+    )
+    resetindexerpathlib.pack()
+    # hover effect
+    resetindexerpathlib.bind("<Enter>",
+                       partial(tkinterlib.on_enter, but=resetindexerpathlib))
+    resetindexerpathlib.bind("<Leave>",
+                       partial(tkinterlib.on_leave, but=resetindexerpathlib))
 
     indexertitle = Label(
         indexer_tab,
@@ -242,7 +278,8 @@ def setting_page(event="", username="", state=True):
         font="bold",
         bg=bg_colour,
         fg=text_color,
-    ).pack()
+    )
+    indexertitle.pack()
     folderlabels()
     # Packing the tabs
     settings_tab.pack(fill="both")

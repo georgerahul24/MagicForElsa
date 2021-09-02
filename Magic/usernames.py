@@ -7,8 +7,8 @@ from Magic import file_database
 
 
 def verify_usernames():
-    verify = False
-    return verify
+
+    return False
 
 
 def check_user():
@@ -32,3 +32,6 @@ def check_user():
     except Exception as e:
         print(e)
         check_user.security = False
+
+
+

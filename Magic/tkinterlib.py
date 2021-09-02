@@ -1,3 +1,6 @@
+"""
+This  module is for stylising the Tkinter GUI
+"""
 from Magic import theme
 
 
