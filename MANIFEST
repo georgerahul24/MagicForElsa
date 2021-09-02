@@ -2,7 +2,6 @@
 setup.py
 Magic\GUI.py
 Magic\__init__.py
-Magic\add_user.py
 Magic\export_import.py
 Magic\file_database.py
 Magic\highlighter.py
@@ -13,7 +12,6 @@ Magic\license.py
 Magic\popups.py
 Magic\program_run.py
 Magic\settings.py
-Magic\srchpopup.py
 Magic\theme.py
 Magic\tkinterlib.py
 Magic\usergui.py
