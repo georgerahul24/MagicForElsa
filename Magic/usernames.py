@@ -32,6 +32,3 @@ def check_user():
     except Exception as e:
         print(e)
         check_user.security = False
-
-
-

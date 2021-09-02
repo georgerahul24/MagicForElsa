@@ -8,7 +8,7 @@ from tkinter import ttk
 from tkinter.colorchooser import askcolor
 from tkinter.filedialog import askdirectory
 from talk1.talk1 import talk
-from Magic import tkinterlib, usergui, theme, history, indexer, export_import,popups
+from Magic import tkinterlib, usergui, theme, history, indexer, export_import, popups
 
 
 def setting_page(event="", username="", state=True):
@@ -70,9 +70,8 @@ def setting_page(event="", username="", state=True):
     deleteusr.bind("<Enter>", partial(tkinterlib.on_enter, but=deleteusr))
     deleteusr.bind("<Leave>", partial(tkinterlib.on_leave, but=deleteusr))
 
-
     #.....reset vira............
-    reset=Button(
+    reset = Button(
         settings_tab,
         text="Reset Elsa",
         bd=0,
@@ -252,12 +251,14 @@ def setting_page(event="", username="", state=True):
                        partial(tkinterlib.on_enter, but=indexerbutton))
     indexerbutton.bind("<Leave>",
                        partial(tkinterlib.on_leave, but=indexerbutton))
+
     #....Reset indexerparthlib.....
     def resetindexercache():
         talk("Reseted the cache")
-        os.remove((os.getcwd()+"\\resources\\ indexer.elsa"))
+        os.remove((os.getcwd() + "\\resources\\ indexer.elsa"))
         print("'indexer.elsa' is removed")
-    resetindexerpathlib=Button(
+
+    resetindexerpathlib = Button(
         indexer_tab,
         text="Reset Indexer Cache",
         bd=0,
@@ -267,10 +268,10 @@ def setting_page(event="", username="", state=True):
     )
     resetindexerpathlib.pack()
     # hover effect
-    resetindexerpathlib.bind("<Enter>",
-                       partial(tkinterlib.on_enter, but=resetindexerpathlib))
-    resetindexerpathlib.bind("<Leave>",
-                       partial(tkinterlib.on_leave, but=resetindexerpathlib))
+    resetindexerpathlib.bind(
+        "<Enter>", partial(tkinterlib.on_enter, but=resetindexerpathlib))
+    resetindexerpathlib.bind(
+        "<Leave>", partial(tkinterlib.on_leave, but=resetindexerpathlib))
 
     indexertitle = Label(
         indexer_tab,

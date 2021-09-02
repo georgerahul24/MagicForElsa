@@ -1,5 +1,5 @@
 import time
-from tkinter import Tk, Button,Label
+from tkinter import Tk, Button, Label
 from task1.task import web
 from Magic import tkinterlib, theme
 from sys import exit
@@ -42,6 +42,7 @@ def popups(srch):
     No.grid(row=1, column=1)
     popups.mainloop()
 
+
 def resetelsapopup():
     import os
     import shutil
@@ -49,23 +50,26 @@ def resetelsapopup():
     from pathlib import Path
     popups = Tk()
     bg_colour, text_color, button_colour = theme.read_theme()
-    screen_height, screen_width = popups.winfo_screenheight(), popups.winfo_screenwidth()
+    screen_height, screen_width = popups.winfo_screenheight(
+    ), popups.winfo_screenwidth()
 
     tkinterlib.tkinter_initialise(popups,
-                                  x=int(screen_width/2),
-                                  y=int(screen_height/2))
+                                  x=int(screen_width / 2),
+                                  y=int(screen_height / 2))
     popups.geometry(f"193x50+{int(screen_width/2)}+{int(screen_height/2)}")
     talk("Are you sure that you want to reset Elsa")
-    Label(popups,text="Are you sure you want to reset Elsa?",fg=text_color,bg=bg_colour).place(x=0,y=0)
+    Label(popups,
+          text="Are you sure you want to reset Elsa?",
+          fg=text_color,
+          bg=bg_colour).place(x=0, y=0)
+
     def Yes(event=""):
         talk("Please wait for a moment. Elsa is being reset")
         talk("Just run elsa after it shutdowns")
         print("Resetting Elsa")
         time.sleep(1)
-        shutil.rmtree(Path(os.getcwd()+"\\resources"))
+        shutil.rmtree(Path(os.getcwd() + "\\resources"))
         exit()
-
-
 
     Yes = Button(popups,
                  text="Yes",
@@ -82,8 +86,8 @@ def resetelsapopup():
                 bg=button_colour,
                 fg=text_color,
                 command=popups.destroy)
-    Yes.place(x=60,y=20)
-    No.place(x=100,y=20)
+    Yes.place(x=60, y=20)
+    No.place(x=100, y=20)
     popups.mainloop()
 
 
