@@ -128,8 +128,9 @@ def web(a):
                         new=1)
         talk(f"This is what I found for {a}")
     except:
-        webbrowser.open(webbrowser.open(searchword, new=1))
+        webbrowser.open(searchword, new=1)
         print("Sorry i couldnt do what you requested Try again later")
+
 
 
 def youtube(srch):

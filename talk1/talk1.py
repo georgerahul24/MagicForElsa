@@ -14,3 +14,15 @@ engine.setProperty("rate", 135)  # setting up new voice rate
 def talk(speak):
     engine.say(speak)
     engine.runAndWait()
+
+
+
+def multithreadtalk(speak):
+    #for multi threading else the runtime error of loop still running will come
+    try:
+        engine.endLoop()
+    except:
+        pass
+    engine.say(speak)
+    engine.runAndWait()
+    engine.stop()    
