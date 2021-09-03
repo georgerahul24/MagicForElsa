@@ -6,7 +6,6 @@ from Magic import usergui, theme, license
 from talk1.talk1 import talk
 
 
-
 def install_files():
     # Show the lisence window
     license.licence_window()

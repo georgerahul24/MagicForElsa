@@ -4,7 +4,6 @@ from task1.task import web
 from Magic import tkinterlib, theme
 
 
-
 def popups(srch):
     """[A yes or no gui box to know if the user needs to search things in the internet]
 
