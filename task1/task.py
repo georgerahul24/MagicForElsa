@@ -132,7 +132,6 @@ def web(a):
         print("Sorry i couldnt do what you requested Try again later")
 
 
-
 def youtube(srch):
     webbrowser.open(f"https://www.youtube.com/results?search_query={srch}")
     talk(f"Here is what you requested")

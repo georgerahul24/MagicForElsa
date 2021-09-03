@@ -16,7 +16,6 @@ def talk(speak):
     engine.runAndWait()
 
 
-
 def multithreadtalk(speak):
     #for multi threading else the runtime error of loop still running will come
     try:
@@ -25,4 +24,4 @@ def multithreadtalk(speak):
         pass
     engine.say(speak)
     engine.runAndWait()
-    engine.stop()    
+    engine.stop()
