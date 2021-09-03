@@ -4,7 +4,7 @@ import pathlib
 import time
 from Magic import usergui, theme, license
 from talk1.talk1 import talk
-from sys import exit
+
 
 
 def install_files():

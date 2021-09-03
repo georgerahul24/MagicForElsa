@@ -1,6 +1,5 @@
 from tkinter import Tk, Button, Label
 from talk1.talk1 import talk
-from sys import exit
 
 
 def licence_window(event=""):

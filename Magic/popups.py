@@ -2,7 +2,7 @@ import time
 from tkinter import Tk, Button, Label
 from task1.task import web
 from Magic import tkinterlib, theme
-from sys import exit
+
 
 
 def popups(srch):
