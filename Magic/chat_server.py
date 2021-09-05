@@ -15,32 +15,32 @@ clients = []
 nicknames = []
 
 
-def broadcast(username,message):
+def broadcast(username, message):
     try:
         index = nicknames.index(username)
-        print("Index of user:",index)
+        print("Index of user:", index)
         client = clients[index]
-        print("Client found",client)
+        print("Client found", client)
         client.send(message)
         print(message)
     except:
-      print("No user found")
+        print("No user found")
 
 
 def handle(client):
     while True:
         try:
             raw_message = client.recv(1024).decode('ascii')
-            username,message= json.loads(raw_message)
+            username, message = json.loads(raw_message)
             print(username)
             print("Broadcasting message")
-            broadcast(username,message.encode('ascii'))
+            broadcast(username, message.encode('ascii'))
         except Exception as e:
             print(e)
             # if error happens, remove the client
             # get the index to remove it from the nickname
             # the index for the client and nickname will be the same
-            print(client,"not Functioning properly")
+            print(client, "not Functioning properly")
             index = clients.index(client)
             clients.remove(client)
             client.close()
@@ -60,7 +60,9 @@ def recieve():
         nicknames.append(nickname)
         clients.append(client)
         print(f"{nickname} {address}")
-        thread = threading.Thread(target=handle, args=(client,))
+        thread = threading.Thread(target=handle, args=(client, ))
         thread.start()
+
+
 print('Server has started')
 recieve()

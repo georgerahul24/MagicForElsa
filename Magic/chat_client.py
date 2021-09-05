@@ -24,7 +24,7 @@ def recievefromserver():
             if msg == "NICK":
                 client.send(nickname.encode('ascii'))
             else:
-                print('msg recieved',msg)
+                print('msg recieved', msg)
                 msgWindow = Tk()
                 Label(msgWindow, text=msg).pack()
 
@@ -44,9 +44,9 @@ def sendtoserver(nickname, msg):
         msg = json.dumps((nickname, msg))
         client.send(msg.encode('ascii'))
     except:
-      pass
+        pass
+
 
 def startclient():
     recievethread = threading.Thread(target=recievefromserver)
     recievethread.start()
-
