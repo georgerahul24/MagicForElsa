@@ -3,8 +3,8 @@ import socket
 import threading
 import json
 
-host = '192.168.1.206'
-port = 55555
+host = '127.0.0.1'
+port = 24094
 # SOCK_STREAM. AF_INET refers to the address-family ipv4. The SOCK_STREAM means connection-oriented TCP protocol.
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind((host, port))
