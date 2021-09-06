@@ -9,7 +9,6 @@ port = 24094
 # SOCK_STREAM. AF_INET refers to the address-family ipv4. The SOCK_STREAM means connection-oriented TCP protocol.(geek for geeks)
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-
 nickname = ""
 
 
@@ -34,7 +33,6 @@ def recievefromserver():
                     msgWindow.destroy()
                     del msgWindow
 
-
                 msgWindow.mainloop()
 
                 gc.enable()
@@ -46,14 +44,17 @@ def recievefromserver():
 
 def sendtoserver(nickname, msg):
     try:
-        print("Sending",msg,"to",nickname)
+        print("Sending", msg, "to", nickname)
         msg = json.dumps((nickname, msg))
         client.send(msg.encode('ascii'))
-        print("GC",gc.isenabled())
+        print("GC", gc.isenabled())
     except:
         pass
+
+
 def closeClient():
     client.close()
+
 
 def startclient():
     client.connect((host, port))
