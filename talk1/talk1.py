@@ -14,6 +14,7 @@ engine.setProperty("rate", 135)  # setting up new voice rate
 def talk(speak):
     engine.say(speak)
     engine.runAndWait()
+    del speak
 
 
 def multithreadtalk(speak):

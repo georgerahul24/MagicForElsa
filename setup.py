@@ -11,7 +11,7 @@ setup(
     url="https://github.com/georgerahul24/MagicForElsa",
     keywords=["program", "automate", "task", "magic"],
     install_requires=[
-        "pyttsx3",
+        "pyttsx3","win10toast"
     ],
     classifiers=[
         "Development Status :: 3 - Alpha",
