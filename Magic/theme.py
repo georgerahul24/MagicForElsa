@@ -32,7 +32,7 @@ def theme_writer(bg_colour, font_colour, button_colour):
             f"{bg_colour};{font_colour};{button_colour}\n #The order is bg,font color,button colour \n#Please remember to use ';' to separate colours :D"
         )
 
-
+    del bg_colour,font_colour,button_colour
 # ...............no need for this function......
 # ...............This function is implemeneted in the settings page.......
 def theme_selector(event=""):

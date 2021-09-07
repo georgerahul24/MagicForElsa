@@ -19,6 +19,7 @@ def user_file(username, command, task_did):
             DATE{datetime.datetime.now()} USER INPUT: {command} OUTPUT: {task_did}"""
                       )
         history.write("\n")
+        del history
 
 
 def user_read(event="", username="dummy"):
@@ -44,3 +45,4 @@ def clear_history(name):
     userpth = os.getcwd() + f"\\resources\\ {name}.elsa"
     with open(userpth, "w") as history:
         history.write("")
+        del history

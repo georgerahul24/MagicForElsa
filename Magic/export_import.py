@@ -1,3 +1,4 @@
+import gc
 import json
 from Magic import theme, indexer
 
@@ -20,6 +21,7 @@ def export():
     USERNAMEPATH = getcwd() + "\\resources\\ users.elsa"
     with open(USERNAMEPATH) as usernamefile:
         username_data = json.load(usernamefile)
+
     data = {
         "indexfolders": indexerdata,
         "theme": themedata,
@@ -28,6 +30,8 @@ def export():
     json.dump(data, f)
     print("Successfully exported the data")
     f.close()
+    del f, themedata, indexerdata, USERNAMEPATH
+    gc.collect()
 
 
 def import_data():
@@ -51,6 +55,7 @@ def import_data():
                 removepth = getcwd() + "\\resources\\ indexer.elsa"
                 remove(removepth)
                 print("Deleted 'indexer.elsa'")
+                del removepth
             except:
                 pass
         with open(initpth, "w") as themefile:
@@ -66,5 +71,8 @@ def import_data():
             json.dump(usernamedata, userfile)
         print("Imported usernames")
         f.close()
+        del initpth, indexerpth, f, data, indexdata, themedata, usernamedata, USERNAMEPATH
     except Exception as e:
         print("Some error happened", e)
+        del e
+    gc.collect()

@@ -28,6 +28,7 @@ def check_user():
             check_user.security = False
 
         check_user.loginname = username
+        del username,password
 
     except Exception as e:
         print(e)

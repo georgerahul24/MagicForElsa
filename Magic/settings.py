@@ -230,12 +230,13 @@ def setting_page(event="", username="", state=True):
                       fg=text_color).pack()
         except:
             pass
-
+        del folders
     def folderchooser():
         folderpath = askdirectory()
         indexer.add_indexer_folders(path=folderpath)
         settings.destroy()
         setting_page()
+        del folderpath
 
     indexerbutton = Button(
         indexer_tab,

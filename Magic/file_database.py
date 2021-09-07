@@ -1,10 +1,10 @@
 """This module deals with adding and verifying usernames"""
+import gc
 import os
 import json
 
 # Get the path of users.elsa
 userpth = os.getcwd() + "\\resources\\ users.elsa"
-
 
 def check_user_from_file(username):
     """[This extension is used to check if the user is vaid or not ]
@@ -21,8 +21,10 @@ def check_user_from_file(username):
             data = json.load(file)
             part2 = data.get(username, None)
         return part2
+
     except Exception as e:
         print("It seems that some error has happened", e)
+        del e
 
 
 def write_to_file(username, password):
@@ -58,6 +60,8 @@ def write_to_file(username, password):
             file.close()
             print(f"Added user {username} ")
             # returns state = 1 so that program knows that writing was succesful
+            del file,username,password,data
+            gc.collect()
             return 1
 
         else:
