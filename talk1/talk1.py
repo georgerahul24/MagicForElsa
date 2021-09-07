@@ -18,7 +18,7 @@ def talk(speak):
 
 
 def multithreadtalk(speak):
-    #for multi threading else the runtime error of loop still running will come
+    # for multi threading else the runtime error of loop still running will come
     try:
         engine.endLoop()
     except:

@@ -192,6 +192,7 @@ def deleteuser():
                 import json
                 import os
                 from pathlib import Path
+
                 userpth = os.getcwd() + "\\resources\\ users.elsa"
                 userfile = open(Path(userpth))
                 userdata = json.load(userfile)
@@ -201,7 +202,7 @@ def deleteuser():
                     if userdata[name_delete] == password:
                         del userdata[name_delete]
                         deleteuserpage.destroy()
-                        userfile = open(Path(userpth), 'w')
+                        userfile = open(Path(userpth), "w")
                         if len(userdata) == 0:
                             userdata["admin"] = "1234"
                         json.dump(userdata, userfile)

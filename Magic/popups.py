@@ -47,10 +47,13 @@ def resetelsapopup():
     import shutil
     from talk1.talk1 import talk
     from pathlib import Path
+
     popups = Tk()
     bg_colour, text_color, button_colour = theme.read_theme()
-    screen_height, screen_width = popups.winfo_screenheight(
-    ), popups.winfo_screenwidth()
+    screen_height, screen_width = (
+        popups.winfo_screenheight(),
+        popups.winfo_screenwidth(),
+    )
 
     tkinterlib.tkinter_initialise(popups,
                                   x=int(screen_width / 2),

@@ -56,7 +56,7 @@ def setting_page(event="", username="", state=True):
     # hover effect
     adduser.bind("<Enter>", partial(tkinterlib.on_enter, but=adduser))
     adduser.bind("<Leave>", partial(tkinterlib.on_leave, but=adduser))
-    #.....delete a user............
+    # .....delete a user............
     deleteusr = Button(
         settings_tab,
         text="Delete User",
@@ -70,7 +70,7 @@ def setting_page(event="", username="", state=True):
     deleteusr.bind("<Enter>", partial(tkinterlib.on_enter, but=deleteusr))
     deleteusr.bind("<Leave>", partial(tkinterlib.on_leave, but=deleteusr))
 
-    #.....reset vira............
+    # .....reset vira............
     reset = Button(
         settings_tab,
         text="Reset Elsa",
@@ -254,7 +254,7 @@ def setting_page(event="", username="", state=True):
     indexerbutton.bind("<Leave>",
                        partial(tkinterlib.on_leave, but=indexerbutton))
 
-    #....Reset indexerparthlib.....
+    # ....Reset indexerparthlib.....
     def resetindexercache():
         talk("Reseted the cache")
         os.remove((os.getcwd() + "\\resources\\ indexer.elsa"))

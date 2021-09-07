@@ -129,6 +129,7 @@ def add_indexer_folders(event="", path=""):
 
     except:
         import json
+
         folderpth = os.getcwd() + f"\\resources\\ indexerpaths.elsa"
         with open(folderpth, "w") as f:
             json.dump([path], f)

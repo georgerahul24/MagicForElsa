@@ -71,7 +71,16 @@ def import_data():
             json.dump(usernamedata, userfile)
         print("Imported usernames")
         f.close()
-        del initpth, indexerpth, f, data, indexdata, themedata, usernamedata, USERNAMEPATH
+        del (
+            initpth,
+            indexerpth,
+            f,
+            data,
+            indexdata,
+            themedata,
+            usernamedata,
+            USERNAMEPATH,
+        )
     except Exception as e:
         print("Some error happened", e)
         del e
