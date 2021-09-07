@@ -31,8 +31,6 @@ def recievefromserver():
                 del msg
                 gc.collect()
 
-
-
         except:
             print('Closing Connection')
             client.close()

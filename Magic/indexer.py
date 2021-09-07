@@ -64,6 +64,7 @@ def index(dataOfDirectories, pathn):
 def index_files():
     """[Check if the indexer.elsa file exists.If it exists,no action is taken.If it doesnt exists,files are indexed]"""
     cache_file = Path(indexerpth)
+
     def _index_files():
         if cache_file.exists() != True:
             with open(indexerpth, "w") as cache:
@@ -82,7 +83,9 @@ def index_files():
                 print("Json dumped")
         else:
             print("'indexer.elsa' found")
+
     Thread(target=_index_files).start()
+
 
 def search_indexed_file(filename):
     import json
@@ -106,7 +109,7 @@ def search_indexed_file(filename):
         else:
             print(f"Could not find any files")
             talk1.talk(f"Could not find any files")
-        del cachedict,filenames,approx_file,cache,srched_filepath
+        del cachedict, filenames, approx_file, cache, srched_filepath
         gc.collect()
     except:
         print(f"Could not find any files")
@@ -126,8 +129,7 @@ def add_indexer_folders(event="", path=""):
 
     except:
         import json
-        folderpth = os.getcwd(
-        ) + f"\\resources\\ indexerpaths.elsa"
+        folderpth = os.getcwd() + f"\\resources\\ indexerpaths.elsa"
         with open(folderpth, "w") as f:
             json.dump([path], f)
     try:
@@ -135,15 +137,15 @@ def add_indexer_folders(event="", path=""):
         os.remove(removepth)
     except:
         pass
-    del folderpth,folders,f
+    del folderpth, folders, f
     gc.collect()
+
 
 def read_indexer_folders(event=""):
     try:
         import json
 
-        folderpth  = os.getcwd(
-        ) + f"\\resources\\ indexerpaths.elsa"
+        folderpth = os.getcwd() + f"\\resources\\ indexerpaths.elsa"
         with open(folderpth) as f:
             folders = json.load(f)
         return folders

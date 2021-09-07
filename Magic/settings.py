@@ -231,6 +231,7 @@ def setting_page(event="", username="", state=True):
         except:
             pass
         del folders
+
     def folderchooser():
         folderpath = askdirectory()
         indexer.add_indexer_folders(path=folderpath)

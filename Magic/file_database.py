@@ -6,6 +6,7 @@ import json
 # Get the path of users.elsa
 userpth = os.getcwd() + "\\resources\\ users.elsa"
 
+
 def check_user_from_file(username):
     """[This extension is used to check if the user is vaid or not ]
 
@@ -60,7 +61,7 @@ def write_to_file(username, password):
             file.close()
             print(f"Added user {username} ")
             # returns state = 1 so that program knows that writing was succesful
-            del file,username,password,data
+            del file, username, password, data
             gc.collect()
             return 1
 

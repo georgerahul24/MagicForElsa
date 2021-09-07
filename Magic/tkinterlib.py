@@ -26,7 +26,8 @@ def tkinter_initialise(a, x=0, y=0, top=1, noborders=True, opacity=0.9):
     a.geometry(f"+{x}+{y}")  # positions tkinter windows at x and y coordinate
 
     a.deiconify()  # show the tkinter window back
-    del bg_colour, text_color, button_colour,a
+    del bg_colour, text_color, button_colour, a
+
 
 def on_enter(event, but):
     """[Part of hover effect for buttons]
@@ -38,7 +39,8 @@ def on_enter(event, but):
     # Change the button colour from background colour to button colour fo hover effect when mouse enters the button field
     bg_colour, text_color, button_colour = theme.read_theme()
     but.config(bg=button_colour)
-    del bg_colour,text_color,button_colour,but
+    del bg_colour, text_color, button_colour, but
+
 
 def on_leave(event, but):
     """[Part of hover effect for buttons]
@@ -50,4 +52,4 @@ def on_leave(event, but):
     # Change back the button colour to background colour when mouse leaves the button field.
     bg_colour, text_color, button_colour = theme.read_theme()
     but.config(bg=bg_colour)
-    del bg_colour, text_color, button_colour,but
+    del bg_colour, text_color, button_colour, but
