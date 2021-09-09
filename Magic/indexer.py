@@ -126,7 +126,7 @@ def add_indexer_folders(event="", path=""):
             folders.append(path)
         with open(folderpth, "w") as f:
             json.dump(folders, f)
-        del folderpth,folders,f
+        del folderpth, folders, f
     except:
         import json
         folderpth = os.getcwd() + f"\\resources\\ indexerpaths.elsa"
@@ -137,7 +137,7 @@ def add_indexer_folders(event="", path=""):
         os.remove(removepth)
     except:
         pass
-    
+
     gc.collect()
 
 
