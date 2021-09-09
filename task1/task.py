@@ -40,7 +40,8 @@ def whatsapp():
             os.path.join(
                 os.path.join(os.environ["USERPROFILE"]),
                 "AppData\\Local\\WhatsApp\\WhatsApp.exe",
-            ))
+            )
+        )
         print("Opened WhatsApp")
         talk(f"I have opened whatsapp for you")
 
@@ -123,9 +124,9 @@ def msword():
 def web(a):
     try:
         searchword = a
-        webbrowser.open("https://www.google.com/search?client=firefox-b-d&q=" +
-                        searchword,
-                        new=1)
+        webbrowser.open(
+            "https://www.google.com/search?client=firefox-b-d&q=" + searchword, new=1
+        )
         talk(f"This is what I found for {a}")
     except:
         webbrowser.open(searchword, new=1)
@@ -150,9 +151,8 @@ def ordShortenSrch(ord):
 def download():
     try:
         os.startfile(
-            Path(
-                os.path.join(os.path.join(os.environ["USERPROFILE"]),
-                             "Downloads")))
+            Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Downloads"))
+        )
         talk(f"Here is what you requested")
     except:
         talk("Sorry, could not open the downloads folder")
@@ -162,9 +162,8 @@ def download():
 def desktop():
     try:
         os.startfile(
-            Path(
-                os.path.join(os.path.join(os.environ["USERPROFILE"]),
-                             "Desktop")))
+            Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Desktop"))
+        )
         talk(f"Here is what you requested")
     except:
         talk("Sorry, could not open the desktop folder")
@@ -174,8 +173,8 @@ def desktop():
 def musicFolder():
     try:
         os.startfile(
-            Path(os.path.join(os.path.join(os.environ["USERPROFILE"]),
-                              "Music")))
+            Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Music"))
+        )
         talk(f"Here is what you requested")
     except:
         talk("Sorry, could not open the Music folder")
@@ -185,9 +184,8 @@ def musicFolder():
 def desktop():
     try:
         os.startfile(
-            Path(
-                os.path.join(os.path.join(os.environ["USERPROFILE"]),
-                             "Desktop")))
+            Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Desktop"))
+        )
         talk(f"Here is what you requested")
     except:
         talk("Sorry, could not open the downloads folder")
@@ -227,3 +225,34 @@ def restart():
         subprocess.call(["shutdown", "/r", "/t", "15"])
     except:
         talk("Sorry.Something went wrong")
+
+
+webdict = {
+    "facebook": "https://www.facebook.com/",
+    "instagram": "https://www.instagram.com/",
+    "insta": "https://www.instagram.com/",
+    "whatsapp": "https://web.whatsapp.com/",
+    "wa": "https://web.whatsapp.com/",
+    "george": "https://github.com/georgerahul24",
+    "elizabeth": "https://github.com/swarley2021",
+    "austin": "https://github.com/AustinBert",
+    "netflix": "https://www.netflix.com/",
+    "primevideo": "https://www.primevideo.com/",
+    "hotstar": "https://www.hotstar.com/",
+    "spotify": "https://www.spotify.com/",
+    "pinterest": "https://in.pinterest.com/",
+    "quora": "https://www.quora.com/",
+    "meet": "https://meet.google.com",
+}
+websitelist = [web for web in webdict]
+# ......websites..............
+def websiteopen(website):
+    try:
+        import difflib
+
+        approx_match = difflib.get_close_matches(website, websitelist, cutoff=0.7, n=1)
+        print(f"Approximated {website} to {approx_match[0]}")
+        webbrowser.open(webdict[approx_match[0]])
+        talk(f"opening {approx_match[0]}")
+    except:
+        talk(f"Sorry,could not open {website}")
