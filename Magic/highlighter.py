@@ -39,6 +39,8 @@ keywords = [
     "shutdown",
     "restart",
     "open",
+    "w",
+    "website"
 ]
 
 

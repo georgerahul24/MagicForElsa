@@ -227,3 +227,24 @@ def restart():
         subprocess.call(["shutdown", "/r", "/t", "15"])
     except:
         talk("Sorry.Something went wrong")
+#......websites..............
+def  websiteopen(website):
+    try:
+        import difflib
+        webdict={
+            'facebook':'https://www.facebook.com/','instagram':'https://www.instagram.com/','insta':'https://www.instagram.com/',
+            'whatsapp':'https://web.whatsapp.com/','wa':'https://web.whatsapp.com/','george':'https://github.com/georgerahul24',
+            'elizabeth':'https://github.com/swarley2021','austin':'https://github.com/AustinBert','netflix':'https://www.netflix.com/','primevideo':'https://www.primevideo.com/',
+            'hotstar':'https://www.hotstar.com/','spotify':'https://www.spotify.com/','pinterest':'https://in.pinterest.com/','quora':'https://www.quora.com/','meet':'meet.google.com'
+        }
+        websitelist=[web for web in webdict]
+        approx_match=difflib.get_close_matches(website,websitelist,cutoff=0.7,n=1)
+        print(f"Approximated {website} to {approx_match[0]}")
+        webbrowser.open(webdict[approx_match[0]])
+        talk(f"Succesfully opened {approx_match[0]}")
+    except:
+        talk(f"Sorry,could not open {website}")
+
+    
+      
+
