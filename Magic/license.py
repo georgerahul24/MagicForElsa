@@ -7,7 +7,8 @@ def licence_window(event=""):
     lisc.resizable(False, False)
     lisc.overrideredirect(True)
 
-    text = Label(text="""MIT License
+    text = Label(
+        text="""MIT License
 
 Copyright (c) 2021 George Rahul
 
@@ -28,7 +29,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-""")
+"""
+    )
     talk("Before we begin. Please accept the licence terms")
 
     text.pack()

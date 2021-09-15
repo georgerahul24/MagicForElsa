@@ -17,11 +17,11 @@ def program_run(afterkeyword):
     elif afterkeyword in ["wordpad", "wp"]:
         task.wordpad()
     elif afterkeyword in [
-            "gimp",
+        "gimp",
     ]:
         task.gimp()
     elif afterkeyword in [
-            "vlc",
+        "vlc",
     ]:
         task.vlc()
     elif afterkeyword in ["telegram", "tg"]:

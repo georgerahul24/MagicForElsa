@@ -19,6 +19,7 @@ def setting_page(event="", username="", state=True):
         username (str, optional): [Username of the user using the GUI]. Defaults to ''.
         state (bool, optional): [Not important]. Defaults to True.
     """
+
     def usr_page(event=""):
         talk("Please add a new user")
         usergui.user_page()
@@ -140,10 +141,12 @@ def setting_page(event="", username="", state=True):
         command=new_background_colour,
     )
     background_colour.pack(fill="x")
-    background_colour.bind("<Enter>",
-                           partial(tkinterlib.on_enter, but=background_colour))
-    background_colour.bind("<Leave>",
-                           partial(tkinterlib.on_leave, but=background_colour))
+    background_colour.bind(
+        "<Enter>", partial(tkinterlib.on_enter, but=background_colour)
+    )
+    background_colour.bind(
+        "<Leave>", partial(tkinterlib.on_leave, but=background_colour)
+    )
 
     new_text_colour = Button(
         theme_tab,
@@ -154,10 +157,8 @@ def setting_page(event="", username="", state=True):
         command=font_colour,
     )
     new_text_colour.pack(fill="x")
-    new_text_colour.bind("<Enter>",
-                         partial(tkinterlib.on_enter, but=new_text_colour))
-    new_text_colour.bind("<Leave>",
-                         partial(tkinterlib.on_leave, but=new_text_colour))
+    new_text_colour.bind("<Enter>", partial(tkinterlib.on_enter, but=new_text_colour))
+    new_text_colour.bind("<Leave>", partial(tkinterlib.on_leave, but=new_text_colour))
 
     new_button_colour = Button(
         theme_tab,
@@ -168,10 +169,12 @@ def setting_page(event="", username="", state=True):
         command=new_button_colour,
     )
     new_button_colour.pack(fil="x")
-    new_button_colour.bind("<Enter>",
-                           partial(tkinterlib.on_enter, but=new_button_colour))
-    new_button_colour.bind("<Leave>",
-                           partial(tkinterlib.on_leave, but=new_button_colour))
+    new_button_colour.bind(
+        "<Enter>", partial(tkinterlib.on_enter, but=new_button_colour)
+    )
+    new_button_colour.bind(
+        "<Leave>", partial(tkinterlib.on_leave, but=new_button_colour)
+    )
     # ......Theme tab ends............
     # .......History tab starts.......
 
@@ -203,10 +206,7 @@ def setting_page(event="", username="", state=True):
     clearhis.bind("<Leave>", partial(tkinterlib.on_leave, but=clearhis))
     # ...........history tab ends...........
     # ...........about tab starts...........
-    version = LabelFrame(about_tab,
-                         text="Version",
-                         bg=bg_colour,
-                         fg=text_color)
+    version = LabelFrame(about_tab, text="Version", bg=bg_colour, fg=text_color)
     verlabel = Label(version, text="Elsa 1.1", bg=bg_colour, fg=text_color)
     verlabel.pack()
     version.pack()
@@ -224,10 +224,7 @@ def setting_page(event="", username="", state=True):
             folders = indexer.read_indexer_folders()
             for folder in folders:
                 foldername = folder.split("/")[-1]
-                Label(indexer_tab,
-                      text=foldername,
-                      bg=bg_colour,
-                      fg=text_color).pack()
+                Label(indexer_tab, text=foldername, bg=bg_colour, fg=text_color).pack()
         except:
             pass
         del folders
@@ -249,10 +246,8 @@ def setting_page(event="", username="", state=True):
     )
     indexerbutton.pack()
     # hover effect
-    indexerbutton.bind("<Enter>",
-                       partial(tkinterlib.on_enter, but=indexerbutton))
-    indexerbutton.bind("<Leave>",
-                       partial(tkinterlib.on_leave, but=indexerbutton))
+    indexerbutton.bind("<Enter>", partial(tkinterlib.on_enter, but=indexerbutton))
+    indexerbutton.bind("<Leave>", partial(tkinterlib.on_leave, but=indexerbutton))
 
     # ....Reset indexerparthlib.....
     def resetindexercache():
@@ -271,9 +266,11 @@ def setting_page(event="", username="", state=True):
     resetindexerpathlib.pack()
     # hover effect
     resetindexerpathlib.bind(
-        "<Enter>", partial(tkinterlib.on_enter, but=resetindexerpathlib))
+        "<Enter>", partial(tkinterlib.on_enter, but=resetindexerpathlib)
+    )
     resetindexerpathlib.bind(
-        "<Leave>", partial(tkinterlib.on_leave, but=resetindexerpathlib))
+        "<Leave>", partial(tkinterlib.on_leave, but=resetindexerpathlib)
+    )
 
     indexertitle = Label(
         indexer_tab,
