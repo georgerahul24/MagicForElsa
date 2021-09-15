@@ -48,12 +48,17 @@ def user_page():
         userpage.destroy()
 
     add_user_layout()
-    add_user_button = Button(
-        s, text="Add User", bd=0, command=add, bg=bg_colour, fg=text_color
-    )
+    add_user_button = Button(s,
+                             text="Add User",
+                             bd=0,
+                             command=add,
+                             bg=bg_colour,
+                             fg=text_color)
     add_user_button.grid(row=3, column=1)
-    add_user_button.bind("<Enter>", partial(tkinterlib.on_enter, but=add_user_button))
-    add_user_button.bind("<Leave>", partial(tkinterlib.on_leave, but=add_user_button))
+    add_user_button.bind("<Enter>",
+                         partial(tkinterlib.on_enter, but=add_user_button))
+    add_user_button.bind("<Leave>",
+                         partial(tkinterlib.on_leave, but=add_user_button))
     close_button = Button(
         s,
         text="X",
@@ -66,8 +71,10 @@ def user_page():
 
     close_button.grid(row=3, column=0)
 
-    close_button.bind("<Enter>", partial(tkinterlib.on_enter, but=close_button))
-    close_button.bind("<Leave>", partial(tkinterlib.on_leave, but=close_button))
+    close_button.bind("<Enter>", partial(tkinterlib.on_enter,
+                                         but=close_button))
+    close_button.bind("<Leave>", partial(tkinterlib.on_leave,
+                                         but=close_button))
     userpage.bind("<Return>", add)
     userpage.mainloop()
 
@@ -107,12 +114,17 @@ def user_page_init():
         data.append(new_password)
 
     add_user_layout()
-    add_user_button = Button(
-        s, text="Add User", bd=0, command=add, bg=bg_colour, fg=text_color
-    )
+    add_user_button = Button(s,
+                             text="Add User",
+                             bd=0,
+                             command=add,
+                             bg=bg_colour,
+                             fg=text_color)
     add_user_button.grid(row=3, column=1)
-    add_user_button.bind("<Enter>", partial(tkinterlib.on_enter, but=add_user_button))
-    add_user_button.bind("<Leave>", partial(tkinterlib.on_leave, but=add_user_button))
+    add_user_button.bind("<Enter>",
+                         partial(tkinterlib.on_enter, but=add_user_button))
+    add_user_button.bind("<Leave>",
+                         partial(tkinterlib.on_leave, but=add_user_button))
     close_button = Button(
         s,
         text="X",
@@ -125,8 +137,10 @@ def user_page_init():
 
     close_button.grid(row=3, column=0)
 
-    close_button.bind("<Enter>", partial(tkinterlib.on_enter, but=close_button))
-    close_button.bind("<Leave>", partial(tkinterlib.on_leave, but=close_button))
+    close_button.bind("<Enter>", partial(tkinterlib.on_enter,
+                                         but=close_button))
+    close_button.bind("<Leave>", partial(tkinterlib.on_leave,
+                                         but=close_button))
     userpage.bind("<Return>", add)
     userpage.mainloop()
     return data
@@ -138,10 +152,16 @@ def deleteuser():
     talk("Please enter the username and password to delete")
     bg_colour, text_color, button_colour = theme.read_theme()
     tkinterlib.tkinter_initialise(deleteuserpage, 600, 340)
-    s = LabelFrame(deleteuserpage, text="Add New User", bg=bg_colour, fg=text_color)
+    s = LabelFrame(deleteuserpage,
+                   text="Add New User",
+                   bg=bg_colour,
+                   fg=text_color)
     s.grid(row=0, column=0)
 
-    lu = Label(s, text="Enter the username to delete:", bg=bg_colour, fg=text_color)
+    lu = Label(s,
+               text="Enter the username to delete:",
+               bg=bg_colour,
+               fg=text_color)
     lp = Label(s, text="Enter the password:", bg=bg_colour, fg=text_color)
     lpr = Label(s, text="Retype the password:", bg=bg_colour, fg=text_color)
     eu = Entry(s)
@@ -203,12 +223,17 @@ def deleteuser():
             talk("Passwords in both the field do not match. Please try again")
 
     add_user_layout()
-    add_user_button = Button(
-        s, text="Delete User", bd=0, command=deleteuserfunc, bg=bg_colour, fg=text_color
-    )
+    add_user_button = Button(s,
+                             text="Delete User",
+                             bd=0,
+                             command=deleteuserfunc,
+                             bg=bg_colour,
+                             fg=text_color)
     add_user_button.grid(row=3, column=1)
-    add_user_button.bind("<Enter>", partial(tkinterlib.on_enter, but=add_user_button))
-    add_user_button.bind("<Leave>", partial(tkinterlib.on_leave, but=add_user_button))
+    add_user_button.bind("<Enter>",
+                         partial(tkinterlib.on_enter, but=add_user_button))
+    add_user_button.bind("<Leave>",
+                         partial(tkinterlib.on_leave, but=add_user_button))
     close_button = Button(
         s,
         text="X",
@@ -221,7 +246,9 @@ def deleteuser():
 
     close_button.grid(row=3, column=0)
 
-    close_button.bind("<Enter>", partial(tkinterlib.on_enter, but=close_button))
-    close_button.bind("<Leave>", partial(tkinterlib.on_leave, but=close_button))
+    close_button.bind("<Enter>", partial(tkinterlib.on_enter,
+                                         but=close_button))
+    close_button.bind("<Leave>", partial(tkinterlib.on_leave,
+                                         but=close_button))
     deleteuserpage.bind("<Return>", deleteuserfunc)
     deleteuserpage.mainloop()

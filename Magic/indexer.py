@@ -9,9 +9,12 @@ from threading import Thread
 indexerpth = os.getcwd() + f"\\resources\\ indexer.elsa"
 # get path of the current file os.getcwd
 # convert it into path use path(os.getcwd) use is_file() to check if it is a file
-desktop = Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Desktop"))
-documents = Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Documents"))
-downloads = Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Downloads"))
+desktop = Path(os.path.join(os.path.join(os.environ["USERPROFILE"]),
+                            "Desktop"))
+documents = Path(
+    os.path.join(os.path.join(os.environ["USERPROFILE"]), "Documents"))
+downloads = Path(
+    os.path.join(os.path.join(os.environ["USERPROFILE"]), "Downloads"))
 music = Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Music"))
 videos = Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Videos"))
 directories = [desktop, documents, downloads, music, videos]
@@ -21,7 +24,8 @@ def indexer_folders():
     try:
         import json
 
-        folderpth = indexerpth = os.getcwd() + f"\\resources\\ indexerpaths.elsa"
+        folderpth = indexerpth = os.getcwd(
+        ) + f"\\resources\\ indexerpaths.elsa"
         with open(folderpth) as f:
             folders = json.load(f)
         return folders
@@ -46,7 +50,8 @@ def index(dataOfDirectories, pathn):
                 print(f"filename:{name},path={ine}")
                 dataOfDirectories[name.lower()] = ine
 
-            elif name.startswith(".") == False and name.startswith("__") == False:
+            elif name.startswith(".") == False and name.startswith(
+                    "__") == False:
                 try:
                     index(dataOfDirectories, i)
                 except Exception as e:

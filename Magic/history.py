@@ -14,11 +14,10 @@ def user_file(username, command, task_did):
     """
     userpth = os.getcwd() + f"\\resources\\ {username}.elsa"
     with open(userpth, "a") as history:
-        history.write(
-            f"""
+        history.write(f"""
             ---------------------------------------------------------------------
             DATE{datetime.datetime.now()} USER INPUT: {command} OUTPUT: {task_did}"""
-        )
+                      )
         history.write("\n")
         del history
 
