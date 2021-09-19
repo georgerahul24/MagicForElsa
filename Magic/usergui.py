@@ -24,7 +24,7 @@ def user_page():
     ep = Entry(s)
 
     def add_user_layout():
-        """[Placing the elemnts in the settings page]"""
+        """[Placing the elements in the settings page]"""
         lu.grid(row=0, column=0)
         eu.grid(row=0, column=1)
         lp.grid(row=1, column=0)
@@ -153,7 +153,7 @@ def deleteuser():
     bg_colour, text_color, button_colour = theme.read_theme()
     tkinterlib.tkinter_initialise(deleteuserpage, 600, 340)
     s = LabelFrame(deleteuserpage,
-                   text="Add New User",
+                   text="Delete User",
                    bg=bg_colour,
                    fg=text_color)
     s.grid(row=0, column=0)
@@ -205,7 +205,7 @@ def deleteuser():
                         userfile = open(Path(userpth), "w")
                         if len(userdata) == 0:
                             userdata["admin"] = "1234"
-                        json.dump(userdata, userfile)
+                        json.dump(userdata, userfile, indent=4)
                         userfile.close()
                         talk("User successfully deleted")
                     else:

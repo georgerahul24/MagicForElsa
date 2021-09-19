@@ -27,7 +27,7 @@ def export():
         "theme": themedata,
         "usernames": f"{username_data}",
     }
-    json.dump(data, f)
+    json.dump(data, f, indent=4)
     print("Successfully exported the data")
     f.close()
     del f, themedata, indexerdata, USERNAMEPATH
@@ -49,7 +49,7 @@ def import_data():
         print(indexdata, themedata)
         if indexdata is not None:
             with open(indexerpth, "w") as indexfile:
-                json.dump(indexdata, indexfile)
+                json.dump(indexdata, indexfile, indent=4)
             print("Imported the additional indexed folders")
             try:
                 removepth = getcwd() + "\\resources\\ indexer.elsa"
@@ -68,7 +68,7 @@ def import_data():
         usernamedata = usernamedata.replace("'", '"')
         usernamedata = json.loads(usernamedata)
         with open(USERNAMEPATH, "w") as userfile:
-            json.dump(usernamedata, userfile)
+            json.dump(usernamedata, userfile, indent=4)
         print("Imported usernames")
         f.close()
         del (

@@ -6,9 +6,9 @@ from Magic import usergui, theme, license
 from talk1.talk1 import talk
 
 
+@license.licence_window
 def install_files():
-    # Show the lisence window
-    license.licence_window()
+
     print("Licence accepted")
     try:
         """[Installs the neccessary files for Elsa to work]"""
@@ -40,7 +40,7 @@ def install_files():
             except:
                 initusr = "admin"
                 initpsswd = "1234"
-            json.dump({initusr: initpsswd}, f)
+            json.dump({initusr: initpsswd}, f, indent=4)
         talk("Now let us select a new theme")
         theme.theme_selector()
         print("added file 'initial.Elsa'")
