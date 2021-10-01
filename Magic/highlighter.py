@@ -2,8 +2,9 @@
 This module is for syntax highlighting
 """
 import gc
-from Magic import theme
 from tkinter import END
+
+from Magic import theme
 
 keywords = [
     "search",

@@ -2,11 +2,12 @@
 This module is to display GUI for adding and deleting users
 """
 
+from functools import partial
 from tkinter import Tk, Label, LabelFrame, Button, Entry
-from Magic import tkinterlib, file_database, theme
+
 from talk1.talk1 import talk
 
-from functools import partial
+from Magic import tkinterlib, file_database, theme
 
 
 def user_page():

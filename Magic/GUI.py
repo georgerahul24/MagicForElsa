@@ -1,11 +1,11 @@
 """Created by George Rahul
 GUI for the login page"""
 
-from tkinter import Tk, Toplevel, Entry, Label, Button
+from tkinter import Tk, Toplevel, Entry, Label
 
-from Magic import theme, tkinterlib
-from functools import partial
+from Magic import theme
 from Magic.usergui import user_page
+from Magic.tkinterlib import TButton
 
 
 def SecurityUI():
@@ -56,38 +56,19 @@ def SecurityUI():
 
         t.destroy()
 
-    setins = Button(win,
-                    text="Add User",
-                    bd=0,
-                    bg=bg_colour,
-                    fg=text_color,
-                    command=user_page)
-    close_button = Button(win,
-                          text="x",
-                          font="bold",
-                          bd=0,
-                          bg=bg_colour,
-                          fg=text_color,
-                          command=exit)
+    setins = TButton(win, text="Add User", command=user_page)
+    close_button = TButton(win, text="x", command=exit)
     close_button.place(x=30, y=60)
-    close_button.bind("<Enter>", partial(tkinterlib.on_enter,
-                                         but=close_button))
-    close_button.bind("<Leave>", partial(tkinterlib.on_leave,
-                                         but=close_button))
 
     setins.place(x=120, y=60)
-    setins.bind("<Enter>", partial(tkinterlib.on_enter, but=setins))
-    setins.bind("<Leave>", partial(tkinterlib.on_leave, but=setins))
 
-    ver = Button(win,
-                 text="Verify",
-                 bd=0,
-                 command=password,
-                 bg=bg_colour,
-                 fg=text_color)
+    ver = TButton(
+        win,
+        text="Verify",
+        command=password,
+    )
     ver.place(x=70, y=60)
-    ver.bind("<Enter>", partial(tkinterlib.on_enter, but=ver))
-    ver.bind("<Leave>", partial(tkinterlib.on_leave, but=ver))
+
     win.bind("<Return>", password)
     t.mainloop()
     return password.usergui, password.passgui

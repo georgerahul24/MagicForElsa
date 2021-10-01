@@ -3,12 +3,15 @@ This module contains the GUI for settings
 """
 import os
 from functools import partial
-from tkinter import Tk, Frame, Label, Button, LabelFrame, RIGHT
+from tkinter import Tk, Frame, Label, LabelFrame, RIGHT
 from tkinter import ttk
 from tkinter.colorchooser import askcolor
 from tkinter.filedialog import askdirectory
+
 from talk1.talk1 import talk
-from Magic import tkinterlib, usergui, theme, history, indexer, export_import, popups
+
+from Magic import usergui, theme, history, indexer, export_import, popups, tkinterlib
+from Magic.tkinterlib import TButton
 
 
 def setting_page(event="", username="", state=True):
@@ -44,72 +47,48 @@ def setting_page(event="", username="", state=True):
     indexer_tab = Frame(settings, bg=bg_colour)
     # ...settings_tab......
     # ....add user.........
-    adduser = Button(
+    adduser = TButton(
         settings_tab,
         text="Add User",
-        bd=0,
         command=usr_page,
-        bg=bg_colour,
-        fg=text_color,
     )
     adduser.pack(fill="x")
     # hover effect
-    adduser.bind("<Enter>", partial(tkinterlib.on_enter, but=adduser))
-    adduser.bind("<Leave>", partial(tkinterlib.on_leave, but=adduser))
+
     # .....delete a user............
-    deleteusr = Button(
+    deleteusr = TButton(
         settings_tab,
         text="Delete User",
-        bd=0,
         command=usergui.deleteuser,
-        bg=bg_colour,
-        fg=text_color,
     )
     deleteusr.pack(fill="x")
-    # hover effect
-    deleteusr.bind("<Enter>", partial(tkinterlib.on_enter, but=deleteusr))
-    deleteusr.bind("<Leave>", partial(tkinterlib.on_leave, but=deleteusr))
 
     # .....reset vira............
-    reset = Button(
+    reset = TButton(
         settings_tab,
         text="Reset Elsa",
-        bd=0,
         command=popups.resetelsapopup,
-        bg=bg_colour,
-        fg=text_color,
     )
     reset.pack(fill="x")
-    # hover effect
-    reset.bind("<Enter>", partial(tkinterlib.on_enter, but=reset))
-    reset.bind("<Leave>", partial(tkinterlib.on_leave, but=reset))
+
     # ...import export themes.....
     # ....Export data...........
-    exportdata = Button(
+    exportdata = TButton(
         settings_tab,
         text="Export Data",
-        bd=0,
         command=export_import.export,
-        bg=bg_colour,
-        fg=text_color,
     )
     exportdata.pack(fill="x")
-    # hover effect
-    exportdata.bind("<Enter>", partial(tkinterlib.on_enter, but=exportdata))
-    exportdata.bind("<Leave>", partial(tkinterlib.on_leave, but=exportdata))
+
     # .......import data......
-    importdata = Button(
+    importdata = TButton(
         settings_tab,
         text="Import Data",
-        bd=0,
         command=export_import.import_data,
-        bg=bg_colour,
-        fg=text_color,
     )
     importdata.pack(fill="x")
+
     # hover effect
-    importdata.bind("<Enter>", partial(tkinterlib.on_enter, but=importdata))
-    importdata.bind("<Leave>", partial(tkinterlib.on_leave, but=importdata))
 
     # ......theme tab..........
 
@@ -131,76 +110,46 @@ def setting_page(event="", username="", state=True):
         if color[1] is not None:
             theme.theme_writer(bg_colour, text_color, color[1])
 
-    background_colour = Button(
+    background_colour = TButton(
         theme_tab,
         text="Background Colour",
-        bd=0,
-        bg=bg_colour,
-        fg=text_color,
         command=new_background_colour,
     )
     background_colour.pack(fill="x")
-    background_colour.bind("<Enter>",
-                           partial(tkinterlib.on_enter, but=background_colour))
-    background_colour.bind("<Leave>",
-                           partial(tkinterlib.on_leave, but=background_colour))
 
-    new_text_colour = Button(
+    new_text_colour = TButton(
         theme_tab,
         text="Font Colour",
-        bd=0,
-        bg=bg_colour,
-        fg=text_color,
         command=font_colour,
     )
     new_text_colour.pack(fill="x")
-    new_text_colour.bind("<Enter>",
-                         partial(tkinterlib.on_enter, but=new_text_colour))
-    new_text_colour.bind("<Leave>",
-                         partial(tkinterlib.on_leave, but=new_text_colour))
 
-    new_button_colour = Button(
+    new_button_colour = TButton(
         theme_tab,
         text="Button color",
-        bd=0,
-        bg=bg_colour,
-        fg=text_color,
         command=new_button_colour,
     )
     new_button_colour.pack(fil="x")
-    new_button_colour.bind("<Enter>",
-                           partial(tkinterlib.on_enter, but=new_button_colour))
-    new_button_colour.bind("<Leave>",
-                           partial(tkinterlib.on_leave, but=new_button_colour))
+
     # ......Theme tab ends............
     # .......History tab starts.......
 
-    showhis = Button(
+    showhis = TButton(
         history_tab,
         text="Show History",
-        bd=0,
-        bg=bg_colour,
-        fg=text_color,
         command=partial(history.user_read, username=username),
     )
 
     showhis.pack(fill="x")
-    # hover effect
-    showhis.bind("<Enter>", partial(tkinterlib.on_enter, but=showhis))
-    showhis.bind("<Leave>", partial(tkinterlib.on_leave, but=showhis))
+
     # clear history button
-    clearhis = Button(
+    clearhis = TButton(
         history_tab,
         text="Clear History",
-        bd=0,
-        bg=bg_colour,
-        fg=text_color,
         command=lambda: history.clear_history(username),
     )
     clearhis.pack(fill="x")
-    # hover effect
-    clearhis.bind("<Enter>", partial(tkinterlib.on_enter, but=clearhis))
-    clearhis.bind("<Leave>", partial(tkinterlib.on_leave, but=clearhis))
+
     # ...........history tab ends...........
     # ...........about tab starts...........
     version = LabelFrame(about_tab,
@@ -239,20 +188,12 @@ def setting_page(event="", username="", state=True):
         setting_page()
         del folderpath
 
-    indexerbutton = Button(
+    indexerbutton = TButton(
         indexer_tab,
         text="Add a folder",
-        bd=0,
-        bg=bg_colour,
-        fg=text_color,
         command=folderchooser,
     )
     indexerbutton.pack()
-    # hover effect
-    indexerbutton.bind("<Enter>",
-                       partial(tkinterlib.on_enter, but=indexerbutton))
-    indexerbutton.bind("<Leave>",
-                       partial(tkinterlib.on_leave, but=indexerbutton))
 
     # ....Reset indexerparthlib.....
     def resetindexercache():
@@ -260,20 +201,13 @@ def setting_page(event="", username="", state=True):
         os.remove((os.getcwd() + "\\resources\\ indexer.elsa"))
         print("'indexer.elsa' is removed")
 
-    resetindexerpathlib = Button(
+    resetindexerpathlib = TButton(
         indexer_tab,
         text="Reset Indexer Cache",
-        bd=0,
-        bg=bg_colour,
-        fg=text_color,
         command=resetindexercache,
     )
     resetindexerpathlib.pack()
     # hover effect
-    resetindexerpathlib.bind(
-        "<Enter>", partial(tkinterlib.on_enter, but=resetindexerpathlib))
-    resetindexerpathlib.bind(
-        "<Leave>", partial(tkinterlib.on_leave, but=resetindexerpathlib))
 
     indexertitle = Label(
         indexer_tab,
@@ -301,19 +235,13 @@ def setting_page(event="", username="", state=True):
         settings.destroy()
         indexer.index_files()
 
-    close = Button(
+    close = TButton(
         title_bar,
         text="x",
-        font="bold",
-        bd=0,
-        bg=bg_colour,
-        fg=text_color,
         command=quitsettings,
     )
     close.pack(side=RIGHT)
-    # hover effect
-    close.bind("<Enter>", partial(tkinterlib.on_enter, but=close))
-    close.bind("<Leave>", partial(tkinterlib.on_leave, but=close))
+
     # ...moving titlebar...
     title_bar.bind("<B1-Motion>", move_window)
     settings.mainloop()

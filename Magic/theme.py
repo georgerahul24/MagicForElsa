@@ -1,5 +1,5 @@
-from tkinter import Tk, LabelFrame, Button
 import os
+from tkinter import Tk, LabelFrame, Button
 
 
 def read_theme():

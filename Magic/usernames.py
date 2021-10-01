@@ -1,9 +1,10 @@
 """Created by George Rahul
 Calls the login page and verifies the username and password entered"""
 
-from Magic.GUI import SecurityUI
 from talk1.talk1 import talk
+
 from Magic import file_database
+from Magic.GUI import SecurityUI
 
 
 def verify_usernames():

@@ -1,5 +1,6 @@
 import gc
 import json
+
 from Magic import theme, indexer
 
 

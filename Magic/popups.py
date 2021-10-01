@@ -1,7 +1,10 @@
 import time
-from tkinter import Tk, Button, Label
+from tkinter import Tk, Label
+
 from task1.task import web
-from Magic import tkinterlib, theme
+
+from Magic import tkinterlib, theme, chat_client
+from Magic.tkinterlib import TButton
 
 
 def popups(srch):
@@ -22,21 +25,9 @@ def popups(srch):
         popups.destroy()
         web(srch)
 
-    Yes = Button(popups,
-                 text="Yes",
-                 bg=button_colour,
-                 fg=text_color,
-                 command=srchYes)
+    Yes = TButton(popups, text="Yes", command=srchYes)
 
-    # function refernced in elsa.py
-    def destroyPop():
-        popups.destroy()
-
-    No = Button(popups,
-                text="No",
-                bg=button_colour,
-                fg=text_color,
-                command=popups.destroy)
+    No = TButton(popups, text="No", command=popups.destroy)
     Yes.grid(row=1, column=0)
     No.grid(row=1, column=1)
     popups.mainloop()
@@ -58,7 +49,7 @@ def resetelsapopup():
     tkinterlib.tkinter_initialise(popups,
                                   x=int(screen_width / 2),
                                   y=int(screen_height / 2))
-    popups.geometry(f"193x50+{int(screen_width/2)}+{int(screen_height/2)}")
+    popups.geometry(f"193x50+{int(screen_width / 2)}+{int(screen_height / 2)}")
     talk("Are you sure that you want to reset Elsa")
     Label(popups,
           text="Are you sure you want to reset Elsa?",
@@ -71,27 +62,15 @@ def resetelsapopup():
         print("Resetting Elsa")
         time.sleep(1)
         shutil.rmtree(Path(os.getcwd() + "\\resources"))
+        try:
+            chat_client.closeClient()
+        except:
+            pass
         exit()
 
-    Yes = Button(popups,
-                 text="Yes",
-                 bg=button_colour,
-                 fg=text_color,
-                 command=Yes)
+    Yes = TButton(popups, text="Yes", command=Yes)
 
-    # function refernced in elsa.py
-    def destroyPop():
-        popups.destroy()
-
-    No = Button(popups,
-                text="No",
-                bg=button_colour,
-                fg=text_color,
-                command=popups.destroy)
+    No = TButton(popups, text="No", command=popups.destroy)
     Yes.place(x=60, y=20)
     No.place(x=100, y=20)
     popups.mainloop()
-
-
-if __name__ == "__main__":
-    popups("George is the greatest person on the earth")
