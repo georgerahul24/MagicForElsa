@@ -1,7 +1,13 @@
 """Created by George Rahul
 Contains all the necessary code to run various features like searching in net,running files,etc"""
-import pyttsx3, datetime, subprocess, webbrowser, random, os
+import datetime
+import os
+import pyttsx3
+import random
+import subprocess
+import webbrowser
 from pathlib import Path
+
 from talk1 import talk1
 
 talk = talk1.talk
@@ -238,6 +244,8 @@ webdict = {
     "george": "https://github.com/georgerahul24",
     "elizabeth": "https://github.com/swarley2021",
     "austin": "https://github.com/AustinBert",
+    "parthan": "https://github.com/PARTHAN27",
+    "diya": "https://github.com/diyapratheep123",
     "netflix": "https://www.netflix.com/",
     "primevideo": "https://www.primevideo.com/",
     "hotstar": "https://www.hotstar.com/",
