@@ -23,8 +23,8 @@ def check_user():
         username, password = SecurityUI()
         # verifying with database
 
-        check_user.security = (
-            password == file_database.check_user_from_file(username))
+        check_user.security = password == file_database.check_user_from_file(
+            username)
         check_user.loginname = username
         del username, password
 

@@ -21,17 +21,29 @@ downloads = Path(
 music = Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Music"))
 videos = Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Videos"))
 directories = [desktop, documents, downloads, music, videos]
-cacheinfo = dict()
+cacheData = dict()
+
+
+def read_indexer_folders(event=""):
+    try:
+        import json
+
+        folderpth = os.getcwd() + "\\resources\\ indexerpaths.elsa"
+        with open(folderpth) as f:
+            folders = json.load(f)
+        return folders
+    except:
+        pass
 
 
 def cachesearch(func):
     def _cachesearch(args):
 
         try:
-            filepth = cacheinfo[args]
+            filepth = cacheData[args]
 
-            print("Opening from cache")
             webbrowser.open(filepth)
+            print("Opened from cache")
 
             talk1.talk(f"opened {args}")
 
@@ -39,20 +51,9 @@ def cachesearch(func):
             filepath = func(args)
 
             if filepath is not None:
-                cacheinfo[args] = filepath
+                cacheData[args] = filepath
 
     return _cachesearch
-
-
-def indexer_folders():
-    try:
-        import json
-        folderpth = (os.getcwd() + '\\resources\\ indexerpaths.elsa')
-        with open(folderpth) as f:
-            folders = json.load(f)
-        return folders
-    except:
-        pass
 
 
 def index(dataOfDirectories, dataofFolders, pathn):
@@ -94,14 +95,14 @@ def index_files():
 
             print("'indexer.elsa' not found")
             print("Indexing files...Wait a moment...")
-            folders = indexer_folders()
+
             try:
-                directories.extend(folders)
+                directories.extend(read_indexer_folders())
+
             except:
                 pass
-            dataOfDirectories = {}
-            dataOfFolders = {}
-            proc = []
+            dataOfDirectories, dataOfFolders, proc = {}, {}, []
+
             for paths in directories:
                 p = Thread(target=index,
                            args=(dataOfDirectories, dataOfFolders, paths))
@@ -115,11 +116,13 @@ def index_files():
             print("All indexing processes functions finished")
             with open(indexerpth, "wb") as cache:
                 pickle.dump(dataOfDirectories, cache)
-            with open(indexerfolderpth, 'wb') as cache2:
+            with open(indexerfolderpth, "wb") as cache2:
                 pickle.dump(dataOfFolders, cache2)
             del cache, dataOfDirectories, dataOfFolders
             gc.collect()
             print("Json dumped and cleaned")
+            global cacheData
+            cacheData = {}
         else:
             print("'indexer.elsa' found")
 
@@ -129,8 +132,8 @@ def index_files():
 @cachesearch
 def search_indexed_file(filename):
     with open(indexerpth, "rb") as cache:
-        cachedict = pickle.load(cache)
-    filenames = [data for data in cachedict]
+        cache_dict = pickle.load(cache)
+    filenames = [data for data in cache_dict]
 
     approx_file = get_close_matches(filename, filenames, n=1, cutoff=0.7)
 
@@ -138,22 +141,20 @@ def search_indexed_file(filename):
         print("Approximate to", approx_file[0])
         if len(approx_file) != 0 and len(approx_file[0]) != 0:
 
-            srched_filepath = cachedict[approx_file[0]]
-
+            srched_filepath = cache_dict[approx_file[0]]
             webbrowser.open(srched_filepath)
-
             print(f"Opened {srched_filepath}")
             talk1.talk(f"Opened {approx_file}")
-            del cachedict, filenames, approx_file, cache
+            del cache_dict, filenames, approx_file, cache
             gc.collect()
             return srched_filepath
 
         else:
             print(f"Could not find any files")
-            talk1.talk('Could not find any files')
+            talk1.talk("Could not find any files")
 
     except:
-        print('Could not find any files')
+        print("Could not find any files")
         talk1.talk(f"Could not find any files")
 
 
@@ -161,30 +162,29 @@ def search_indexed_file(filename):
 def search_indexed_folder(filename):
     try:
         with open(indexerfolderpth, "rb") as cache:
-            cachedict = pickle.load(cache)
-        filenames = [data for data in cachedict]
-
-        approx_file = get_close_matches(filename, filenames, n=1, cutoff=0.7)
-
+            cache_dict = pickle.load(cache)
+        folder_names = [data for data in cache_dict]
+        approx_folder = get_close_matches(filename,
+                                          folder_names,
+                                          n=1,
+                                          cutoff=0.7)
         try:
-            print("Approximate to", approx_file[0])
-            if len(approx_file) != 0 and len(approx_file[0]) != 0:
+            print("Approximate to", approx_folder[0])
+            if len(approx_folder) != 0 and len(approx_folder[0]) != 0:
 
-                srched_filepath = cachedict[approx_file[0]]
-
-                webbrowser.open(srched_filepath)
-
-                print(f"Opened {srched_filepath}")
-                talk1.talk(f"Opened {approx_file}")
-                del cachedict, approx_file, cache, filenames
+                srched_folderpath = cache_dict[approx_folder[0]]
+                webbrowser.open(srched_folderpath)
+                print(f"Opened {srched_folderpath}")
+                talk1.talk(f"Opened {approx_folder}")
+                del cache_dict, approx_folder, cache, folder_names
                 gc.collect()
-                return srched_filepath
+                return srched_folderpath
             else:
                 print(f"Could not find any folders")
-                talk1.talk('Could not find any folders')
+                talk1.talk("Could not find any folders")
 
         except:
-            print('Could not find any folders')
+            print("Could not find any folders")
             talk1.talk(f"Could not find any folders")
     except:
         print(
@@ -206,28 +206,16 @@ def add_indexer_folders(event="", path=""):
     except:
         import json
 
-        folderpth = os.getcwd() + '\\resources\\ indexerpaths.elsa'
+        folderpth = os.getcwd() + "\\resources\\ indexerpaths.elsa"
         with open(folderpth, "w") as f:
             json.dump([path], f, indent=4)
     try:
-        removepth = os.getcwd() + '\\resources\\ indexer.elsa'
+        removepth = os.getcwd() + "\\resources\\ indexer.elsa"
         os.remove(removepth)
     except:
         pass
 
     gc.collect()
-
-
-def read_indexer_folders(event=""):
-    try:
-        import json
-
-        folderpth = os.getcwd() + '\\resources\\ indexerpaths.elsa'
-        with open(folderpth) as f:
-            folders = json.load(f)
-        return folders
-    except:
-        pass
 
 
 # run index files when indexer module is imported in Elsa

@@ -200,6 +200,7 @@ def setting_page(event="", username="", state=True):
         talk("Reseted the cache")
         os.remove((os.getcwd() + "\\resources\\ indexer.elsa"))
         print("'indexer.elsa' is removed")
+        # files will be re - indexed when settings page is quit
 
     resetindexerpathlib = TButton(
         indexer_tab,
@@ -234,6 +235,7 @@ def setting_page(event="", username="", state=True):
     def quitsettings(event=""):
         settings.destroy()
         indexer.index_files()
+        tkinterlib.reset_colors()
 
     close = TButton(
         title_bar,

@@ -59,15 +59,23 @@ def on_leave(event, but):
     but.config(fg=text_color)
 
 
-def TButton(root, text="", command=None, relief='ridge'):
-    b = Button(root,
-               text=text,
-               fg=text_color,
-               bd=0,
-               bg=bg_colour,
-               command=command,
-               relief=relief)
+def TButton(root, text="", command=None, relief="ridge"):
+    b = Button(
+        root,
+        text=text,
+        fg=text_color,
+        bd=0,
+        bg=bg_colour,
+        command=command,
+        relief=relief,
+    )
+
     b.bind("<Enter>", partial(on_enter, but=b))
     b.bind("<Leave>", partial(on_leave, but=b))
 
     return b
+
+
+def reset_colors():
+    global bg_colour, text_color, button_colour
+    bg_colour, text_color, button_colour = theme.read_theme()

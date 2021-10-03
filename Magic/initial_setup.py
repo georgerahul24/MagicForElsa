@@ -28,7 +28,7 @@ def install_files():
             f.write(
                 "black;purple;light green\n#The order is bg,font color,button colour\n#Please remember to use ';' to separate colours :D"
             )
-        indexerpth = os.getcwd() + '\\resources\\ indexerpaths.elsa'
+        indexerpth = os.getcwd() + "\\resources\\ indexerpaths.elsa"
         f = open(indexerpth, "w")
         f.close()
         # writing the users folder with default user admin and default password 1234
@@ -37,6 +37,7 @@ def install_files():
             talk("Hey new user. Let us get started")
             talk("Please create an account to proceed")
             from Magic import usergui
+
             try:
                 initusr, initpsswd = usergui.user_page_init()
             except:

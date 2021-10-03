@@ -45,8 +45,16 @@ def write_to_file(username, password):
             print(file)
         file = open(userpth, "w")
         if len(username) != 0 and username not in [
-                "initial", "cache", "users", "user", "theme", "indexer",
-                "resources", "dummy", "indexerpaths", "indexerfolder"
+                "initial",
+                "cache",
+                "users",
+                "user",
+                "theme",
+                "indexer",
+                "resources",
+                "dummy",
+                "indexerpaths",
+                "indexerfolder",
         ]:
 
             data[username] = password
