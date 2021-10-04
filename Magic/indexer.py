@@ -216,7 +216,3 @@ def add_indexer_folders(event="", path=""):
         pass
 
     gc.collect()
-
-
-# run index files when indexer module is imported in Elsa
-index_files()

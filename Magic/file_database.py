@@ -43,7 +43,7 @@ def write_to_file(username, password):
         with open(userpth, "r") as file:
             data = json.load(file)
             print(file)
-        file = open(userpth, "w")
+
         if len(username) != 0 and username not in [
                 "initial",
                 "cache",
@@ -56,10 +56,9 @@ def write_to_file(username, password):
                 "indexerpaths",
                 "indexerfolder",
         ]:
-
-            data[username] = password
-            json.dump(data, file, indent=4)
-            file.close()
+            with open(userpth, "w") as file:
+                data[username] = password
+                json.dump(data, file, indent=4)
             print(f"Added user {username} ")
             # returns state = 1 so that program knows that writing was succesful
             del file, username, password, data

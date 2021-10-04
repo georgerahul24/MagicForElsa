@@ -1,5 +1,5 @@
 import os
-from tkinter import Tk, LabelFrame, Button
+from tkinter.colorchooser import askcolor
 
 
 def read_theme():
@@ -35,101 +35,22 @@ def theme_writer(bg_colour, font_colour, button_colour):
     del bg_colour, font_colour, button_colour
 
 
-# ...............no need for this function......
-# ...............This function is implemeneted in the settings page.......
-def theme_selector(event=""):
-    """[GUI to select a new theme]
-
-    Args:
-        event (str, optional): [Not important]. Defaults to ''.
-    """
-    from tkinter.colorchooser import askcolor
-    from Magic import tkinterlib
-    from functools import partial
-
+def new_background_colour(event=""):
+    color = askcolor()
     bg_colour, text_color, button_colour = read_theme()
+    if color[1] != None:
+        theme_writer(color[1], text_color, button_colour)
 
-    selectorpage = Tk()
-    tkinterlib.tkinter_initialise(selectorpage, 600, 340, top=0)
-    selector = LabelFrame(selectorpage,
-                          text="Theme",
-                          bg=bg_colour,
-                          fg=text_color)
-    selector.pack()
 
-    def new_background_colour(event=""):
-        color = askcolor()
-        bg_colour, text_color, button_colour = read_theme()
-        if color[1] != None:
-            theme_writer(color[1], text_color, button_colour)
+def new_font_colour(event=""):
+    color = askcolor()
+    bg_colour, text_color, button_colour = read_theme()
+    if color[1] != None:
+        theme_writer(bg_colour, color[1], button_colour)
 
-    def font_colour(event=""):
-        color = askcolor()
-        bg_colour, text_color, button_colour = read_theme()
-        if color[1] != None:
-            theme_writer(bg_colour, color[1], button_colour)
 
-    def new_button_colour(event=""):
-        color = askcolor()
-        bg_colour, text_color, button_colour = read_theme()
-        if color[1] != None:
-            theme_writer(bg_colour, text_color, color[1])
-
-    background_colour = Button(
-        selector,
-        text="Background Colour",
-        bd=0,
-        bg=bg_colour,
-        fg=text_color,
-        command=new_background_colour,
-    )
-    background_colour.pack(fill="x")
-    background_colour.bind("<Enter>",
-                           partial(tkinterlib.on_enter, but=background_colour))
-    background_colour.bind("<Leave>",
-                           partial(tkinterlib.on_leave, but=background_colour))
-
-    new_text_colour = Button(
-        selector,
-        text="Font Colour",
-        bd=0,
-        bg=bg_colour,
-        fg=text_color,
-        command=font_colour,
-    )
-    new_text_colour.pack(fill="x")
-    new_text_colour.bind("<Enter>",
-                         partial(tkinterlib.on_enter, but=new_text_colour))
-    new_text_colour.bind("<Leave>",
-                         partial(tkinterlib.on_leave, but=new_text_colour))
-
-    new_button_colour = Button(
-        selector,
-        text="Button color",
-        bd=0,
-        bg=bg_colour,
-        fg=text_color,
-        command=new_button_colour,
-    )
-    new_button_colour.pack(fil="x")
-    new_button_colour.bind("<Enter>",
-                           partial(tkinterlib.on_enter, but=new_button_colour))
-    new_button_colour.bind("<Leave>",
-                           partial(tkinterlib.on_leave, but=new_button_colour))
-
-    close = Button(
-        selectorpage,
-        text="x",
-        font="bold",
-        bd=0,
-        bg=bg_colour,
-        fg=text_color,
-        command=selectorpage.destroy,
-    )
-    close.pack()
-
-    close.bind("<Enter>", partial(tkinterlib.on_enter, but=close))
-    close.bind("<Leave>", partial(tkinterlib.on_leave, but=close))
-    selectorpage.mainloop()
-
-    tkinterlib.reset_colors()
+def new_button_colour(event=""):
+    color = askcolor()
+    bg_colour, text_color, button_colour = read_theme()
+    if color[1] != None:
+        theme_writer(bg_colour, text_color, color[1])
