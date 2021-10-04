@@ -146,7 +146,7 @@ def setting_page(event="", username="", state=True):
     clearhis = TButton(
         history_tab,
         text="Clear History",
-        command=lambda: history.clear_history(username),
+        command=partial(history.clear_history,name=username),
     )
     clearhis.pack(fill="x")
 
