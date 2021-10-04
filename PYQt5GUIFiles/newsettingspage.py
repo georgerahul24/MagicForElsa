@@ -102,9 +102,11 @@ class Ui_MainWindow(object):
         del folderpath
 
     def resetindexercache(self):
-        talk("Reseted the cache")
-        os.remove((os.getcwd() + "\\resources\\ indexer.elsa"))
-        print("'indexer.elsa' is removed")
+        try:
+            talk("Reseted the cache")
+            os.remove((os.getcwd() + "\\resources\\ indexer.elsa"))
+            print("'indexer.elsa' is removed")
+        except:pass    
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Elsa Settings"))
