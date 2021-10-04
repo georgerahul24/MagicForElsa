@@ -36,7 +36,7 @@ def export():
             del f, themedata, indexerdata, USERNAMEPATH
             gc.collect()
         except Exception as e:
-            print("Some error happened",e)
+            print("Some error happened", e)
 
 
 def import_data():
@@ -65,7 +65,8 @@ def import_data():
                 except:
                     pass
             with open(initpth, "w") as themefile:
-                themefile.write(f"{themedata[0]};{themedata[1]};{themedata[2]}")
+                themefile.write(
+                    f"{themedata[0]};{themedata[1]};{themedata[2]}")
             print("Imported the themes")
             USERNAMEPATH = getcwd() + "\\resources\\ users.elsa"
 
@@ -88,6 +89,5 @@ def import_data():
                 USERNAMEPATH,
             )
     except Exception as e:
-                print("Some error happened", e)
-                del e
-
+        print("Some error happened", e)
+        del e
