@@ -41,7 +41,7 @@ class Ui_MainWindow(object):
     def __init__(self):
         #Need to destroy Tk() else, when font etc is selected a Tk window will be shown.
         #This Tk window wont be closed thus causing problem with tkinter of Elsa when actually run
-        self.tkin=Tk()
+        self.tkin = Tk()
         #state == False means user forcefully closed the initial setup
         #state == True means setup completed successfully
         self.state = False
