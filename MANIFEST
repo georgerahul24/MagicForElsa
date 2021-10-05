@@ -17,7 +17,6 @@ Magic\tkinterlib.py
 Magic\usergui.py
 Magic\usernames.py
 PYQt5GUIFiles\__init__.py
-PYQt5GUIFiles\newinitialsetup.py
 PYQt5GUIFiles\newsettingspage.py
 talk1\__init__.py
 talk1\talk1.py
