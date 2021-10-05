@@ -2,7 +2,7 @@ import json
 import os
 import pathlib
 from functools import partial
-
+from tkinter import Tk
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 from Magic import theme, indexer, file_database
@@ -39,6 +39,11 @@ def filesInstaller():
 
 class Ui_MainWindow(object):
     def __init__(self):
+        #Need to destroy Tk() else, when font etc is selected a Tk window will be shown.
+        #This Tk window wont be closed thus causing problem with tkinter of Elsa when actually run
+        self.tkin=Tk()
+        #state == False means user forcefully closed the initial setup
+        #state == True means setup completed successfully
         self.state = False
 
     def setupUi(self, MainWindow):
@@ -186,7 +191,11 @@ class Ui_MainWindow(object):
         filesInstaller()
 
     def finishInitialSetup(self):
+        #Setting state=True so that it indicates that setup was successful and not closed by the user
         self.state = True
+        #deleteing tkin so that the background window
+        #of askdirectory() and colorchooser() are destroyed properly
+        self.tkin.destroy()
         MainWindow.close()
 
     def adduserevent(self):
