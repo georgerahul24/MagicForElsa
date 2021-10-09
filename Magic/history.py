@@ -4,13 +4,8 @@ import webbrowser
 from pathlib import Path
 
 
-def user_file(username, command, task_did):
+def user_file(username: str, command: str, task_did: str):
     """[Used to save the history of the user]
-
-    Args:
-        username ([str]): [The username of the user]
-        command ([str]): [What was the command that the user asked to do]
-        task_did ([str]): [Action taken]
     """
     userpth = os.getcwd() + f"\\resources\\ {username}.elsa"
     with open(userpth, "a") as history:
@@ -22,7 +17,7 @@ def user_file(username, command, task_did):
         del history
 
 
-def user_read(event="", username="dummy"):
+def user_read(event="", username: str = "dummy"):
     """[Open the user history file]
 
     Args:
@@ -36,7 +31,7 @@ def user_read(event="", username="dummy"):
     webbrowser.open(userpth)
 
 
-def clear_history(name):
+def clear_history(name: str):
     """[Clears the history of the user]
 
     Args:

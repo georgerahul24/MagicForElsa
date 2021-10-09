@@ -3,7 +3,6 @@ This module is for syntax highlighting
 """
 import gc
 from tkinter import END
-
 from Magic import theme
 
 keywords = [
@@ -45,8 +44,7 @@ keywords = [
 ]
 
 
-def syntax_highlighting(event="", Search_box=None) -> None:
-
+def syntax_highlighting(event="", Search_box = None) -> None:
     try:
         ord = Search_box.get()
         bg_colour, text_color, button_colour = theme.read_theme()

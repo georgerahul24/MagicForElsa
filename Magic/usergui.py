@@ -13,7 +13,6 @@ from Magic import tkinterlib, file_database, theme
 def user_page():
     """[This function is used to implement the GUI of the add user page]"""
     userpage = Tk()
-
     bg_colour, text_color, button_colour = theme.read_theme()
     tkinterlib.tkinter_initialise(userpage, 600, 340)
     s = LabelFrame(userpage, text="Add New User", bg=bg_colour, fg=text_color)

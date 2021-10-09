@@ -9,6 +9,7 @@ Magic\highlighter.py
 Magic\history.py
 Magic\indexer.py
 Magic\initial_setup.py
+Magic\loginpage.py
 Magic\popups.py
 Magic\program_run.py
 Magic\settings.py
@@ -16,8 +17,6 @@ Magic\theme.py
 Magic\tkinterlib.py
 Magic\usergui.py
 Magic\usernames.py
-PYQt5GUIFiles\__init__.py
-PYQt5GUIFiles\newsettingspage.py
 talk1\__init__.py
 talk1\talk1.py
 task1\__init__.py

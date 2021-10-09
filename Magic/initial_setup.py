@@ -3,7 +3,6 @@ import os
 import pathlib
 from functools import partial
 from tkinter import Tk
-from PyQt5 import QtCore, QtGui, QtWidgets
 from Magic import theme, indexer, file_database
 
 
@@ -36,6 +35,7 @@ def filesInstaller():
     print("Added initial files")
 
 def install_files():
+    from PyQt5 import QtCore, QtGui, QtWidgets
     class Ui_MainWindow(object):
         def __init__(self):
             #Need to destroy Tk() else, when font etc is selected a Tk window will be shown.
@@ -241,5 +241,5 @@ def install_files():
     app.exec_()
     if ui.state is False:
         sys.exit(1)
+    del app,MainWindow,ui
 
-install_files()

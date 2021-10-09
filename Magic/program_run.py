@@ -1,7 +1,7 @@
 from task1 import task
 
 
-def program_run(afterkeyword):
+def program_run(afterkeyword:str):
     if afterkeyword in ["firefox", "ff"]:
         task.firefox()
     elif afterkeyword in ["photoshop", "ps"]:

@@ -9,16 +9,8 @@ from Magic import theme
 bg_colour, text_color, button_colour = theme.read_theme()
 
 
-def tkinter_initialise(a, x=0, y=0, top=1, noborders=True, opacity=0.9):
+def tkinter_initialise(a, x: int = 0, y: int = 0, top: int = 1, noborders: bool = True, opacity: int = 0.9):
     """[Used to mordernify tkinter gui boxes]
-
-    Args:
-        a ([type]): [The root name of the gui]
-        x (int, optional): [x-coordinate to place the box ]. Defaults to 0.
-        y (int, optional): [y-coordinate to place the box ]. Defaults to 0.
-        top (int, optional): [1 if the GUI should always be on the top of other windows..else 0]. Defaults to 1.
-        no-borders (bool, optional): [True if no need of borders..else False]. Defaults to True.
-        opacity (float, optional): [opacity ranges from 0 to 1. 0 being complete transparent]. Defaults to 0.9.
     """
 
     a.withdraw()  # Hide tkinter windows to finish initialization

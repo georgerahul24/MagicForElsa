@@ -5,15 +5,10 @@ import webbrowser
 from difflib import get_close_matches
 from pathlib import Path
 from threading import Thread
-
 from talk1 import talk1
-
 indexerpth = os.getcwd() + f"\\resources\\ indexer.elsa"
 indexerfolderpth = os.getcwd() + f"\\resources\\ indexerfolder.elsa"
-# get path of the current file os.getcwd
-# convert it into path use path(os.getcwd) use is_file() to check if it is a file
-desktop = Path(os.path.join(os.path.join(os.environ["USERPROFILE"]),
-                            "Desktop"))
+desktop = Path(os.path.join(os.path.join(os.environ["USERPROFILE"]),"Desktop"))
 documents = Path(
     os.path.join(os.path.join(os.environ["USERPROFILE"]), "Documents"))
 downloads = Path(
@@ -22,8 +17,6 @@ music = Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Music"))
 videos = Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Videos"))
 directories = [desktop, documents, downloads, music, videos]
 cacheData = dict()
-
-
 def read_indexer_folders(event=""):
     try:
         import json
@@ -35,9 +28,8 @@ def read_indexer_folders(event=""):
     except:
         pass
 
-
 def cachesearch(func):
-    def _cachesearch(args):
+    def _cachesearch(args:tuple):
 
         try:
             filepth = cacheData[args]
@@ -55,24 +47,17 @@ def cachesearch(func):
 
     return _cachesearch
 
-
-def index(dataOfDirectories, dataofFolders, pathn):
+def index(dataOfDirectories:dict, dataofFolders:dict, pathn:str):
     """[Used to index files]
-
-    Args:
-        pathn ([str]): [Path of the parent folder to index]
     """
 
     try:
-
         for name in os.listdir(pathn):
             ine = os.path.join(pathn, name)
             i = Path(ine)
             if i.is_file():
                 name = name.split(".")[0]
-
                 dataOfDirectories[name.lower()] = ine
-
             elif name.startswith(".") == False and name.startswith(
                     "__") == False:
                 try:
@@ -80,10 +65,8 @@ def index(dataOfDirectories, dataofFolders, pathn):
                     index(dataOfDirectories, dataofFolders, i)
                 except Exception as e:
                     print(e)
-
     except Exception as e:
         print(e)
-
 
 def index_files():
     """[Check if the indexer.elsa file exists.If it exists,no action is taken.If it doesnt exists,files are indexed]"""
@@ -92,13 +75,10 @@ def index_files():
 
     def _index_files():
         if cache_file.exists() != True:
-
             print("'indexer.elsa' not found")
             print("Indexing files...Wait a moment...")
-
             try:
                 directories.extend(read_indexer_folders())
-
             except:
                 pass
             dataOfDirectories, dataOfFolders, proc = {}, {}, []
@@ -108,7 +88,6 @@ def index_files():
                            args=(dataOfDirectories, dataOfFolders, paths))
                 proc.append(p)
                 p.start()
-
             print("Indexing Threads:", *proc)
             for p in proc:
                 p.join()
@@ -125,18 +104,15 @@ def index_files():
             cacheData = {}
         else:
             print("'indexer.elsa' found")
-
     Thread(target=_index_files).start()
 
 
 @cachesearch
-def search_indexed_file(filename):
+def search_indexed_file(filename:str):
     with open(indexerpth, "rb") as cache:
         cache_dict = pickle.load(cache)
     filenames = [data for data in cache_dict]
-
     approx_file = get_close_matches(filename, filenames, n=1, cutoff=0.7)
-
     try:
         print("Approximate to", approx_file[0])
         if len(approx_file) != 0 and len(approx_file[0]) != 0:
@@ -148,26 +124,20 @@ def search_indexed_file(filename):
             del cache_dict, filenames, approx_file, cache
             gc.collect()
             return srched_filepath
-
         else:
             print(f"Could not find any files")
             talk1.talk("Could not find any files")
-
     except:
         print("Could not find any files")
         talk1.talk(f"Could not find any files")
 
-
 @cachesearch
-def search_indexed_folder(filename):
+def search_indexed_folder(filename:str):
     try:
         with open(indexerfolderpth, "rb") as cache:
             cache_dict = pickle.load(cache)
         folder_names = [data for data in cache_dict]
-        approx_folder = get_close_matches(filename,
-                                          folder_names,
-                                          n=1,
-                                          cutoff=0.7)
+        approx_folder = get_close_matches(filename,folder_names,n=1,cutoff=0.7)
         try:
             print("Approximate to", approx_folder[0])
             if len(approx_folder) != 0 and len(approx_folder[0]) != 0:
@@ -195,7 +165,6 @@ def search_indexed_folder(filename):
 def add_indexer_folders(event="", path=""):
     try:
         import json
-
         folderpth = os.getcwd() + f"\\resources\\ indexerpaths.elsa"
         with open(folderpth) as f:
             folders = json.load(f)

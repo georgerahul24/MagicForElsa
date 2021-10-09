@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name="magicForElsa",
-    packages=["Magic", "task1", "talk1", "PYQt5GUIFiles"],
+    packages=["Magic", "task1", "talk1"],
     version="1.16",
     license="GPLv3+",
     description="A package for the personal assistant Elsa",
