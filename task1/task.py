@@ -2,22 +2,18 @@
 Contains all the necessary code to run various features like searching in net,running files,etc"""
 import datetime
 import os
-import pyttsx3
 import random
 import subprocess
 import webbrowser
 from pathlib import Path
 
-from talk1 import talk1
-
-talk = talk1.talk
+from talk1.talk1 import talk
 
 
 # .....Time and Greeting............
 def greeting(nam):
     try:
         x = datetime.datetime.now().hour
-
         if x < 12:
             talk(f"Good morning {nam}")
         else:
@@ -34,21 +30,17 @@ def tell_time():
 def wordpad():
     try:
         subprocess.Popen("C:\\Windows\\System32\\write.exe")
-        talk(f"I have opened wordpad for you")
+        talk('I have opened wordpad for you')
     except:
         print("Sorry i couldnt do what you requested Try again later")
 
 
 def whatsapp():
     try:
-
         subprocess.Popen(
-            os.path.join(
-                os.path.join(os.environ["USERPROFILE"]),
-                "AppData\\Local\\WhatsApp\\WhatsApp.exe",
-            ))
+            os.path.join(os.path.join(os.environ["USERPROFILE"]), "AppData\\Local\\WhatsApp\\WhatsApp.exe", ))
         print("Opened WhatsApp")
-        talk(f"I have opened whatsapp for you")
+        talk('I have opened whatsapp for you')
 
     except Exception as e:
         print(e, "Sorry i couldnt do what you requested Try again later")
@@ -126,13 +118,12 @@ def msword():
 
 
 # .........browser and net related................
-def web(a):
+def web(searchword):
     try:
-        searchword = a
         webbrowser.open("https://www.google.com/search?client=firefox-b-d&q=" +
                         searchword,
                         new=1)
-        talk(f"This is what I found for {a}")
+        talk(f"This is what I found for {searchword}")
     except:
         webbrowser.open(searchword, new=1)
         print("Sorry i couldnt do what you requested Try again later")
@@ -140,7 +131,7 @@ def web(a):
 
 def youtube(srch):
     webbrowser.open(f"https://www.youtube.com/results?search_query={srch}")
-    talk(f"Here is what you requested")
+    talk('Here is what you requested')
 
 
 def ordShortenSrch(ord):
@@ -155,11 +146,8 @@ def ordShortenSrch(ord):
 # .............folders......................
 def download():
     try:
-        os.startfile(
-            Path(
-                os.path.join(os.path.join(os.environ["USERPROFILE"]),
-                             "Downloads")))
-        talk(f"Here is what you requested")
+        os.startfile(Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Downloads")))
+        talk('Here is what you requested')
     except:
         talk("Sorry, could not open the downloads folder")
         print("Sorry i couldnt do what you requested Try again later")
@@ -167,14 +155,11 @@ def download():
 
 def desktop():
     try:
-        os.startfile(
-            Path(
-                os.path.join(os.path.join(os.environ["USERPROFILE"]),
-                             "Desktop")))
-        talk(f"Here is what you requested")
+        os.startfile(Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Desktop")))
+        talk('Here is what you requested')
     except:
         talk("Sorry, could not open the desktop folder")
-        print("Sorry i couldnt do what you requested Try again later")
+        print("Sorry i could not do what you requested Try again later")
 
 
 def musicFolder():
@@ -182,21 +167,9 @@ def musicFolder():
         os.startfile(
             Path(os.path.join(os.path.join(os.environ["USERPROFILE"]),
                               "Music")))
-        talk(f"Here is what you requested")
+        talk('Here is what you requested')
     except:
         talk("Sorry, could not open the Music folder")
-        print("Sorry i couldnt do what you requested Try again later")
-
-
-def desktop():
-    try:
-        os.startfile(
-            Path(
-                os.path.join(os.path.join(os.environ["USERPROFILE"]),
-                             "Desktop")))
-        talk(f"Here is what you requested")
-    except:
-        talk("Sorry, could not open the downloads folder")
         print("Sorry i couldnt do what you requested Try again later")
 
 
@@ -206,8 +179,8 @@ def joke():
             "My friend was explaining electricity to me, but I was like, wat ?",
             "I failed math so many times at school, I can’t even count",
             "Never trust atoms; they make up everything",
-            "George is a fool",
-            "The future, the present, and the past walk into a bar. Things got a little tense",
+            "George is searchword fool",
+            "The future, the present, and the past walk into searchword bar. Things got searchword little tense",
             "It was an emotional wedding. Even the cake was in tiers",
         ]
         jokeselected = random.choice(jokeslist)
@@ -219,7 +192,7 @@ def joke():
 # ...........shutdown,restart and log off.....
 def shutdown():
     try:
-        # /s is for shutdown and 15 is for a 15 seconds delay when shutdowning
+        # /s is for shutdown and 15 is for searchword 15 seconds delay when shutdowning
         talk("Shutting down your computer in 15 seconds. Bye bye")
         subprocess.call(["shutdown", "/s", "/t", "15"])
     except:
@@ -228,7 +201,7 @@ def shutdown():
 
 def restart():
     try:
-        # /r is for restart and 15 is for a 15 seconds delay when shutdowning
+        # /r is for restart and 15 is for searchword 15 seconds delay when shutdowning
         talk("Restarting your computer in 15 seconds. Bye bye")
         subprocess.call(["shutdown", "/r", "/t", "15"])
     except:
@@ -262,10 +235,7 @@ def websiteopen(website):
     try:
         import difflib
 
-        approx_match = difflib.get_close_matches(website,
-                                                 websitelist,
-                                                 cutoff=0.7,
-                                                 n=1)
+        approx_match = difflib.get_close_matches(website, websitelist, cutoff=0.7, n=1)
         print(f"Approximated {website} to {approx_match[0]}")
         webbrowser.open(webdict[approx_match[0]])
         talk(f"opening {approx_match[0]}")
