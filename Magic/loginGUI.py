@@ -1,122 +1,74 @@
+"""Created by George Rahul
+GUI for the login page"""
+
+from tkinter import Tk, Toplevel, Entry, Label
+
+from Magic import theme
+from Magic.usergui import user_page
+from Magic.tkinterlib import TButton
+
 
 def SecurityUI():
-    import sys
-    from PyQt5 import QtCore, QtWidgets
-    from Magic import file_database,theme
-    class Ui_Widget(object):
-        def __init__(self):
-            #Using reserverd keyword so tht in case user exits the login page it will show error
-            self.username, self.password = f"users", f"1234"
-            self.state=False
+    """[Login page]
 
+    Returns:
+        [str,str]: [Returns the password and username entered in the login page]
+    """
+    bg_colour, text_color, button_colour = theme.read_theme()
+    # .................initialising tkinter........................
+    t = Tk()
+    t.withdraw()
+    # t.deiconify() to make it appear again
+    win = Toplevel(t)
+    win.geometry("200x100+700+300")
+    win.config(bg=bg_colour)
+    win.overrideredirect(True)
+    win.attributes("-topmost", 1)
+    win.attributes("-alpha", 0.8)
 
-        def setupUi(self, Widget):
-            Widget.setObjectName("Widget")
-            Widget.resize(478, 310)
-            self.stackedWidget = QtWidgets.QStackedWidget(Widget)
-            self.stackedWidget.setGeometry(QtCore.QRect(10, 10, 461, 291))
-            self.stackedWidget.setObjectName("stackedWidget")
-            self.loginPage = QtWidgets.QWidget()
-            self.loginPage.setObjectName("loginPage")
-            self.addNewUserButton = QtWidgets.QPushButton(self.loginPage)
-            self.addNewUserButton.setGeometry(QtCore.QRect(250, 190, 131, 41))
-            self.addNewUserButton.setObjectName("addNewUserButton")
-            self.verifyUserButton = QtWidgets.QPushButton(self.loginPage)
-            self.verifyUserButton.setGeometry(QtCore.QRect(120, 190, 111, 41))
-            self.verifyUserButton.setObjectName("verifyUserButton")
-            self.usernameLabel = QtWidgets.QLabel(self.loginPage)
-            self.usernameLabel.setGeometry(QtCore.QRect(100, 40, 61, 51))
-            self.usernameLabel.setObjectName("usernameLabel")
-            self.usernameEntry = QtWidgets.QLineEdit(self.loginPage)
-            self.usernameEntry.setGeometry(QtCore.QRect(171, 56, 211, 24))
-            self.usernameEntry.setObjectName("usernameEntry")
-            self.passwordLabel = QtWidgets.QLabel(self.loginPage)
-            self.passwordLabel.setGeometry(QtCore.QRect(100, 110, 61, 41))
-            self.passwordLabel.setObjectName("passwordLabel")
-            self.passwordEntry = QtWidgets.QLineEdit(self.loginPage)
-            self.passwordEntry.setGeometry(QtCore.QRect(171, 116, 211, 24))
-            self.passwordEntry.setObjectName("passwordEntry")
-            self.stackedWidget.addWidget(self.loginPage)
-            self.AddUserPage = QtWidgets.QWidget()
-            self.AddUserPage.setObjectName("AddUserPage")
-            self.submitButton = QtWidgets.QPushButton(self.AddUserPage)
-            self.submitButton.setGeometry(QtCore.QRect(240, 210, 101, 41))
-            self.submitButton.setObjectName("submitButton")
-            self.backButton = QtWidgets.QPushButton(self.AddUserPage)
-            self.backButton.setGeometry(QtCore.QRect(120, 210, 101, 41))
-            self.backButton.setObjectName("backButton")
-            self.newUsernameLabel = QtWidgets.QLabel(self.AddUserPage)
-            self.newUsernameLabel.setGeometry(QtCore.QRect(80, 50, 101, 51))
-            self.newUsernameLabel.setObjectName("newUsernameLabel")
-            self.newPasswordLabel = QtWidgets.QLabel(self.AddUserPage)
-            self.newPasswordLabel.setGeometry(QtCore.QRect(80, 110, 101, 41))
-            self.newPasswordLabel.setObjectName("newPasswordLabel")
-            self.newUserNameEntry = QtWidgets.QLineEdit(self.AddUserPage)
-            self.newUserNameEntry.setGeometry(QtCore.QRect(190, 70, 211, 24))
-            self.newUserNameEntry.setObjectName("newUserNameEntry")
-            self.newPasswordEntry = QtWidgets.QLineEdit(self.AddUserPage)
-            self.newPasswordEntry.setGeometry(QtCore.QRect(190, 120, 211, 24))
-            self.newPasswordEntry.setObjectName("newPasswordEntry")
-            self.stackedWidget.addWidget(self.AddUserPage)
+    # win.overrideredirect(1)
+    # ........entry fileds for username and password.............
+    e = Entry(win, show="*", fg=text_color, width=10)
+    e.place(x=104, y=30)
+    e1 = Entry(win, width=10, fg=text_color)
+    e1.place(x=104, y=10)
 
-            self.retranslateUi(Widget)
-            self.stackedWidget.setCurrentIndex(0)
-            QtCore.QMetaObject.connectSlotsByName(Widget)
-            self.initialiseWidgets()
+    # ..........Labels for username and password............................................
+    t1 = Label(win,
+               text="Username:",
+               bg=bg_colour,
+               fg=text_color,
+               font="Nebula 10 bold").place(x=20, y=10)
+    t2 = Label(win,
+               text="Password:",
+               bg=bg_colour,
+               fg=text_color,
+               font="Nebula 10 bold").place(x=20, y=30)
 
-        def initialiseWidgets(self):
+    def password(event=""):
+        """[Used to get the username and passowrd enerted]
 
-            self.NotificationLabel = QtWidgets.QLabel(self.AddUserPage)
-            self.verifyUserButton.clicked.connect(self.returnData)
-            self.addNewUserButton.clicked.connect(lambda:self.stackedWidget.setCurrentIndex(1))
-            self.submitButton.clicked.connect(self.addNewUser)
-            self.backButton.clicked.connect(self.backButtonEvent)
+        Args:
+            event (str, optional): [Not important]. Defaults to ''.
+        """
+        password.passgui = e.get()
+        password.usergui = e1.get()
 
+        t.destroy()
 
-        def returnData(self):
-            self.state=True
-            self.username, self.password = self.usernameEntry.text(), self.passwordEntry.text()
-            Widget.close()
-        def backButtonEvent(self):
-            self.stackedWidget.setCurrentIndex(0)
-            self.newPasswordEntry.clear()
-            self.newUserNameEntry.clear()
-            self.NotificationLabel.hide()
-        def addNewUser(self):
-            usrname = self.newUserNameEntry.text()
-            passwd = self.newPasswordEntry.text()
-            code = file_database.write_to_file(usrname, passwd)
-            if code != 1:
-                self.NotificationLabel.setStyleSheet('color:red')
-                self.NotificationLabel.setGeometry(QtCore.QRect(60, 0, 500, 31))
-                self.NotificationLabel.setText("Sorry!Please try another username.This username is reserved")
-                self.NotificationLabel.show()
-            else:
-                self.NotificationLabel.setStyleSheet('color:green')
-                self.NotificationLabel.setText('User Added Successfully')
-                self.NotificationLabel.show()
+    setins = TButton(win, text="Add User", command=user_page)
+    close_button = TButton(win, text="x", command=exit)
+    close_button.place(x=30, y=60)
 
-        def retranslateUi(self, Widget):
-            _translate = QtCore.QCoreApplication.translate
-            Widget.setWindowTitle(_translate("Widget", "Elsa-Login Page"))
-            self.addNewUserButton.setText(_translate("Widget", "Add New User"))
-            self.verifyUserButton.setText(_translate("Widget", "Verify"))
-            self.usernameLabel.setText(_translate("Widget", "Username:"))
-            self.passwordLabel.setText(_translate("Widget", "Password:"))
-            self.submitButton.setText(_translate("Widget", "Submit"))
-            self.backButton.setText(_translate("Widget", "Back"))
-            self.newUsernameLabel.setText(_translate("Widget", "New Username:"))
-            self.newPasswordLabel.setText(_translate("Widget", "New Password:"))
+    setins.place(x=120, y=60)
 
-    app = QtWidgets.QApplication(sys.argv)
-    app.setStyle('fusion')
-    Widget = QtWidgets.QWidget()
-    ui = Ui_Widget()
-    ui.setupUi(Widget)
-    Widget.show()
-    app.exec_()
-    if ui.state is False:
-        sys.exit(1)
+    ver = TButton(
+        win,
+        text="Verify",
+        command=password,
+    )
+    ver.place(x=70, y=60)
 
-
-    return ui.username, ui.password
+    win.bind("<Return>", password)
+    t.mainloop()
+    return password.usergui, password.passgui
