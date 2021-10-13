@@ -3,48 +3,37 @@ This module is for syntax highlighting
 """
 import gc
 from tkinter import END
+
 from Magic import theme
 
 keywords = [
-    "search",
-    "browse",
-    "srch",
+    "search", "browse", "srch", "s",
     "msg",
-    "whatsapp",
-    "bye",
-    "tata",
-    "close",
-    "exit",
-    "file",
-    "f",
+    "bye", "tata", "close", "exit",
+    "open", "o", "folder",
+    "file", "f",
     "run",
-    "theme",
     "firefox",
-    "settings",
-    "setting",
+    "settings", "setting",
     "time",
-    "ver",
-    "what",
-    "hello",
-    "hlo",
-    "hey",
+    "website", "w",
+    "ver", "what",
+    "hello", "hlo", "hey",
     "hi",
     "download",
     "desktop",
     "music",
-    "sh",
-    "show",
+    "sh", "show",
     "clear",
-    "joke",
+    "joke", "tell",
     "shutdown",
     "restart",
     "open",
-    "w",
-    "website",
 ]
 
 
-def syntax_highlighting(event="", Search_box = None) -> None:
+def syntax_highlighting(event="", Search_box=None) -> None:
+    """Function for syntax highlighting"""
     try:
         ord = Search_box.get()
         bg_colour, text_color, button_colour = theme.read_theme()

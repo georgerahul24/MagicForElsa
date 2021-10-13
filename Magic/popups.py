@@ -7,7 +7,7 @@ from Magic import tkinterlib, theme, chat_client
 from Magic.tkinterlib import TButton
 
 
-def popups(srch:str):
+def popups(srch: str):
     """[A yes or no gui box to know if the user needs to search things in the internet]
 
     Args:

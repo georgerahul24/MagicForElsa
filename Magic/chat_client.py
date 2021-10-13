@@ -15,12 +15,14 @@ client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 nickname = ""
 
 
-def getNickname(name):
+def getNickname(name: str) -> str:
+    """To get the nickname i.e the username of the client"""
     global nickname
     nickname = name
 
 
-def recievefromserver():
+def recievefromserver() -> None:
+    """To recieve data from the server"""
     while True:
         try:
             msg = client.recv(1024).decode("ascii")
@@ -39,7 +41,8 @@ def recievefromserver():
             break
 
 
-def sendtoserver(nickname, msg):
+def sendtoserver(nickname: str, msg: str) -> None:
+    """To send the data to the server"""
     try:
         print("Sending", msg, "to", nickname)
         msg = json.dumps((nickname, msg))
@@ -51,11 +54,13 @@ def sendtoserver(nickname, msg):
         pass
 
 
-def closeClient():
+def closeClient() -> None:
+    """To close the connection of the client with the server"""
     client.close()
 
 
-def startclient():
+def startclient() -> None:
+    """To start the process od connecting the client wth server"""
     client.connect((host, port))
     recievethread = threading.Thread(target=recievefromserver)
     recievethread.start()

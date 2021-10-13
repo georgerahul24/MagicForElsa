@@ -4,7 +4,8 @@ import json
 from Magic import theme, indexer
 
 
-def export():
+def export() -> None:
+    """This function is to export the data"""
     from os import getcwd
     from tkinter import filedialog
 
@@ -39,7 +40,8 @@ def export():
             print("Some error happened", e)
 
 
-def import_data():
+def import_data()->None:
+    """This function is to import the data"""
     try:
         from tkinter import filedialog
         from os import getcwd, remove

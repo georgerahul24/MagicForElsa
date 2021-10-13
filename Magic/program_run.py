@@ -1,7 +1,7 @@
 from task1 import task
 
 
-def program_run(afterkeyword:str):
+def program_run(afterkeyword: str):
     if afterkeyword in ["firefox", "ff"]:
         task.firefox()
     elif afterkeyword in ["photoshop", "ps"]:
@@ -17,11 +17,11 @@ def program_run(afterkeyword:str):
     elif afterkeyword in ["wordpad", "wp"]:
         task.wordpad()
     elif afterkeyword in [
-            "gimp",
+        "gimp",
     ]:
         task.gimp()
     elif afterkeyword in [
-            "vlc",
+        "vlc",
     ]:
         task.vlc()
     elif afterkeyword in ["telegram", "tg"]:

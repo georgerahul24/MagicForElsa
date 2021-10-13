@@ -7,8 +7,9 @@ import os
 userpth = os.getcwd() + "\\resources\\ users.elsa"
 
 
-def check_user_from_file(username: str):
-    """[This extension is used to check if the user is vaid or not ]
+def check_user_from_file(username: str)->str:
+    """[This extension is used to check if the user is valid or not ]
+    Note:Returns None if no such user is found else the password is returned
 """
     try:
 
@@ -22,7 +23,7 @@ def check_user_from_file(username: str):
         del e
 
 
-def write_to_file(username: str, password: str):
+def write_to_file(username: str, password: str)->int:
     """[Writes the username and password to users.elsa file]
     Returns:
         [int]: [1 if it is a success and -1 if the process is a failure]

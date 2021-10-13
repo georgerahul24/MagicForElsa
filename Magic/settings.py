@@ -22,6 +22,7 @@ def setting_page(event="", username="", state=True):
         username (str, optional): [Username of the user using the GUI]. Defaults to ''.
         state (bool, optional): [Not important]. Defaults to True.
     """
+
     def usr_page(event=""):
         talk("Please add a new user")
         usergui.user_page()

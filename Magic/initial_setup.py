@@ -3,6 +3,7 @@ import os
 import pathlib
 from functools import partial
 from tkinter import Tk
+
 from Magic import theme, indexer, file_database
 
 
@@ -34,15 +35,16 @@ def filesInstaller():
         json.dump({"admin": "1234"}, f, indent=4)
     print("Added initial files")
 
+
 def install_files():
     from PyQt5 import QtCore, QtGui, QtWidgets
     class Ui_MainWindow(object):
         def __init__(self):
-            #Need to destroy Tk() else, when font etc is selected a Tk window will be shown.
-            #This Tk window wont be closed thus causing problem with tkinter of Elsa when actually run
-            self.tkin=Tk()
-            #state == False means user forcefully closed the initial setup
-            #state == True means setup completed successfully
+            # Need to destroy Tk() else, when font etc is selected a Tk window will be shown.
+            # This Tk window wont be closed thus causing problem with tkinter of Elsa when actually run
+            self.tkin = Tk()
+            # state == False means user forcefully closed the initial setup
+            # state == True means setup completed successfully
             self.state = False
 
         def setupUi(self, MainWindow):
@@ -163,10 +165,10 @@ def install_files():
             filesInstaller()
 
         def finishInitialSetup(self):
-            #Setting state=True so that it indicates that setup was successful and not closed by the user
+            # Setting state=True so that it indicates that setup was successful and not closed by the user
             self.state = True
-            #deleteing tkin so that the background window
-            #of askdirectory() and colorchooser() are destroyed properly
+            # deleteing tkin so that the background window
+            # of askdirectory() and colorchooser() are destroyed properly
             self.tkin.destroy()
             MainWindow.close()
 
@@ -195,27 +197,27 @@ def install_files():
             self.StartPageConitnueButton.setText("Continue")
             self.ElsaTitleLogo.setText("Elsa")
             self.LicenceLabel.setText("MIT License\n"
-                    "\n"
-                    "Copyright (c) 2021 George Rahul\n"
-                    "\n"
-                    "Permission is hereby granted, free of charge, to any person obtaining a copy\n"
-                    "of this software and associated documentation files (the \"Software\"), to deal\n"
-                    "in the Software without restriction, including without limitation the rights\n"
-                    "to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n"
-                    "copies of the Software, and to permit persons to whom the Software is\n"
-                    "furnished to do so, subject to the following conditions:\n"
-                    "\n"
-                    "The above copyright notice and this permission notice shall be included in all\n"
-                    "copies or substantial portions of the Software.\n"
-                    "\n"
-                    "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n"
-                    "IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n"
-                    "FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n"
-                    "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n"
-                    "LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n"
-                    "OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n"
-                    "SOFTWARE.\n"
-                    "")
+                                      "\n"
+                                      "Copyright (c) 2021 George Rahul\n"
+                                      "\n"
+                                      "Permission is hereby granted, free of charge, to any person obtaining a copy\n"
+                                      "of this software and associated documentation files (the \"Software\"), to deal\n"
+                                      "in the Software without restriction, including without limitation the rights\n"
+                                      "to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n"
+                                      "copies of the Software, and to permit persons to whom the Software is\n"
+                                      "furnished to do so, subject to the following conditions:\n"
+                                      "\n"
+                                      "The above copyright notice and this permission notice shall be included in all\n"
+                                      "copies or substantial portions of the Software.\n"
+                                      "\n"
+                                      "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n"
+                                      "IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n"
+                                      "FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n"
+                                      "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n"
+                                      "LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n"
+                                      "OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n"
+                                      "SOFTWARE.\n"
+                                      "")
             self.AgreeRadioButton.setText("I Agree")
             self.DisAgreeRadioButton.setText("I Disagree")
             self.LicenceContinueButton.setText("Continue")
@@ -231,7 +233,6 @@ def install_files():
             self.AddFolderButton.setText("Add Folder")
             self.ContinueOtherButton.setText("Finish")
 
-
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
@@ -241,5 +242,4 @@ def install_files():
     app.exec_()
     if ui.state is False:
         sys.exit(1)
-    del app,MainWindow,ui
-
+    del app, MainWindow, ui

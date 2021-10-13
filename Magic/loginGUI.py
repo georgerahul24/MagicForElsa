@@ -4,8 +4,8 @@ GUI for the login page"""
 from tkinter import Tk, Toplevel, Entry, Label
 
 from Magic import theme
-from Magic.usergui import user_page
 from Magic.tkinterlib import TButton
+from Magic.usergui import user_page
 
 
 def SecurityUI():

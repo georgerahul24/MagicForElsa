@@ -2,6 +2,7 @@
 setup.py
 Magic\__init__.py
 Magic\chat_client.py
+Magic\chat_server.py
 Magic\export_import.py
 Magic\file_database.py
 Magic\highlighter.py
