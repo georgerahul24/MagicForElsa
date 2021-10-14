@@ -8,12 +8,9 @@ from Magic.tkinterlib import TButton
 from Magic.usergui import user_page
 
 
-def SecurityUI():
-    """[Login page]
+def SecurityUI() -> str:
+    """This function deals with the login page"""
 
-    Returns:
-        [str,str]: [Returns the password and username entered in the login page]
-    """
     bg_colour, text_color, button_colour = theme.read_theme()
     # .................initialising tkinter........................
     t = Tk()
@@ -25,32 +22,18 @@ def SecurityUI():
     win.overrideredirect(True)
     win.attributes("-topmost", 1)
     win.attributes("-alpha", 0.8)
-
     # win.overrideredirect(1)
     # ........entry fileds for username and password.............
     e = Entry(win, show="*", fg=text_color, width=10)
     e.place(x=104, y=30)
     e1 = Entry(win, width=10, fg=text_color)
     e1.place(x=104, y=10)
-
     # ..........Labels for username and password............................................
-    t1 = Label(win,
-               text="Username:",
-               bg=bg_colour,
-               fg=text_color,
-               font="Nebula 10 bold").place(x=20, y=10)
-    t2 = Label(win,
-               text="Password:",
-               bg=bg_colour,
-               fg=text_color,
-               font="Nebula 10 bold").place(x=20, y=30)
+    Label(win, text="Username:", bg=bg_colour, fg=text_color, font="Nebula 10 bold").place(x=20, y=10)
+    Label(win, text="Password:", bg=bg_colour, fg=text_color, font="Nebula 10 bold").place(x=20, y=30)
 
-    def password(event=""):
-        """[Used to get the username and passowrd enerted]
-
-        Args:
-            event (str, optional): [Not important]. Defaults to ''.
-        """
+    def password(event="") -> None:
+        """[Used to get the username and password entered]"""
         password.passgui = e.get()
         password.usergui = e1.get()
 

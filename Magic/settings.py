@@ -14,14 +14,8 @@ from Magic import usergui, theme, history, indexer, export_import, popups, tkint
 from Magic.tkinterlib import TButton
 
 
-def setting_page(event="", username="", state=True):
-    """[GUI for the settings page]
-
-    Args:
-        event (str, optional): [Not important]. Defaults to "".
-        username (str, optional): [Username of the user using the GUI]. Defaults to ''.
-        state (bool, optional): [Not important]. Defaults to True.
-    """
+def setting_page(event="", username: str = "", state: bool = True) -> None:
+    """GUI for the settings page"""
 
     def usr_page(event=""):
         talk("Please add a new user")
@@ -48,48 +42,25 @@ def setting_page(event="", username="", state=True):
     indexer_tab = Frame(settings, bg=bg_colour)
     # ...settings_tab......
     # ....add user.........
-    adduser = TButton(
-        settings_tab,
-        text="Add User",
-        command=usr_page,
-    )
+    adduser = TButton(settings_tab, text="Add User", command=usr_page)
     adduser.pack(fill="x")
-    # hover effect
 
     # .....delete a user............
-    deleteusr = TButton(
-        settings_tab,
-        text="Delete User",
-        command=usergui.deleteuser,
-    )
+    deleteusr = TButton(settings_tab, text="Delete User", command=usergui.deleteuser)
     deleteusr.pack(fill="x")
 
     # .....reset vira............
-    reset = TButton(
-        settings_tab,
-        text="Reset Elsa",
-        command=popups.resetelsapopup,
-    )
+    reset = TButton(settings_tab, text="Reset Elsa", command=popups.resetelsapopup)
     reset.pack(fill="x")
 
     # ...import export themes.....
     # ....Export data...........
-    exportdata = TButton(
-        settings_tab,
-        text="Export Data",
-        command=export_import.export,
-    )
+    exportdata = TButton(settings_tab, text="Export Data", command=export_import.export)
     exportdata.pack(fill="x")
 
     # .......import data......
-    importdata = TButton(
-        settings_tab,
-        text="Import Data",
-        command=export_import.import_data,
-    )
+    importdata = TButton(settings_tab, text="Import Data", command=export_import.import_data)
     importdata.pack(fill="x")
-
-    # hover effect
 
     # ......theme tab..........
 
@@ -111,62 +82,31 @@ def setting_page(event="", username="", state=True):
         if color[1] is not None:
             theme.theme_writer(bg_colour, text_color, color[1])
 
-    background_colour = TButton(
-        theme_tab,
-        text="Background Colour",
-        command=new_background_colour,
-    )
+    background_colour = TButton(theme_tab, text="Background Colour", command=new_background_colour)
     background_colour.pack(fill="x")
-
-    new_text_colour = TButton(
-        theme_tab,
-        text="Font Colour",
-        command=font_colour,
-    )
+    new_text_colour = TButton(theme_tab, text="Font Colour", command=font_colour)
     new_text_colour.pack(fill="x")
-
-    new_button_colour = TButton(
-        theme_tab,
-        text="Button color",
-        command=new_button_colour,
-    )
+    new_button_colour = TButton(theme_tab, text="Button color", command=new_button_colour)
     new_button_colour.pack(fil="x")
-
     # ......Theme tab ends............
     # .......History tab starts.......
-
-    showhis = TButton(
-        history_tab,
-        text="Show History",
-        command=partial(history.user_read, username=username),
-    )
-
+    showhis = TButton(history_tab, text="Show History", command=partial(history.user_read, username=username))
     showhis.pack(fill="x")
-
     # clear history button
-    clearhis = TButton(
-        history_tab,
-        text="Clear History",
-        command=partial(history.clear_history, name=username),
-    )
+    clearhis = TButton(history_tab, text="Clear History", command=partial(history.clear_history, name=username))
     clearhis.pack(fill="x")
-
     # ...........history tab ends...........
     # ...........about tab starts...........
-    version = LabelFrame(about_tab,
-                         text="Version",
-                         bg=bg_colour,
-                         fg=text_color)
+    version = LabelFrame(about_tab, text="Version", bg=bg_colour, fg=text_color)
     verlabel = Label(version, text="Elsa 1.1", bg=bg_colour, fg=text_color)
     verlabel.pack()
     version.pack()
-
     ab = LabelFrame(about_tab, text="Created By", bg=bg_colour, fg=text_color)
     ab.pack()
     # Name labels
-    a = Label(ab, text="Austin Bert", bg=bg_colour, fg=text_color).pack()
-    e = Label(ab, text="Elizabeth Jaison", bg=bg_colour, fg=text_color).pack()
-    g = Label(ab, text="George Rahul", bg=bg_colour, fg=text_color).pack()
+    Label(ab, text="Austin Bert", bg=bg_colour, fg=text_color).pack()
+    Label(ab, text="Elizabeth Jaison", bg=bg_colour, fg=text_color).pack()
+    Label(ab, text="George Rahul", bg=bg_colour, fg=text_color).pack()
 
     # .........indexer tab.............
     def folderlabels():
@@ -189,11 +129,7 @@ def setting_page(event="", username="", state=True):
         setting_page()
         del folderpath
 
-    indexerbutton = TButton(
-        indexer_tab,
-        text="Add a folder",
-        command=folderchooser,
-    )
+    indexerbutton = TButton(indexer_tab, text="Add a folder", command=folderchooser)
     indexerbutton.pack()
 
     # ....Reset indexerparthlib.....
@@ -203,21 +139,11 @@ def setting_page(event="", username="", state=True):
         print("'indexer.elsa' is removed")
         # files will be re - indexed when settings page is quit
 
-    resetindexerpathlib = TButton(
-        indexer_tab,
-        text="Reset Indexer Cache",
-        command=resetindexercache,
-    )
+    resetindexerpathlib = TButton(indexer_tab, text="Reset Indexer Cache", command=resetindexercache)
     resetindexerpathlib.pack()
     # hover effect
 
-    indexertitle = Label(
-        indexer_tab,
-        text="Additional Indexed folders",
-        font="bold",
-        bg=bg_colour,
-        fg=text_color,
-    )
+    indexertitle = Label(indexer_tab, text="Additional Indexed folders", font="bold", bg=bg_colour, fg=text_color)
     indexertitle.pack()
     folderlabels()
     # Packing the tabs
@@ -238,13 +164,8 @@ def setting_page(event="", username="", state=True):
         indexer.index_files()
         tkinterlib.reset_colors()
 
-    close = TButton(
-        title_bar,
-        text="x",
-        command=quitsettings,
-    )
+    close = TButton(title_bar, text="x", command=quitsettings)
     close.pack(side=RIGHT)
-
     # ...moving titlebar...
     title_bar.bind("<B1-Motion>", move_window)
     settings.mainloop()

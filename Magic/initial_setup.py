@@ -7,14 +7,16 @@ from tkinter import Tk
 from Magic import theme, indexer, file_database
 
 
-def folderchooser():
+def folderchooser()->None:
+    """This function is to add  folder that has to be additionally indexed"""
     from tkinter.filedialog import askdirectory
     folderpath = askdirectory()
     indexer.add_indexer_folders(path=folderpath)
     del folderpath
 
 
-def filesInstaller():
+def filesInstaller()->None:
+    """Add all the files that should be initially written"""
     folderpath = os.getcwd() + "\\resources"
     folderpath = pathlib.Path(folderpath)
     if not os.path.exists(folderpath):
@@ -36,7 +38,8 @@ def filesInstaller():
     print("Added initial files")
 
 
-def install_files():
+def install_files()->None:
+    """This function handles the main GUI work for initial setup"""
     from PyQt5 import QtCore, QtGui, QtWidgets
     class Ui_MainWindow(object):
         def __init__(self):
@@ -49,7 +52,6 @@ def install_files():
 
         def setupUi(self, MainWindow):
             MainWindow.resize(800, 600)
-
             self.initialiseWidgets()
             self.SettingUpLinkages()
 
