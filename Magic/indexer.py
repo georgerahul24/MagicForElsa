@@ -5,6 +5,7 @@ import webbrowser
 from difflib import get_close_matches
 from pathlib import Path
 from threading import Thread
+
 from talk1 import talk1
 
 indexerpth = os.getcwd() + f"\\resources\\ indexer.elsa"
@@ -20,7 +21,7 @@ directories = [desktop, documents, downloads, music, videos]
 cacheData = dict()
 
 
-def read_indexer_folders(event="")->list:
+def read_indexer_folders(event="") -> list:
     """To get the list of folders that should be indexed additionally"""
     try:
         import json
@@ -35,6 +36,7 @@ def read_indexer_folders(event="")->list:
 
 def cachesearch(func):
     """To search for file/folder in the cache"""
+
     def _cachesearch(args: tuple):
 
         try:
@@ -54,7 +56,7 @@ def cachesearch(func):
     return _cachesearch
 
 
-def index(dataOfDirectories: dict, dataofFolders: dict, pathn: str)->None:
+def index(dataOfDirectories: dict, dataofFolders: dict, pathn: str) -> None:
     """[Used to index files]"""
 
     try:
@@ -75,7 +77,7 @@ def index(dataOfDirectories: dict, dataofFolders: dict, pathn: str)->None:
         print(e)
 
 
-def index_files()->None:
+def index_files() -> None:
     """[Check if the indexer.elsa file exists.If it exists,no action is taken.If it doesnt exists,files are indexed]"""
     cache_file = Path(indexerpth)
     folder_file = Path(indexerfolderpth)
@@ -116,7 +118,7 @@ def index_files()->None:
 
 
 @cachesearch
-def search_indexed_file(filename: str)->None:
+def search_indexed_file(filename: str) -> None:
     """Search and open  a file that is indexed"""
     with open(indexerpth, "rb") as cache:
         cache_dict = pickle.load(cache)
@@ -142,7 +144,7 @@ def search_indexed_file(filename: str)->None:
 
 
 @cachesearch
-def search_indexed_folder(filename: str)->None:
+def search_indexed_folder(filename: str) -> None:
     """Search and open a folder that has been indexed"""
     try:
         with open(indexerfolderpth, "rb") as cache:
@@ -173,7 +175,7 @@ def search_indexed_folder(filename: str)->None:
         )
 
 
-def add_indexer_folders(event="", path:str="")->None:
+def add_indexer_folders(event="", path: str = "") -> None:
     """Add additional folders that should be indexed"""
     try:
         import json
@@ -181,6 +183,11 @@ def add_indexer_folders(event="", path:str="")->None:
         with open(folderpth) as f:
             folders = json.load(f)
             folders.append(path)
+            # ...Converting to set to avoid duplicates.....
+            # ...Keeping it as list itself because writing the initial files and all was kept inmind that this will be a list
+            folders = set(folders)
+            # ...Converting back to list
+            folders = list(folders)
         with open(folderpth, "w") as f:
             json.dump(folders, f, indent=4)
         del folderpth, folders, f
