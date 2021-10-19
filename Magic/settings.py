@@ -1,9 +1,7 @@
-"""
-This module contains the GUI for settings
-"""
+"""This module contains the GUI for settings"""
 import os
 from functools import partial
-from tkinter import Tk, Frame, Label, LabelFrame, RIGHT
+from tkinter import Tk, Frame, RIGHT
 from tkinter import ttk
 from tkinter.colorchooser import askcolor
 from tkinter.filedialog import askdirectory
@@ -11,30 +9,32 @@ from tkinter.filedialog import askdirectory
 from talk1.talk1 import talk
 
 from Magic import usergui, theme, history, indexer, export_import, popups, tkinterlib
-from Magic.tkinterlib import TButton
+from Magic.tkinterlib import TButton, TLabel, TLabelFrame
 
 
 def setting_page(event="", username: str = "", state: bool = True) -> None:
     """GUI for the settings page"""
 
-    def usr_page(event=""):
+    def usr_page(event="") -> None:
+        """To call the add user page GUI"""
         talk("Please add a new user")
         usergui.user_page()
 
     settings = Tk()
-    bg_colour, text_color, button_colour = theme.read_theme()
+    bg_colour = theme.read_theme()[0]
     tkinterlib.tkinter_initialise(settings, x=500, y=300, top=0)
 
     # ...title bar...
     # for title bar refer https://stackoverflow.com/questions/23836000/can-i-change-the-title-bar-in-tkinter
-    def move_window(event):
+    def move_window(event) -> None:
+        """To move the title bar according with the button motion"""
         settings.geometry(f"+{event.x_root}+{event.y_root}")
 
     title_bar = Frame(settings, bg=bg_colour, bd=4)
     title_bar.pack(fill="x")
     tab = ttk.Notebook(settings)
     tab.pack(fill="both")
-    # differnt frames for tabs
+    # different frames for tabs
     settings_tab = Frame(settings, bg=bg_colour)
     theme_tab = Frame(settings, bg=bg_colour)
     history_tab = Frame(settings, bg=bg_colour)
@@ -42,109 +42,92 @@ def setting_page(event="", username: str = "", state: bool = True) -> None:
     indexer_tab = Frame(settings, bg=bg_colour)
     # ...settings_tab......
     # ....add user.........
-    adduser = TButton(settings_tab, text="Add User", command=usr_page)
-    adduser.pack(fill="x")
-
+    TButton(settings_tab, text="Add User", command=usr_page).pack(fill="x")
     # .....delete a user............
-    deleteusr = TButton(settings_tab, text="Delete User", command=usergui.deleteuser)
-    deleteusr.pack(fill="x")
-
+    TButton(settings_tab, text="Delete User", command=usergui.deleteuser).pack(fill="x")
     # .....reset vira............
-    reset = TButton(settings_tab, text="Reset Elsa", command=popups.resetelsapopup)
-    reset.pack(fill="x")
-
+    TButton(settings_tab, text="Reset Elsa", command=popups.resetelsapopup).pack(fill="x")
     # ...import export themes.....
     # ....Export data...........
-    exportdata = TButton(settings_tab, text="Export Data", command=export_import.export)
-    exportdata.pack(fill="x")
-
+    TButton(settings_tab, text="Export Data", command=export_import.export).pack(fill="x")
     # .......import data......
-    importdata = TButton(settings_tab, text="Import Data", command=export_import.import_data)
-    importdata.pack(fill="x")
+    TButton(settings_tab, text="Import Data", command=export_import.import_data).pack(fill="x")
 
     # ......theme tab..........
-
-    def new_background_colour(event=""):
+    def new_background_colour(event="") -> None:
+        """To add the background colour"""
         color = askcolor()
         bg_colour, text_color, button_colour = theme.read_theme()
         if color[1] is not None:
             theme.theme_writer(color[1], text_color, button_colour)
 
-    def font_colour(event=""):
+    def font_colour(event="") -> None:
+        """To add the font colour"""
         color = askcolor()
         bg_colour, text_color, button_colour = theme.read_theme()
         if color[1] is not None:
             theme.theme_writer(bg_colour, color[1], button_colour)
 
-    def new_button_colour(event=""):
+    def new_button_colour(event="") -> None:
+        """To add the button colour"""
         color = askcolor()
         bg_colour, text_color, button_colour = theme.read_theme()
         if color[1] is not None:
             theme.theme_writer(bg_colour, text_color, color[1])
 
-    background_colour = TButton(theme_tab, text="Background Colour", command=new_background_colour)
-    background_colour.pack(fill="x")
-    new_text_colour = TButton(theme_tab, text="Font Colour", command=font_colour)
-    new_text_colour.pack(fill="x")
-    new_button_colour = TButton(theme_tab, text="Button color", command=new_button_colour)
-    new_button_colour.pack(fil="x")
+    TButton(theme_tab, text="Background Colour", command=new_background_colour).pack(fill="x")
+    TButton(theme_tab, text="Font Colour", command=font_colour).pack(fill="x")
+    TButton(theme_tab, text="Button color", command=new_button_colour).pack(fil="x")
     # ......Theme tab ends............
     # .......History tab starts.......
-    showhis = TButton(history_tab, text="Show History", command=partial(history.user_read, username=username))
-    showhis.pack(fill="x")
+    TButton(history_tab, text="Show History", command=partial(history.user_read, username=username)).pack(fill="x")
     # clear history button
-    clearhis = TButton(history_tab, text="Clear History", command=partial(history.clear_history, name=username))
-    clearhis.pack(fill="x")
+    TButton(history_tab, text="Clear History", command=partial(history.clear_history, name=username)).pack(fill="x")
     # ...........history tab ends...........
     # ...........about tab starts...........
-    version = LabelFrame(about_tab, text="Version", bg=bg_colour, fg=text_color)
-    verlabel = Label(version, text="Elsa 1.1", bg=bg_colour, fg=text_color)
-    verlabel.pack()
+    version = TLabelFrame(about_tab, text="Version")
+    TLabel(version, text="Elsa 1.1").pack()
     version.pack()
-    ab = LabelFrame(about_tab, text="Created By", bg=bg_colour, fg=text_color)
+    ab = TLabelFrame(about_tab, text="Created By")
     ab.pack()
     # Name labels
-    Label(ab, text="Austin Bert", bg=bg_colour, fg=text_color).pack()
-    Label(ab, text="Elizabeth Jaison", bg=bg_colour, fg=text_color).pack()
-    Label(ab, text="George Rahul", bg=bg_colour, fg=text_color).pack()
+    TLabel(ab, text="Austin Bert").pack()
+    TLabel(ab, text="Elizabeth Jaison").pack()
+    TLabel(ab, text="George Rahul").pack()
 
     # .........indexer tab.............
-    def folderlabels():
+    def folderlabels() -> None:
+        """To display the additional folders to be indexed in the GUI"""
         try:
             folders = indexer.read_indexer_folders()
             for folder in folders:
-                foldername = folder.split("/")[-1]
-                Label(indexer_tab,
-                      text=foldername,
-                      bg=bg_colour,
-                      fg=text_color).pack()
+                foldername = folder.split("/")[-1] if len(folder.split("/")[-1]) != 0 else folder.split("/")[0]
+                TLabel(indexer_tab, text=foldername).pack()
         except:
             pass
         del folders
 
-    def folderchooser():
+    def folderchooser() -> None:
+        """To choose a new folder that should be indexed"""
         folderpath = askdirectory()
         indexer.add_indexer_folders(path=folderpath)
         settings.destroy()
         setting_page()
         del folderpath
 
-    indexerbutton = TButton(indexer_tab, text="Add a folder", command=folderchooser)
-    indexerbutton.pack()
+    TButton(indexer_tab, text="Add a folder", command=folderchooser).pack()
 
     # ....Reset indexerparthlib.....
-    def resetindexercache():
+    def resetindexercache() -> None:
+        """To reset the indexed data and rebuild it"""
         talk("Reseted the cache")
         os.remove((os.getcwd() + "\\resources\\ indexer.elsa"))
         print("'indexer.elsa' is removed")
         # files will be re - indexed when settings page is quit
 
-    resetindexerpathlib = TButton(indexer_tab, text="Reset Indexer Cache", command=resetindexercache)
-    resetindexerpathlib.pack()
-    # hover effect
+    TButton(indexer_tab, text="Reset Indexer Cache", command=resetindexercache).pack()
 
-    indexertitle = Label(indexer_tab, text="Additional Indexed folders", font="bold", bg=bg_colour, fg=text_color)
-    indexertitle.pack()
+    TLabel(indexer_tab, text="Additional Indexed folders").pack()
     folderlabels()
     # Packing the tabs
     settings_tab.pack(fill="both")
@@ -159,13 +142,14 @@ def setting_page(event="", username: str = "", state: bool = True) -> None:
     tab.add(indexer_tab, text="Indexer")
 
     # ....close button....
-    def quitsettings(event=""):
+    def quitsettings(event="") -> None:
+        """To quit the settings page"""
         settings.destroy()
         indexer.index_files()
         tkinterlib.reset_colors()
 
-    close = TButton(title_bar, text="x", command=quitsettings)
-    close.pack(side=RIGHT)
+    TButton(title_bar, text="x", command=quitsettings).pack(side=RIGHT)
+
     # ...moving titlebar...
     title_bar.bind("<B1-Motion>", move_window)
     settings.mainloop()

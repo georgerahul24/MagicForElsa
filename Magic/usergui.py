@@ -2,41 +2,29 @@
 This module is to display GUI for adding and deleting users
 """
 
-from functools import partial
-from tkinter import Tk, Label, LabelFrame, Button, Entry
+from tkinter import Tk, Entry
 
 from talk1.talk1 import talk
 
-from Magic import tkinterlib, file_database, theme
+from Magic import file_database
+from Magic.tkinterlib import TLabel, TButton, tkinter_initialise, TLabelFrame
 
 
 def user_page():
     """[This function is used to implement the GUI of the add user page]"""
     userpage = Tk()
-    bg_colour, text_color, button_colour = theme.read_theme()
-    tkinterlib.tkinter_initialise(userpage, 600, 340)
-    s = LabelFrame(userpage, text="Add New User", bg=bg_colour, fg=text_color)
+    tkinter_initialise(userpage, 600, 340)
+    s = TLabelFrame(userpage, text="Add New User")
     s.grid(row=0, column=0)
-
-    lu = Label(s, text="Enter the username:", bg=bg_colour, fg=text_color)
-    lp = Label(s, text="Enter the password:", bg=bg_colour, fg=text_color)
+    TLabel(s, text="Enter the username:").grid(row=0, column=0)
+    TLabel(s, text="Enter the password:").grid(row=1, column=0)
     eu = Entry(s)
+    eu.grid(row=0, column=1)
     ep = Entry(s)
-
-    def add_user_layout():
-        """[Placing the elements in the settings page]"""
-        lu.grid(row=0, column=0)
-        eu.grid(row=0, column=1)
-        lp.grid(row=1, column=0)
-        ep.grid(row=1, column=1)
+    ep.grid(row=1, column=1)
 
     def add(event=""):
-        """[Adds the user]
-
-        Args:
-            event (str, optional): [Not important]. Defaults to ''.
-        """
-
+        """[Adds the user]"""
         new_user = eu.get()
         new_password = ep.get()
         state = file_database.write_to_file(new_user, new_password)
@@ -44,37 +32,11 @@ def user_page():
             talk(f"Successfully added {new_user}")
 
         elif state == -1:
-            talk("user aldready exists. Try again")
+            talk("user already exists. Try again")
         userpage.destroy()
 
-    add_user_layout()
-    add_user_button = Button(s,
-                             text="Add User",
-                             bd=0,
-                             command=add,
-                             bg=bg_colour,
-                             fg=text_color)
-    add_user_button.grid(row=3, column=1)
-    add_user_button.bind("<Enter>",
-                         partial(tkinterlib.on_enter, but=add_user_button))
-    add_user_button.bind("<Leave>",
-                         partial(tkinterlib.on_leave, but=add_user_button))
-    close_button = Button(
-        s,
-        text="X",
-        font="Bold",
-        bg=bg_colour,
-        fg=text_color,
-        command=userpage.destroy,
-        bd=0,
-    )
-
-    close_button.grid(row=3, column=0)
-
-    close_button.bind("<Enter>", partial(tkinterlib.on_enter,
-                                         but=close_button))
-    close_button.bind("<Leave>", partial(tkinterlib.on_leave,
-                                         but=close_button))
+    TButton(s, text="Add User", command=add).grid(row=3, column=1)
+    TButton(s, text="X", command=userpage.destroy).grid(row=3, column=0)
     userpage.bind("<Return>", add)
     userpage.mainloop()
 
@@ -83,40 +45,22 @@ def deleteuser():
     """[This function is used to implement the GUI of the add user page]"""
     deleteuserpage = Tk()
     talk("Please enter the username and password to delete")
-    bg_colour, text_color, button_colour = theme.read_theme()
-    tkinterlib.tkinter_initialise(deleteuserpage, 600, 340)
-    s = LabelFrame(deleteuserpage,
-                   text="Delete User",
-                   bg=bg_colour,
-                   fg=text_color)
+    tkinter_initialise(deleteuserpage, 600, 340)
+    s = TLabelFrame(deleteuserpage, text="Delete User")
     s.grid(row=0, column=0)
 
-    lu = Label(s,
-               text="Enter the username to delete:",
-               bg=bg_colour,
-               fg=text_color)
-    lp = Label(s, text="Enter the password:", bg=bg_colour, fg=text_color)
-    lpr = Label(s, text="Retype the password:", bg=bg_colour, fg=text_color)
+    TLabel(s, text="Enter the username to delete:").grid(row=0, column=0)
+    TLabel(s, text="Enter the password:").grid(row=1, column=0)
+    TLabel(s, text="Retype the password:").grid(row=2, column=0)
     eu = Entry(s)
     ep = Entry(s)
     epr = Entry(s)
-
-    def add_user_layout():
-        """[Placing the elements in the settings page]"""
-        lu.grid(row=0, column=0)
-        eu.grid(row=0, column=1)
-        lp.grid(row=1, column=0)
-        ep.grid(row=1, column=1)
-        lpr.grid(row=2, column=0)
-        epr.grid(row=2, column=1)
+    eu.grid(row=0, column=1)
+    ep.grid(row=1, column=1)
+    epr.grid(row=2, column=1)
 
     def deleteuserfunc(event=""):
-        """[Adds the user]
-
-        Args:
-            event (str, optional): [Not important]. Defaults to ''.
-        """
-
+        """[Adds the user]"""
         name_delete = eu.get()
         password = ep.get()
         retypepassword = epr.get()
@@ -125,12 +69,10 @@ def deleteuser():
                 import json
                 import os
                 from pathlib import Path
-
                 userpth = os.getcwd() + "\\resources\\ users.elsa"
                 userfile = open(Path(userpth))
                 userdata = json.load(userfile)
                 userfile.close()
-
                 try:
                     if userdata[name_delete] == password:
                         del userdata[name_delete]
@@ -155,33 +97,9 @@ def deleteuser():
             print("Passwords in both the field do not match")
             talk("Passwords in both the field do not match. Please try again")
 
-    add_user_layout()
-    add_user_button = Button(s,
-                             text="Delete User",
-                             bd=0,
-                             command=deleteuserfunc,
-                             bg=bg_colour,
-                             fg=text_color)
-    add_user_button.grid(row=3, column=1)
-    add_user_button.bind("<Enter>",
-                         partial(tkinterlib.on_enter, but=add_user_button))
-    add_user_button.bind("<Leave>",
-                         partial(tkinterlib.on_leave, but=add_user_button))
-    close_button = Button(
-        s,
-        text="X",
-        font="Bold",
-        bg=bg_colour,
-        fg=text_color,
-        command=deleteuserpage.destroy,
-        bd=0,
-    )
+    TButton(s, text="Delete User", command=deleteuserfunc).grid(row=3, column=1)
 
-    close_button.grid(row=3, column=0)
+    TButton(s, text="X", command=deleteuserpage.destroy).grid(row=3, column=0)
 
-    close_button.bind("<Enter>", partial(tkinterlib.on_enter,
-                                         but=close_button))
-    close_button.bind("<Leave>", partial(tkinterlib.on_leave,
-                                         but=close_button))
     deleteuserpage.bind("<Return>", deleteuserfunc)
     deleteuserpage.mainloop()

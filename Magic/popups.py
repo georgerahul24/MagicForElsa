@@ -1,10 +1,10 @@
 import time
-from tkinter import Tk, Label
+from tkinter import Tk
 
 from task1.task import web
 
-from Magic import tkinterlib, theme, chat_client
-from Magic.tkinterlib import TButton
+from Magic import tkinterlib, chat_client
+from Magic.tkinterlib import TButton, TLabel
 
 
 def popups(srch: str):
@@ -34,12 +34,12 @@ def resetelsapopup():
     from pathlib import Path
 
     popupWindow = Tk()
-    bg_colour, text_color, button_colour = theme.read_theme()
+
     screen_height, screen_width = popupWindow.winfo_screenheight(), popupWindow.winfo_screenwidth()
     tkinterlib.tkinter_initialise(popupWindow, x=int(screen_width / 2), y=int(screen_height / 2))
     popupWindow.geometry(f"193x50+{int(screen_width / 2)}+{int(screen_height / 2)}")
     talk("Are you sure that you want to reset Elsa")
-    Label(popupWindow, text="Are you sure you want to reset Elsa?", fg=text_color, bg=bg_colour).place(x=0, y=0)
+    TLabel(popupWindow, text="Are you sure you want to reset Elsa?").place(x=0, y=0)
 
     def Yes(event=""):
         talk("Please wait for a moment. Elsa is being reset")
@@ -53,9 +53,7 @@ def resetelsapopup():
             pass
         exit()
 
-    Yes = TButton(popupWindow, text="Yes", command=Yes)
+    TButton(popupWindow, text="Yes", command=Yes).place(x=60, y=20)
+    TButton(popupWindow, text="No", command=popupWindow.destroy).place(x=100, y=20)
 
-    No = TButton(popupWindow, text="No", command=popupWindow.destroy)
-    Yes.place(x=60, y=20)
-    No.place(x=100, y=20)
     popupWindow.mainloop()

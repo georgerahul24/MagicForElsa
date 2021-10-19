@@ -20,13 +20,10 @@ def check_user():
         talk("Please enter the username and password")
         # ...running loginGUI.py............
         username, password = SecurityUI()
-
         # verifying with database
-
-        check_user.security = password == file_database.check_user_from_file(
-            username)
+        # .....will bw referenced from Elsa.py
+        check_user.security = file_database.check_user_from_file(username)
         check_user.loginname = username
-
         del username, password
 
     except Exception as e:

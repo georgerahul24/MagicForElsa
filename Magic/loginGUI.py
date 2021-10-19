@@ -1,57 +1,36 @@
 """Created by George Rahul
 GUI for the login page"""
 
-from tkinter import Tk, Toplevel, Entry, Label
+from tkinter import Tk, Entry
 
 from Magic import theme
-from Magic.tkinterlib import TButton
+from Magic.tkinterlib import TButton, tkinter_initialise, TLabel
 from Magic.usergui import user_page
 
 
 def SecurityUI() -> str:
     """This function deals with the login page"""
-
-    bg_colour, text_color, button_colour = theme.read_theme()
+    text_color = theme.read_theme()[1]
     # .................initialising tkinter........................
-    t = Tk()
-    t.withdraw()
-    # t.deiconify() to make it appear again
-    win = Toplevel(t)
+    win = Tk()
+    tkinter_initialise(win, opacity=0.8)
     win.geometry("200x100+700+300")
-    win.config(bg=bg_colour)
-    win.overrideredirect(True)
-    win.attributes("-topmost", 1)
-    win.attributes("-alpha", 0.8)
-    # win.overrideredirect(1)
     # ........entry fileds for username and password.............
     e = Entry(win, show="*", fg=text_color, width=10)
     e.place(x=104, y=30)
     e1 = Entry(win, width=10, fg=text_color)
     e1.place(x=104, y=10)
     # ..........Labels for username and password............................................
-    Label(win, text="Username:", bg=bg_colour, fg=text_color, font="Nebula 10 bold").place(x=20, y=10)
-    Label(win, text="Password:", bg=bg_colour, fg=text_color, font="Nebula 10 bold").place(x=20, y=30)
-
+    TLabel(win, text="Username:").place(x=20, y=10)
+    TLabel(win, text="Password:").place(x=20, y=30)
     def password(event="") -> None:
         """[Used to get the username and password entered]"""
         password.passgui = e.get()
         password.usergui = e1.get()
-
-        t.destroy()
-
-    setins = TButton(win, text="Add User", command=user_page)
-    close_button = TButton(win, text="x", command=exit)
-    close_button.place(x=30, y=60)
-
-    setins.place(x=120, y=60)
-
-    ver = TButton(
-        win,
-        text="Verify",
-        command=password,
-    )
-    ver.place(x=70, y=60)
-
+        win.destroy()
+    TButton(win, text="Add User", command=user_page).place(x=120, y=60)
+    TButton(win, text="x", command=exit).place(x=30, y=60)
+    TButton(win, text="Verify", command=password).place(x=70, y=60)
     win.bind("<Return>", password)
-    t.mainloop()
+    win.mainloop()
     return password.usergui, password.passgui
