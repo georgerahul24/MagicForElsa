@@ -8,16 +8,12 @@ from threading import Thread
 
 from talk1 import talk1
 
-indexerpth = os.getcwd() + f"\\resources\\ indexer.elsa"
-indexerfolderpth = os.getcwd() + f"\\resources\\ indexerfolder.elsa"
-desktop = Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Desktop"))
-documents = Path(
-    os.path.join(os.path.join(os.environ["USERPROFILE"]), "Documents"))
-downloads = Path(
-    os.path.join(os.path.join(os.environ["USERPROFILE"]), "Downloads"))
-music = Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Music"))
-videos = Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Videos"))
-directories = [desktop, documents, downloads, music, videos]
+indexerpth, indexerfolderpth = os.getcwd() + "\\resources\\ indexer.elsa", os.getcwd() + "\\resources\\ indexerfolder.elsa"
+directories = [desktop := Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Desktop")),
+               documents := Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Documents")),
+               downloads := Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Downloads")),
+               music := Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Music")),
+               videos := Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Videos"))]
 cacheData = dict()
 
 
@@ -25,7 +21,6 @@ def read_indexer_folders(event="") -> list:
     """To get the list of folders that should be indexed additionally"""
     try:
         import json
-
         folderpth = os.getcwd() + "\\resources\\ indexerpaths.elsa"
         with open(folderpth) as f:
             folders = json.load(f)
@@ -41,15 +36,12 @@ def cachesearch(func):
 
         try:
             filepth = cacheData[args]
-
             webbrowser.open(filepth)
             print("Opened from cache")
-
             talk1.talk(f"opened {args}")
 
         except:
             filepath = func(args)
-
             if filepath is not None:
                 cacheData[args] = filepath
 
@@ -93,22 +85,22 @@ def index_files() -> None:
             dataOfDirectories, dataOfFolders, proc = {}, {}, []
 
             for paths in directories:
-                p = Thread(target=index,
-                           args=(dataOfDirectories, dataOfFolders, paths))
+                p = Thread(target=index, args=(dataOfDirectories, dataOfFolders, paths))
                 proc.append(p)
                 p.start()
             print("Indexing Threads:", *proc)
+            print(p.join(), "finished")
             for p in proc:
                 p.join()
                 print(p, "finished")
-            print("All indexing processes functions finished")
+
             with open(indexerpth, "wb") as cache:
                 pickle.dump(dataOfDirectories, cache)
             with open(indexerfolderpth, "wb") as cache2:
                 pickle.dump(dataOfFolders, cache2)
             del cache, dataOfDirectories, dataOfFolders
             gc.collect()
-            print("Json dumped and cleaned")
+            print("All indexing processes functions finished,files updated")
             global cacheData
             cacheData = {}
         else:
@@ -127,7 +119,6 @@ def search_indexed_file(filename: str) -> None:
     try:
         print("Approximate to", approx_file[0])
         if len(approx_file) != 0 and len(approx_file[0]) != 0:
-
             srched_filepath = cache_dict[approx_file[0]]
             webbrowser.open(srched_filepath)
             print(f"Opened {srched_filepath}")
@@ -154,7 +145,6 @@ def search_indexed_folder(filename: str) -> None:
         try:
             print("Approximate to", approx_folder[0])
             if len(approx_folder) != 0 and len(approx_folder[0]) != 0:
-
                 srched_folderpath = cache_dict[approx_folder[0]]
                 webbrowser.open(srched_folderpath)
                 print(f"Opened {srched_folderpath}")
@@ -170,9 +160,7 @@ def search_indexed_folder(filename: str) -> None:
             print("Could not find any folders")
             talk1.talk(f"Could not find any folders")
     except:
-        print(
-            "There is a problem with indexed file data.PLease reset the indexer data"
-        )
+        print("There is a problem with indexed file data.PLease reset the indexer data")
 
 
 def add_indexer_folders(event="", path: str = "") -> None:
@@ -193,7 +181,6 @@ def add_indexer_folders(event="", path: str = "") -> None:
         del folderpth, folders, f
     except:
         import json
-
         folderpth = os.getcwd() + "\\resources\\ indexerpaths.elsa"
         with open(folderpth, "w") as f:
             json.dump([path], f, indent=4)
@@ -202,5 +189,4 @@ def add_indexer_folders(event="", path: str = "") -> None:
         os.remove(removepth)
     except:
         pass
-
     gc.collect()

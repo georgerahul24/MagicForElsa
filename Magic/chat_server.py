@@ -3,27 +3,18 @@ import json
 import socket
 import threading
 
-host = "127.0.0.1"
-port = 24094
+host, port, clients, nicknames = "127.0.0.1", 24094, [], []
 # SOCK_STREAM. AF_INET refers to the address-family ipv4. The SOCK_STREAM means connection-oriented TCP protocol.
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind((host, port))
-
 server.listen()
-
-clients = []
-nicknames = []
 
 
 def broadcast(username: str, message: str) -> None:
     """To send the message to a specific client"""
     try:
-        index = nicknames.index(username)
-        print("Index of user:", index)
-        client = clients[index]
-        print("Client found", client)
+        print("Client found: ", client := clients[nicknames.index(username)], 'Msg send: ', message)
         client.send(message)
-        print(message)
     except:
         print("No user found")
 
@@ -64,8 +55,7 @@ def recieve() -> None:
             nicknames.append(nickname)
             clients.append(client)
             print(f"{nickname} {address}")
-            thread = threading.Thread(target=handle, args=(client,))
-            thread.start()
+            threading.Thread(target=handle, args=(client,)).start()
         except Exception as e:
             print(e)
 
