@@ -7,7 +7,7 @@ from tkinter import Tk
 from Magic import theme, indexer, file_database
 
 
-def folderchooser()->None:
+def folderchooser() -> None:
     """This function is to add  folder that has to be additionally indexed"""
     from tkinter.filedialog import askdirectory
     folderpath = askdirectory()
@@ -15,7 +15,7 @@ def folderchooser()->None:
     del folderpath
 
 
-def filesInstaller()->None:
+def filesInstaller() -> None:
     """Add all the files that should be initially written"""
     folderpath = os.getcwd() + "\\resources"
     folderpath = pathlib.Path(folderpath)
@@ -38,7 +38,7 @@ def filesInstaller()->None:
     print("Added initial files")
 
 
-def install_files()->None:
+def install_files() -> None:
     """This function handles the main GUI work for initial setup"""
     from PyQt5 import QtCore, QtGui, QtWidgets
     class Ui_MainWindow(object):
@@ -185,7 +185,6 @@ def install_files()->None:
                 font.setPointSize(10)
                 font.setBold(True)
                 font.setWeight(75)
-
                 self.ErrorLabel = QtWidgets.QLabel(self.AddUserPage)
                 self.ErrorLabel.setFont(font)
                 self.ErrorLabel.setGeometry(QtCore.QRect(160, 450, 500, 31))
@@ -194,32 +193,25 @@ def install_files()->None:
 
         def retranslateUi(self, MainWindow):
 
-            MainWindow.setWindowTitle(
-                "Elsa-Initial Setup")
+            MainWindow.setWindowTitle("Elsa-Initial Setup")
             self.StartPageConitnueButton.setText("Continue")
             self.ElsaTitleLogo.setText("Elsa")
-            self.LicenceLabel.setText("MIT License\n"
-                                      "\n"
-                                      "Copyright (c) 2021 George Rahul\n"
-                                      "\n"
+            self.LicenceLabel.setText("MIT License\n\nCopyright (c) 2021 George Rahul\n"
                                       "Permission is hereby granted, free of charge, to any person obtaining a copy\n"
                                       "of this software and associated documentation files (the \"Software\"), to deal\n"
                                       "in the Software without restriction, including without limitation the rights\n"
                                       "to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n"
                                       "copies of the Software, and to permit persons to whom the Software is\n"
-                                      "furnished to do so, subject to the following conditions:\n"
-                                      "\n"
+                                      "furnished to do so, subject to the following conditions:\n\n"
                                       "The above copyright notice and this permission notice shall be included in all\n"
-                                      "copies or substantial portions of the Software.\n"
-                                      "\n"
+                                      "copies or substantial portions of the Software.\n\n"
                                       "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n"
                                       "IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n"
                                       "FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n"
                                       "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n"
                                       "LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n"
                                       "OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n"
-                                      "SOFTWARE.\n"
-                                      "")
+                                      "SOFTWARE.")
             self.AgreeRadioButton.setText("I Agree")
             self.DisAgreeRadioButton.setText("I Disagree")
             self.LicenceContinueButton.setText("Continue")

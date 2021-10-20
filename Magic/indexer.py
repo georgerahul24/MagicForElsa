@@ -8,7 +8,8 @@ from threading import Thread
 
 from talk1 import talk1
 
-indexerpth, indexerfolderpth = os.getcwd() + "\\resources\\ indexer.elsa", os.getcwd() + "\\resources\\ indexerfolder.elsa"
+indexerpth, indexerfolderpth = (os.getcwd() + "\\resources\\ indexer.elsa"), (
+        os.getcwd() + "\\resources\\ indexerfolder.elsa")
 directories = [desktop := Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Desktop")),
                documents := Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Documents")),
                downloads := Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Downloads")),
@@ -21,8 +22,7 @@ def read_indexer_folders(event="") -> list:
     """To get the list of folders that should be indexed additionally"""
     try:
         import json
-        folderpth = os.getcwd() + "\\resources\\ indexerpaths.elsa"
-        with open(folderpth) as f:
+        with open((os.getcwd() + "\\resources\\ indexerpaths.elsa")) as f:
             folders = json.load(f)
         return folders
     except:
@@ -33,16 +33,12 @@ def cachesearch(func):
     """To search for file/folder in the cache"""
 
     def _cachesearch(args: tuple):
-
         try:
-            filepth = cacheData[args]
-            webbrowser.open(filepth)
+            webbrowser.open(cacheData[args])
             print("Opened from cache")
             talk1.talk(f"opened {args}")
-
         except:
-            filepath = func(args)
-            if filepath is not None:
+            if (filepath := func(args)) is not None:
                 cacheData[args] = filepath
 
     return _cachesearch
@@ -50,16 +46,13 @@ def cachesearch(func):
 
 def index(dataOfDirectories: dict, dataofFolders: dict, pathn: str) -> None:
     """[Used to index files]"""
-
     try:
         for name in os.listdir(pathn):
-            ine = os.path.join(pathn, name)
-            i = Path(ine)
+            i = Path((ine := os.path.join(pathn, name)))
             if i.is_file():
                 name = name.split(".")[0]
                 dataOfDirectories[name.lower()] = ine
-            elif name.startswith(".") == False and name.startswith(
-                    "__") == False:
+            elif name.startswith(".") == False and name.startswith("__") == False:
                 try:
                     dataofFolders[name.lower()] = ine
                     index(dataOfDirectories, dataofFolders, i)
@@ -72,28 +65,23 @@ def index(dataOfDirectories: dict, dataofFolders: dict, pathn: str) -> None:
 def index_files() -> None:
     """[Check if the indexer.elsa file exists.If it exists,no action is taken.If it doesnt exists,files are indexed]"""
     cache_file = Path(indexerpth)
-    folder_file = Path(indexerfolderpth)
 
     def _index_files():
         if cache_file.exists() != True:
-            print("'indexer.elsa' not found")
-            print("Indexing files...Wait a moment...")
+            print("'indexer.elsa' not found", "Indexing files...Wait a moment...")
             try:
                 directories.extend(read_indexer_folders())
             except:
                 pass
             dataOfDirectories, dataOfFolders, proc = {}, {}, []
-
             for paths in directories:
                 p = Thread(target=index, args=(dataOfDirectories, dataOfFolders, paths))
                 proc.append(p)
                 p.start()
             print("Indexing Threads:", *proc)
-            print(p.join(), "finished")
             for p in proc:
                 p.join()
                 print(p, "finished")
-
             with open(indexerpth, "wb") as cache:
                 pickle.dump(dataOfDirectories, cache)
             with open(indexerfolderpth, "wb") as cache2:
@@ -124,7 +112,6 @@ def search_indexed_file(filename: str) -> None:
             print(f"Opened {srched_filepath}")
             talk1.talk(f"Opened {approx_file}")
             del cache_dict, filenames, approx_file, cache
-            gc.collect()
             return srched_filepath
         else:
             print(f"Could not find any files")
@@ -155,7 +142,6 @@ def search_indexed_folder(filename: str) -> None:
             else:
                 print(f"Could not find any folders")
                 talk1.talk("Could not find any folders")
-
         except:
             print("Could not find any folders")
             talk1.talk(f"Could not find any folders")
@@ -185,8 +171,6 @@ def add_indexer_folders(event="", path: str = "") -> None:
         with open(folderpth, "w") as f:
             json.dump([path], f, indent=4)
     try:
-        removepth = os.getcwd() + "\\resources\\ indexer.elsa"
-        os.remove(removepth)
+        os.remove((os.getcwd() + "\\resources\\ indexer.elsa"))
     except:
         pass
-    gc.collect()

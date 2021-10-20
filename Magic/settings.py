@@ -14,22 +14,18 @@ from Magic.tkinterlib import TButton, TLabel, TLabelFrame
 
 def setting_page(event="", username: str = "", state: bool = True) -> None:
     """GUI for the settings page"""
-
     def usr_page(event="") -> None:
         """To call the add user page GUI"""
         talk("Please add a new user")
         usergui.user_page()
-
     settings = Tk()
     bg_colour = theme.read_theme()[0]
     tkinterlib.tkinter_initialise(settings, x=500, y=300, top=0)
-
     # ...title bar...
     # for title bar refer https://stackoverflow.com/questions/23836000/can-i-change-the-title-bar-in-tkinter
     def move_window(event) -> None:
         """To move the title bar according with the button motion"""
         settings.geometry(f"+{event.x_root}+{event.y_root}")
-
     title_bar = Frame(settings, bg=bg_colour, bd=4)
     title_bar.pack(fill="x")
     tab = ttk.Notebook(settings)
@@ -52,7 +48,6 @@ def setting_page(event="", username: str = "", state: bool = True) -> None:
     TButton(settings_tab, text="Export Data", command=export_import.export).pack(fill="x")
     # .......import data......
     TButton(settings_tab, text="Import Data", command=export_import.import_data).pack(fill="x")
-
     # ......theme tab..........
     def new_background_colour(event="") -> None:
         """To add the background colour"""
@@ -94,7 +89,6 @@ def setting_page(event="", username: str = "", state: bool = True) -> None:
     TLabel(ab, text="Austin Bert").pack()
     TLabel(ab, text="Elizabeth Jaison").pack()
     TLabel(ab, text="George Rahul").pack()
-
     # .........indexer tab.............
     def folderlabels() -> None:
         """To display the additional folders to be indexed in the GUI"""
@@ -114,9 +108,7 @@ def setting_page(event="", username: str = "", state: bool = True) -> None:
         settings.destroy()
         setting_page()
         del folderpath
-
     TButton(indexer_tab, text="Add a folder", command=folderchooser).pack()
-
     # ....Reset indexerparthlib.....
     def resetindexercache() -> None:
         """To reset the indexed data and rebuild it"""
@@ -124,9 +116,7 @@ def setting_page(event="", username: str = "", state: bool = True) -> None:
         os.remove((os.getcwd() + "\\resources\\ indexer.elsa"))
         print("'indexer.elsa' is removed")
         # files will be re - indexed when settings page is quit
-
     TButton(indexer_tab, text="Reset Indexer Cache", command=resetindexercache).pack()
-
     TLabel(indexer_tab, text="Additional Indexed folders").pack()
     folderlabels()
     # Packing the tabs
@@ -140,16 +130,13 @@ def setting_page(event="", username: str = "", state: bool = True) -> None:
     tab.add(history_tab, text="History")
     tab.add(about_tab, text="About")
     tab.add(indexer_tab, text="Indexer")
-
     # ....close button....
     def quitsettings(event="") -> None:
         """To quit the settings page"""
         settings.destroy()
         indexer.index_files()
         tkinterlib.reset_colors()
-
     TButton(title_bar, text="x", command=quitsettings).pack(side=RIGHT)
-
     # ...moving titlebar...
     title_bar.bind("<B1-Motion>", move_window)
     settings.mainloop()
