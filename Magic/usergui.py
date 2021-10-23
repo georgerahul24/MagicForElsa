@@ -18,21 +18,15 @@ def user_page():
     s.grid(row=0, column=0)
     TLabel(s, text="Enter the username:").grid(row=0, column=0)
     TLabel(s, text="Enter the password:").grid(row=1, column=0)
-    eu = Entry(s)
+
     eu.grid(row=0, column=1)
-    ep = Entry(s)
     ep.grid(row=1, column=1)
 
     def add(event=""):
         """[Adds the user]"""
-        new_user = eu.get()
-        new_password = ep.get()
-        state = file_database.write_to_file(new_user, new_password)
-        if state == 1:
-            talk(f"Successfully added {new_user}")
-
-        elif state == -1:
-            talk("user already exists. Try again")
+        new_user, new_password = eu.get(), ep.get()
+        talk(f"Successfully added {new_user}" if (file_database.write_to_file(new_user,
+                                                                              new_password)) == 1 else "User already exists. Try again")
         userpage.destroy()
 
     TButton(s, text="Add User", command=add).grid(row=3, column=1)
@@ -48,13 +42,10 @@ def deleteuser():
     tkinter_initialise(deleteuserpage, 600, 340)
     s = TLabelFrame(deleteuserpage, text="Delete User")
     s.grid(row=0, column=0)
-
     TLabel(s, text="Enter the username to delete:").grid(row=0, column=0)
     TLabel(s, text="Enter the password:").grid(row=1, column=0)
     TLabel(s, text="Retype the password:").grid(row=2, column=0)
-    eu = Entry(s)
-    ep = Entry(s)
-    epr = Entry(s)
+    eu, ep, epr = Entry(s), Entry(s), Entry(s)
     eu.grid(row=0, column=1)
     ep.grid(row=1, column=1)
     epr.grid(row=2, column=1)
@@ -69,17 +60,14 @@ def deleteuser():
                 import json
                 import os
                 from pathlib import Path
-                userpth = os.getcwd() + "\\resources\\ users.elsa"
-                userfile = open(Path(userpth))
-                userdata = json.load(userfile)
+                userdata = json.load(userfile := open(Path(userpth := (os.getcwd() + "\\resources\\ users.elsa"))))
                 userfile.close()
                 try:
                     if userdata[name_delete] == password:
                         del userdata[name_delete]
                         deleteuserpage.destroy()
                         userfile = open(Path(userpth), "w")
-                        if len(userdata) == 0:
-                            userdata["admin"] = "1234"
+                        userdata["admin"] = "1234" if len(userdata) == 0 else print("Deleted user", name_delete)
                         json.dump(userdata, userfile, indent=4)
                         userfile.close()
                         talk("User successfully deleted")
@@ -87,19 +75,14 @@ def deleteuser():
                         print("Sorry. your username and password do not match")
                         talk("Sorry. your username and password do not match")
                 except:
-
                     talk("Sorry,such a user do not exist. Please try again")
-
             except:
-
                 talk("Sorry, but the passwords do not match")
         else:
             print("Passwords in both the field do not match")
             talk("Passwords in both the field do not match. Please try again")
 
     TButton(s, text="Delete User", command=deleteuserfunc).grid(row=3, column=1)
-
     TButton(s, text="X", command=deleteuserpage.destroy).grid(row=3, column=0)
-
     deleteuserpage.bind("<Return>", deleteuserfunc)
     deleteuserpage.mainloop()

@@ -17,8 +17,7 @@ def folderchooser() -> None:
 
 def filesInstaller() -> None:
     """Add all the files that should be initially written"""
-    folderpath = os.getcwd() + "\\resources"
-    folderpath = pathlib.Path(folderpath)
+    folderpath = pathlib.Path((os.getcwd() + "\\resources"))
     if not os.path.exists(folderpath):
         os.makedirs(folderpath)
     dummytpth = os.getcwd() + "\\resources\\ dummy.elsa"
@@ -27,11 +26,10 @@ def filesInstaller() -> None:
     initpth = os.getcwd() + "\\resources\\ initial.elsa"
     with open(initpth, "w") as f:
         f.write(
-            "black;purple;light green\n#The order is bg,font color,button colour\n#Please remember to use ';' to separate colours :D"
-        )
+            "black;purple;light green\n#The order is bg,font color,button colour\n#Please remember to use ';' to separate colours :D")
     indexerpth = os.getcwd() + "\\resources\\ indexerpaths.elsa"
     with open(indexerpth, "w") as f:
-        f.write("[]")
+        json.dump([])  # Dumping an empty list for additional indexed paths
     userpth = os.getcwd() + "\\resources\\ users.elsa"
     with open(userpth, "w") as f:
         json.dump({"admin": "1234"}, f, indent=4)
@@ -43,12 +41,11 @@ def install_files() -> None:
     from PyQt5 import QtCore, QtGui, QtWidgets
     class Ui_MainWindow(object):
         def __init__(self):
-            # Need to destroy Tk() else, when font etc is selected a Tk window will be shown.
+            # Need to destroy Tk() else, when font etc is selected a Tk window will be shown.So we create self.tkin
             # This Tk window wont be closed thus causing problem with tkinter of Elsa when actually run
-            self.tkin = Tk()
+            self.tkin, self.state = Tk(), False
             # state == False means user forcefully closed the initial setup
             # state == True means setup completed successfully
-            self.state = False
 
         def setupUi(self, MainWindow):
             MainWindow.resize(800, 600)
@@ -61,8 +58,7 @@ def install_files() -> None:
             self.stackedWidget.setGeometry(QtCore.QRect(10, 10, 791, 581))
             self.StartPage = QtWidgets.QWidget()
             self.StartPageConitnueButton = QtWidgets.QPushButton(self.StartPage)
-            self.StartPageConitnueButton.setGeometry(
-                QtCore.QRect(630, 480, 131, 61))
+            self.StartPageConitnueButton.setGeometry(QtCore.QRect(630, 480, 131, 61))
             self.ElsaTitleLogo = QtWidgets.QLabel(self.StartPage)
             self.ElsaTitleLogo.setGeometry(QtCore.QRect(150, 60, 621, 191))
             font = QtGui.QFont()
@@ -100,11 +96,11 @@ def install_files() -> None:
             self.EnterPasswordLabel.setFont(font)
             self.AddNewUserTitleLabel = QtWidgets.QLabel(self.AddUserPage)
             self.AddNewUserTitleLabel.setGeometry(QtCore.QRect(110, 50, 521, 61))
-            font = QtGui.QFont()
-            font.setPointSize(28)
-            font.setBold(True)
-            font.setWeight(75)
-            self.AddNewUserTitleLabel.setFont(font)
+            self.font = QtGui.QFont()
+            self.font.setPointSize(28)
+            self.font.setBold(True)
+            self.font.setWeight(75)
+            self.AddNewUserTitleLabel.setFont(self.font)
             self.AddNewUserTitleLabel.setAlignment(QtCore.Qt.AlignCenter)
             self.AddUserContinueButton = QtWidgets.QPushButton(self.AddUserPage)
             self.AddUserContinueButton.setGeometry(QtCore.QRect(620, 500, 121, 41))
@@ -118,18 +114,11 @@ def install_files() -> None:
             self.BackGroundColorButton.setGeometry(QtCore.QRect(290, 160, 181, 61))
             self.NewThemeLabel = QtWidgets.QLabel(self.OthersPage)
             self.NewThemeLabel.setGeometry(QtCore.QRect(210, 10, 371, 91))
-            font = QtGui.QFont()
-            font.setPointSize(18)
-            font.setBold(True)
-            font.setWeight(75)
-            self.NewThemeLabel.setFont(font)
+            self.font.setPointSize(18)
+            self.NewThemeLabel.setFont(self.font)
             self.AddnFolderLabel = QtWidgets.QLabel(self.OthersPage)
             self.AddnFolderLabel.setGeometry(QtCore.QRect(130, 300, 521, 91))
-            font = QtGui.QFont()
-            font.setPointSize(18)
-            font.setBold(True)
-            font.setWeight(75)
-            self.AddnFolderLabel.setFont(font)
+            self.AddnFolderLabel.setFont(self.font)
             self.AddnFolderLabel.setAlignment(QtCore.Qt.AlignCenter)
             self.AddFolderButton = QtWidgets.QPushButton(self.OthersPage)
             self.AddFolderButton.setGeometry(QtCore.QRect(300, 380, 181, 61))
@@ -181,12 +170,8 @@ def install_files() -> None:
             if code == 1:
                 self.stackedWidget.setCurrentIndex(3)
             else:
-                font = QtGui.QFont()
-                font.setPointSize(10)
-                font.setBold(True)
-                font.setWeight(75)
                 self.ErrorLabel = QtWidgets.QLabel(self.AddUserPage)
-                self.ErrorLabel.setFont(font)
+                self.ErrorLabel.setFont(self.font)
                 self.ErrorLabel.setGeometry(QtCore.QRect(160, 450, 500, 31))
                 self.ErrorLabel.setText("Sorry!Please try another username.This username is reserved")
                 self.ErrorLabel.show()
@@ -229,9 +214,8 @@ def install_files() -> None:
 
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
+    ui.setupUi(MainWindow := QtWidgets.QMainWindow())
     MainWindow.show()
     app.exec_()
     if ui.state is False:

@@ -19,8 +19,8 @@ def theme_writer(bg_colour: str, font_colour: str, button_colour: str) -> None:
     """To wrote the new theme"""
     initpth = os.getcwd() + "\\resources\\ initial.elsa"
     with open(initpth, "w") as f:
-        f.write(f"{bg_colour};{font_colour};{button_colour}\n #The order is bg,font color,button colour \n"
-                "#Please remember to use ';' to separate colours :D")
+        f.write(
+            f"{bg_colour};{font_colour};{button_colour}\n#The order is bg,font color,button colour\n#Please remember to use ';' to separate colours")
     del bg_colour, font_colour, button_colour
 
 

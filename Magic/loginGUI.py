@@ -2,6 +2,7 @@
 GUI for the login page"""
 
 from tkinter import Tk, Entry
+
 from Magic import theme
 from Magic.tkinterlib import TButton, tkinter_initialise, TLabel
 from Magic.usergui import user_page
@@ -13,9 +14,8 @@ def SecurityUI() -> str:
     win = Tk()
     tkinter_initialise(win, opacity=0.8)
     win.geometry("200x100+700+300")
-    e = Entry(win, show="*", fg=text_color, width=10)
+    e, e1 = Entry(win, show="*", fg=text_color, width=10), Entry(win, width=10, fg=text_color)
     e.place(x=104, y=30)
-    e1 = Entry(win, width=10, fg=text_color)
     e1.place(x=104, y=10)
     TLabel(win, text="Username:").place(x=20, y=10)
     TLabel(win, text="Password:").place(x=20, y=30)

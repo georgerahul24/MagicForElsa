@@ -21,11 +21,9 @@ def check_user():
         # ...running loginGUI.py............
         username, password = SecurityUI()
         # verifying with database
-        # .....will bw referenced from Elsa.py
-        check_user.security = file_database.check_user_from_file(username)
-        check_user.loginname = username
+        # .....chechuser.security/loginname will be referenced from Elsa.py
+        check_user.security,check_user.loginname = file_database.check_user_from_file(username),username
         del username, password
-
     except Exception as e:
         print(e)
         check_user.security = False

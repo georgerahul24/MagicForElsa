@@ -20,15 +20,12 @@ def tkinter_initialise(a, x: int = 0, y: int = 0, top: int = 1, noborders: bool 
 
 def on_enter(event, but: object) -> None:
     """[Part of hover effect for buttons]"""
-    # Change the button colour from background colour to button colour for
-    # hover effect when mouse enters the button field
     but.config(bg=button_colour)
     but.config(fg=bg_colour)
 
 
 def on_leave(event, but: object) -> None:
     """[Part of hover effect for buttons]"""
-    # Change back the button colour to background colour when mouse leaves the button field.
     but.config(bg=bg_colour)
     but.config(fg=text_color)
 
