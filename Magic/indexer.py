@@ -121,10 +121,7 @@ def search_indexed_folder(filename: str) -> None:
     try:
         with open(indexerfolderpth, "rb") as cache:
             cache_dict = pickle.load(cache)
-
-        print("Approximate to",
-              approx_folder := get_close_matches(filename, folder_names := [data for data in cache_dict], n=1,
-                                                 cutoff=0.7))
+        print("Approximate to",approx_folder := get_close_matches(filename, folder_names := [data for data in cache_dict], n=1,cutoff=0.7))
         try:
             if len(approx_folder) != 0 and len(approx_folder[0]) != 0:
                 webbrowser.open(srched_folderpath := cache_dict[approx_folder[0]])
