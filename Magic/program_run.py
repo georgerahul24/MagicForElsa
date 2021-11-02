@@ -15,9 +15,4 @@ def program_run(afterkeyword: str) -> None:
     try:
         print("Approximate to", approx_program := get_close_matches(afterkeyword, programlist, n=1, cutoff=0.7))
         programdict[approx_program[0]]()
-    except:
-        print("Sorry the program is not yet supported.Please request the developer for more info.")
-
-
-while True:
-    program_run(input(">>>>"))
+    except: print("Sorry the program is not yet supported.Please request the developer for more info.")

@@ -11,8 +11,7 @@ def check_user_from_file(username: str) -> str:
     try:
         with open(userpth, "r") as file:
             return json.load(file).get(username, None)
-    except Exception as e:
-        print("It seems that some error has happened", e)
+    except Exception as e: print("It seems that some error has happened", e)
 
 
 def write_to_file(username: str, password: str) -> int:
@@ -33,5 +32,4 @@ def write_to_file(username: str, password: str) -> int:
             print("User already exists or the username is reserved")
             # return state = -1 to know that user was not added mainly due to username repetitions or reserved words
             return -1
-    except Exception as e:
-        print(e, "Try again")
+    except Exception as e: print(e, "Try again")

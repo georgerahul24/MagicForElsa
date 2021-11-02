@@ -1,4 +1,3 @@
-import gc
 import json
 import socket
 import threading
@@ -30,7 +29,7 @@ def recievefromserver() -> None:
         except Exception as e:
             print("Closing Connection", e)
             client.close()
-            gc.collect()
+            del client
             break
 
 
@@ -40,8 +39,7 @@ def sendtoserver(nickname: str, msg: str) -> None:
         print("Sending", msg, "to", nickname)
         client.send(json.dumps((nickname, msg)).encode("ascii"))
         del msg, nickname
-    except:
-        pass
+    except:pass
 
 
 def closeClient() -> None:

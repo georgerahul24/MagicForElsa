@@ -18,15 +18,14 @@ def user_page():
     s.grid(row=0, column=0)
     TLabel(s, text="Enter the username:").grid(row=0, column=0)
     TLabel(s, text="Enter the password:").grid(row=1, column=0)
-
+    eu, ep = Entry(s), Entry(s)
     eu.grid(row=0, column=1)
     ep.grid(row=1, column=1)
 
     def add(event=""):
         """[Adds the user]"""
         new_user, new_password = eu.get(), ep.get()
-        talk(f"Successfully added {new_user}" if (file_database.write_to_file(new_user,
-                                                                              new_password)) == 1 else "User already exists. Try again")
+        talk(f"Successfully added {new_user}" if (file_database.write_to_file(new_user, new_password)) == 1 else "User already exists. Try again")
         userpage.destroy()
 
     TButton(s, text="Add User", command=add).grid(row=3, column=1)
@@ -74,10 +73,8 @@ def deleteuser():
                     else:
                         print("Sorry. your username and password do not match")
                         talk("Sorry. your username and password do not match")
-                except:
-                    talk("Sorry,such a user do not exist. Please try again")
-            except:
-                talk("Sorry, but the passwords do not match")
+                except: talk("Sorry,such a user do not exist. Please try again")
+            except: talk("Sorry, but the passwords do not match")
         else:
             print("Passwords in both the field do not match")
             talk("Passwords in both the field do not match. Please try again")

@@ -35,7 +35,7 @@ def setting_page(event="", username: str = "", state: bool = True) -> None:
     tab = ttk.Notebook(settings)
     tab.pack(fill="both")
     # different frames for tabs
-    settings_tab, theme_tab, history_tab, about_tab, indexer_tab = Frame(settings, bg=bg_colour), Frame(settings,bg=bg_colour),\
+    settings_tab, theme_tab, history_tab, about_tab, indexer_tab = Frame(settings, bg=bg_colour), Frame(settings, bg=bg_colour), \
                                                                    Frame(settings, bg=bg_colour), Frame(settings, bg=bg_colour), Frame(settings, bg=bg_colour)
     # ...settings_tab......
     # ....add user.........
@@ -111,6 +111,7 @@ def setting_page(event="", username: str = "", state: bool = True) -> None:
         settings.destroy()
         setting_page()
         del folderpath
+
     TButton(indexer_tab, text="Add a folder", command=folderchooser).pack()
 
     # ....Reset indexerparthlib.....

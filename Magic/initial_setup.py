@@ -18,15 +18,13 @@ def folderchooser() -> None:
 def filesInstaller() -> None:
     """Add all the files that should be initially written"""
     folderpath = pathlib.Path((os.getcwd() + "\\resources"))
-    if not os.path.exists(folderpath):
-        os.makedirs(folderpath)
+    if not os.path.exists(folderpath): os.makedirs(folderpath)  # Make the resources folder if it does not exists
     dummytpth = os.getcwd() + "\\resources\\ dummy.elsa"
     with open(dummytpth, "w") as f:
         f.write("Hey!The file you are looking is not found.Try again later")
     initpth = os.getcwd() + "\\resources\\ initial.elsa"
     with open(initpth, "w") as f:
-        f.write(
-            "black;purple;light green\n#The order is bg,font color,button colour\n#Please remember to use ';' to separate colours :D")
+        f.write("black;purple;light green\n#The order is bg,font color,button colour\n#Please remember to use ';' to separate colours :D")
     indexerpth = os.getcwd() + "\\resources\\ indexerpaths.elsa"
     with open(indexerpth, "w") as f:
         json.dump([])  # Dumping an empty list for additional indexed paths
@@ -177,7 +175,6 @@ def install_files() -> None:
                 self.ErrorLabel.show()
 
         def retranslateUi(self, MainWindow):
-
             MainWindow.setWindowTitle("Elsa-Initial Setup")
             self.StartPageConitnueButton.setText("Continue")
             self.ElsaTitleLogo.setText("Elsa")
@@ -218,6 +215,6 @@ def install_files() -> None:
     ui.setupUi(MainWindow := QtWidgets.QMainWindow())
     MainWindow.show()
     app.exec_()
-    if ui.state is False:
-        sys.exit(1)
+    if ui.state is False: sys.exit(1)
+    print("Initial setup finished successfully")
     del app, MainWindow, ui

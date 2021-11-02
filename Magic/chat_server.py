@@ -1,4 +1,4 @@
-# see https://www.youtube.com/watch?v=3UOyky9sEQY
+# see https://www.youtube.com/watch?v=3UOyky9sEQY for a BASIC IDEA of how this works
 import json
 import socket
 import threading
@@ -15,8 +15,7 @@ def broadcast(username: str, message: str) -> None:
     try:
         print("Client found: ", client := clients[nicknames.index(username)], 'Msg send: ', message)
         client.send(message)
-    except:
-        print("No user found")
+    except: print("No user found")
 
 
 def handle(client: object) -> str:
@@ -25,22 +24,17 @@ def handle(client: object) -> str:
         try:
             raw_message = client.recv(1024).decode("ascii")
             username, message = json.loads(raw_message)
-            print(username)
-            print("Broadcasting message")
+            print("Broadcasting message to ", username)
             broadcast(username, message.encode("ascii"))
         except Exception as e:
-            print(e)
+            print(e, client, "not Functioning properly")
             # if error happens, remove the client
             # get the index to remove it from the nickname
             # the index for the client and nickname will be the same
-            print(client, "not Functioning properly")
-            index = clients.index(client)
+            nicknames.pop(clients.index(client))  # Removing from nickname by getting the index of client
             clients.remove(client)
             client.close()
-            nickname = nicknames[index]
-            nicknames.remove(nickname)
-            del client, index
-
+            del client
             break
 
 
@@ -64,3 +58,4 @@ def startserver() -> None:
     """To chat the start server"""
     print("Server has started")
     recieve()
+if __name__ == '__main__':startserver()

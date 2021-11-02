@@ -11,16 +11,14 @@ def read_theme() -> tuple:
         bg_colour, text_color, button_colour = colours[0].rstrip().lstrip(), colours[1].rstrip().lstrip(), \
                                                colours[2].split("\n")[0].rstrip().lstrip()
         return bg_colour, text_color, button_colour
-    except Exception as e:
-        print("initial.elsa is corrupted", e)
+    except Exception as e:print("initial.elsa is corrupted", e)
 
 
 def theme_writer(bg_colour: str, font_colour: str, button_colour: str) -> None:
     """To wrote the new theme"""
     initpth = os.getcwd() + "\\resources\\ initial.elsa"
     with open(initpth, "w") as f:
-        f.write(
-            f"{bg_colour};{font_colour};{button_colour}\n#The order is bg,font color,button colour\n#Please remember to use ';' to separate colours")
+        f.write(f"{bg_colour};{font_colour};{button_colour}\n#The order is bg,font color,button colour\n#Please remember to use ';' to separate colours")
     del bg_colour, font_colour, button_colour
 
 
