@@ -1,6 +1,5 @@
 import json
 from tkinter import filedialog
-
 from Magic import theme, indexer
 
 

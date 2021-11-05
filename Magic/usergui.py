@@ -1,11 +1,5 @@
-"""
-This module is to display GUI for adding and deleting users
-"""
-
 from tkinter import Tk, Entry
-
 from talk1.talk1 import talk
-
 from Magic import file_database
 from Magic.tkinterlib import TLabel, TButton, tkinter_initialise, TLabelFrame
 
@@ -35,7 +29,7 @@ def user_page():
 
 
 def deleteuser():
-    """[This function is used to implement the GUI of the add user page]"""
+    """[This function is used to implement the GUI of the delete user page]"""
     deleteuserpage = Tk()
     talk("Please enter the username and password to delete")
     tkinter_initialise(deleteuserpage, 600, 340)
@@ -50,7 +44,7 @@ def deleteuser():
     epr.grid(row=2, column=1)
 
     def deleteuserfunc(event=""):
-        """[Adds the user]"""
+        """[Delete  the user backend]"""
         name_delete = eu.get()
         password = ep.get()
         retypepassword = epr.get()

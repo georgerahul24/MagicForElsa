@@ -30,21 +30,25 @@ def on_leave(event, but: object) -> None:
     but.config(fg=text_color)
 
 
+def reset_colors() -> None:
+    "Force reset the colours when user changes theme"
+    global bg_colour, text_color, button_colour
+    bg_colour, text_color, button_colour = theme.read_theme()
+
+
 def TButton(root: object, text: str = "", command: object = None, relief: str = "ridge") -> object:
+    "Customised Tkinter button"
     b = Button(root, text=text, fg=text_color, bd=0, bg=bg_colour, command=command, relief=relief)
     b.bind("<Enter>", partial(on_enter, but=b))
     b.bind("<Leave>", partial(on_leave, but=b))
     return b
 
 
-def reset_colors() -> None:
-    global bg_colour, text_color, button_colour
-    bg_colour, text_color, button_colour = theme.read_theme()
-
-
 def TLabel(root: object, text: str = "") -> object:
+    "Customised tkinter Label"
     return Label(root, text=text, fg=text_color, bg=bg_colour)
 
 
 def TLabelFrame(root: object, text: str = "") -> object:
+    "Customised tkinter LabelFrame"
     return LabelFrame(root, text=text, fg=text_color, bg=bg_colour)
