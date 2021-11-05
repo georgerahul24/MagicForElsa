@@ -1,6 +1,4 @@
-"""
-This module is for syntax highlighting
-"""
+"""This module is for syntax highlighting"""
 from tkinter import END
 
 from Magic import theme
@@ -43,4 +41,4 @@ def syntax_highlighting(event="", Search_box=None) -> None:
             Search_box.config(fg=text_color)
         Search_box.insert(0, ord)
         del Search_box, ord, text_color
-    except:pass
+    except: pass

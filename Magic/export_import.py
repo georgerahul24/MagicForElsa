@@ -24,7 +24,7 @@ def import_data() -> None:
     try:
         from os import getcwd, remove
         initpth, indexerpth = (getcwd() + "\\resources\\ initial.elsa"), (getcwd() + "\\resources\\ indexerpaths.elsa")
-        if (f := filedialog.asksaveasfile(mode="w", defaultextension=".json")) is not None:
+        if (f := filedialog.askopenfile(mode="r", defaultextension=".json")) is not None:
             data = json.load(f)
             indexdata, themedata, usernamedata = data.get("indexfolders"), data.get("theme"), data.get("usernames")
             if indexdata is not None:

@@ -27,7 +27,7 @@ def filesInstaller() -> None:
         f.write("black;purple;light green\n#The order is bg,font color,button colour\n#Please remember to use ';' to separate colours :D")
     indexerpth = os.getcwd() + "\\resources\\ indexerpaths.elsa"
     with open(indexerpth, "w") as f:
-        json.dump([])  # Dumping an empty list for additional indexed paths
+        json.dump([],f)  # Dumping an empty list for additional indexed paths
     userpth = os.getcwd() + "\\resources\\ users.elsa"
     with open(userpth, "w") as f:
         json.dump({"admin": "1234"}, f, indent=4)

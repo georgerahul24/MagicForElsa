@@ -1,7 +1,6 @@
 import json
 import socket
 import threading
-
 import win10toast
 
 noti = win10toast.ToastNotifier()
@@ -18,8 +17,10 @@ def getNickname(name: str) -> str:
 
 def recievefromserver() -> None:
     """To receive data from the server"""
+    global client
     while True:
         try:
+
             if (msg := client.recv(1024).decode("ascii")) == "NICK":
                 client.send(nickname.encode("ascii"))
             else:

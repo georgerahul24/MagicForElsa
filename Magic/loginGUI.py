@@ -8,7 +8,7 @@ from Magic.tkinterlib import TButton, tkinter_initialise, TLabel
 from Magic.usergui import user_page
 
 
-def SecurityUI() -> str:
+def SecurityUI() -> tuple:
     """This function deals with the login page"""
     text_color = theme.read_theme()[1]
     win = Tk()

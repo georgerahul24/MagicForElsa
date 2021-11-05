@@ -1,7 +1,8 @@
 from tkinter import Tk, Entry
-from talk1.talk1 import talk
+
 from Magic import file_database
 from Magic.tkinterlib import TLabel, TButton, tkinter_initialise, TLabelFrame
+from talk1.talk1 import talk
 
 
 def user_page():
@@ -60,7 +61,8 @@ def deleteuser():
                         del userdata[name_delete]
                         deleteuserpage.destroy()
                         userfile = open(Path(userpth), "w")
-                        userdata["admin"] = "1234" if len(userdata) == 0 else print("Deleted user", name_delete)
+                        userdata["admin"] = "1234"  # add admin back in case it is deleted
+                        print("Deleted user", name_delete)
                         json.dump(userdata, userfile, indent=4)
                         userfile.close()
                         talk("User successfully deleted")
