@@ -1,5 +1,6 @@
 """This module contains the GUI for settings"""
 import os
+import webbrowser
 from functools import partial
 from tkinter import Tk, Frame, RIGHT
 from tkinter import ttk
@@ -35,8 +36,10 @@ def setting_page(event="", username: str = "", state: bool = True) -> None:
     tab = ttk.Notebook(settings)
     tab.pack(fill="both")
     # different frames for tabs
-    settings_tab, theme_tab, history_tab, about_tab, indexer_tab = Frame(settings, bg=bg_colour), Frame(settings, bg=bg_colour), \
-                                                                   Frame(settings, bg=bg_colour), Frame(settings, bg=bg_colour), Frame(settings, bg=bg_colour)
+    settings_tab, theme_tab, history_tab, about_tab, indexer_tab, contact_tab = Frame(settings, bg=bg_colour), Frame(settings, bg=bg_colour), \
+                                                                                Frame(settings, bg=bg_colour), Frame(settings, bg=bg_colour), Frame(settings,
+                                                                                                                                                    bg=bg_colour), Frame(
+        settings, bg=bg_colour)
     # ...settings_tab......
     # ....add user.........
     TButton(settings_tab, text="Add User", command=usr_page).pack(fill="x")
@@ -125,6 +128,11 @@ def setting_page(event="", username: str = "", state: bool = True) -> None:
     TButton(indexer_tab, text="Reset Indexer Cache", command=resetindexercache).pack()
     TLabel(indexer_tab, text="Additional Indexed folders").pack()
     folderlabels()
+
+    # ...Contact us Tab...
+    TButton(contact_tab, text="Contact Us", command=lambda: webbrowser.open("https://github.com/georgerahul24")).pack()
+    TButton(contact_tab, text="Report a bug", command=lambda: webbrowser.open("https://github.com/georgerahul24/Viraver1.1/issues/new")).pack()
+
     # Packing the tabs
     settings_tab.pack(fill="both")
     theme_tab.pack(fill="both")
@@ -136,6 +144,7 @@ def setting_page(event="", username: str = "", state: bool = True) -> None:
     tab.add(history_tab, text="History")
     tab.add(about_tab, text="About")
     tab.add(indexer_tab, text="Indexer")
+    tab.add(contact_tab, text="Contact Us")
 
     # ....close button....
     def quitsettings(event="") -> None:
