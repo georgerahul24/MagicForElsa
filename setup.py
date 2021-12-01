@@ -15,7 +15,6 @@ setup(
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
         "Topic :: Software Development :: Build Tools",
-        "License :: OSI Approved :: GNU General Public License v3 or later",
-        "Programming Language :: Python :: 3.9",
+           "Programming Language :: Python :: 3.9",
     ],
 )
