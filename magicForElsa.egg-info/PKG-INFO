@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: magicForElsa
+Version: 1.17
+Summary: A package for the personal assistant Elsa
+Home-page: https://github.com/georgerahul24/MagicForElsa
+Author: George Rahul
+Author-email: georgerahul24@gmail.com
+License: GPLv3+
+Keywords: program,automate,task,magic
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Programming Language :: Python :: 3.9
+License-File: LICENSE
+
+UNKNOWN
+
