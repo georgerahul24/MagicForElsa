@@ -1,5 +1,6 @@
 # see https://www.youtube.com/watch?v=3UOyky9sEQY for a BASIC IDEA of how this works
 import json
+import os.path
 import socket
 import threading
 
@@ -10,7 +11,7 @@ server.bind((host, port))
 server.listen()
 
 
-def jsonenc(rec, data)->str:
+def jsonenc(rec, data) -> str:
     """To convert the json data"""
     return json.dumps({"rec": rec, "data": data})
 
@@ -23,7 +24,7 @@ def jsondec(data: str) -> dict:
 def broadcast(username: str, message: str) -> None:
     """To send the message to a specific client"""
     try:
-        message=str(message)
+        message = str(message)
         print("Client found: ", client := clients[nicknames.index(username)], 'Msg send: ', message)
         client.send(jsonenc("msg", message).encode("ascii"))
     except Exception as e: print(e, "No user found")
@@ -34,13 +35,21 @@ def handle(client: object) -> str:
     while True:
         try:
             raw_message = client.recv(1024).decode("ascii")
-            if jsondec(raw_message)["rec"] == "msg":
-                username, message = jsondec(raw_message)["data"][0], jsondec(raw_message)["data"][1]
-                print(raw_message)
-                print(jsondec(raw_message)["data"])
-                print(f"{username} : {message}")
-                print("Broadcasting message to ", username)
-                broadcast(username, message)
+            header = jsondec(raw_message)["rec"]
+            match header:
+                case "msg":
+                    username, message = jsondec(raw_message)["data"][0], jsondec(raw_message)["data"][1]
+                    print(raw_message)
+                    print(jsondec(raw_message)["data"])
+                    print(f"{username} : {message}")
+                    print("Broadcasting message to ", username)
+                    broadcast(username, message)
+                case "sync":
+                    try:os.makedirs("serverdata")
+                    except:pass
+                    nickname, jsonstr = jsondec(raw_message)["data"][0], jsondec(raw_message)["data"][1]
+                    with open('./serverdata/' + nickname + '.json', 'w') as f:
+                        f.write(jsonstr)
 
         except Exception as e:
             print(e, client, "not Functioning properly")

@@ -2,6 +2,7 @@ import json
 import socket
 import threading
 import win10toast
+from Magic import export_import
 
 
 def jsonenc(rec, data):
@@ -32,17 +33,15 @@ def recievefromserver() -> None:
     while True:
         try:
             msg = client.recv(1024).decode("ascii")
-            # TODO: Figure out why the data is in bytes even after decoding it
-
             rec = jsondec(msg)["rec"]
-            if rec == "Nick":
-                client.send(jsonenc("Nick", nickname).encode("ascii"))
-            elif rec == "msg":
-
-                mesg = jsondec(msg)["data"]
-                print("msg received", mesg)
-                noti.show_toast("Elsa", mesg)
-                del msg, mesg, rec
+            match rec:
+                case "Nick":
+                    client.send(jsonenc("Nick", nickname).encode("ascii"))
+                case "msg":
+                    mesg = jsondec(msg)["data"]
+                    print("msg received", mesg)
+                    noti.show_toast("Elsa", mesg)
+                    del msg, mesg, rec
         except Exception as e:
             print("Closing Connection", e)
             client.close()
@@ -57,6 +56,11 @@ def sendtoserver(nickname: str, msg: str) -> None:
         client.send(jsonenc("msg", (nickname, msg)).encode("ascii"))
         del msg, nickname
     except: pass
+
+
+def sendThemeToServer():
+    data = (nickname, export_import.export('j'))
+    client.send(jsonenc("sync", data).encode("ascii"))
 
 
 def closeClient() -> None:

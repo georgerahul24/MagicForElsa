@@ -1,31 +1,9 @@
 """This module is for syntax highlighting"""
 from tkinter import END
-
+import json,os
 from Magic import theme
 
-keywords = [
-    "search", "browse", "srch", "s",
-    "msg",
-    "bye", "tata", "close", "exit",
-    "open", "o", "folder",
-    "file", "f",
-    "run",
-    "firefox",
-    "settings", "setting",
-    "time",
-    "website", "w",
-    "ver", "what",
-    "hello", "hlo", "hey",
-    "hi",
-    "download",
-    "desktop",
-    "music",
-    "sh", "show",
-    "clear",
-    "joke", "tell",
-    "shutdown",
-    "restart",
-    "open"]
+keywords = json.load(open(os.path.abspath(__file__)[:-2]+'json'))
 
 
 def syntax_highlighting(event="", Search_box=None) -> None:
