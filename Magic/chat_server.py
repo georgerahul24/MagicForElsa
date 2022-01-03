@@ -9,6 +9,8 @@ host, port, clients, nicknames = "127.0.0.1", 24094, [], []
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind((host, port))
 server.listen()
+try: os.makedirs("serverdata")  # Make the directory to store the syncing data
+except: pass
 
 
 def jsonenc(rec, data) -> str:
@@ -44,12 +46,22 @@ def handle(client: object) -> str:
                     print(f"{username} : {message}")
                     print("Broadcasting message to ", username)
                     broadcast(username, message)
-                case "sync":
-                    try:os.makedirs("serverdata")
-                    except:pass
-                    nickname, jsonstr = jsondec(raw_message)["data"][0], jsondec(raw_message)["data"][1]
-                    with open('./serverdata/' + nickname + '.json', 'w') as f:
+                case "fsync":
+                    nicname, jsonstr = jsondec(raw_message)["data"][0], jsondec(raw_message)["data"][1]
+                    with open('./serverdata/' + nicname + '.json', 'w') as f:
                         f.write(jsonstr)
+                    print(nicname, 'data synced')
+                case "sync":
+                    nicname = jsondec(raw_message)["data"]
+                    try:
+                        dat = json.loads(open('./serverdata/' + nicname + '.json', 'r').read())
+                        client.send(jsonenc("sync", dat).encode("ascii"))
+                        print("Has send the data to", nicname)
+
+                    except Exception as e: print(e, 'File not found' + nicname)
+
+
+
 
         except Exception as e:
             print(e, client, "not Functioning properly")

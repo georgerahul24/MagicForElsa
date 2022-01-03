@@ -23,13 +23,19 @@ def export(mode = 'f') -> None | str:
     elif mode == 'j': return json.dumps(datadict)
 
 
-def import_data() -> None:
+def import_data(dat:dict|bool = None) -> None:
     """This function is to import the data"""
     try:
         from os import getcwd, remove
         initpth, indexerpth = (getcwd() + "\\resources\\ initial.elsa"), (getcwd() + "\\resources\\ indexerpaths.elsa")
-        if (f := filedialog.askopenfile(mode = "r", defaultextension = ".json")) is not None:
-            data = json.load(f)
+        flag = False
+        if dat is None:
+            if (f := filedialog.askopenfile(mode = "r", defaultextension = ".json")) is not None:
+                data = json.load(f)
+                flag = True
+                f.close()
+        else: data = dat;flag = True
+        if flag:
             indexdata, themedata, usernamedata = data.get("indexfolders"), data.get("theme"), data.get("usernames")
             if indexdata is not None:
                 with open(indexerpth, "w") as indexfile:
@@ -44,6 +50,6 @@ def import_data() -> None:
             with open((getcwd() + "\\resources\\ users.elsa"), "w") as userfile:
                 json.dump(usernamedata, userfile, indent = 4)
             print("Imported usernames")
-            f.close()
-            del initpth, indexerpth, f, data, indexdata, themedata, usernamedata
+
+            del initpth, indexerpth,  data, indexdata, themedata, usernamedata
     except Exception as e: print("Some error happened", e)

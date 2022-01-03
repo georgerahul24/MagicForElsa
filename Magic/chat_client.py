@@ -42,6 +42,10 @@ def recievefromserver() -> None:
                     print("msg received", mesg)
                     noti.show_toast("Elsa", mesg)
                     del msg, mesg, rec
+                case "sync":
+                    print("Starting to sync from the server")
+                    export_import.import_data(jsondec(msg)["data"])
+
         except Exception as e:
             print("Closing Connection", e)
             client.close()
@@ -60,8 +64,11 @@ def sendtoserver(nickname: str, msg: str) -> None:
 
 def sendThemeToServer():
     data = (nickname, export_import.export('j'))
-    client.send(jsonenc("sync", data).encode("ascii"))
-
+    client.send(jsonenc("fsync", data).encode("ascii"))
+    print('Trying to sync with server')
+def requestSync():
+    client.send(jsonenc("sync", nickname).encode("ascii"))
+    print('Trying to get the file from server')
 
 def closeClient() -> None:
     """To close the connection of the client with the server"""
