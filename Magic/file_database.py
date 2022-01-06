@@ -3,7 +3,7 @@ import json
 import os
 
 # Get the path of users.elsa
-userpth = os.getcwd() + "\\resources\\ users.elsa"
+userpth = os.getcwd() + "/resources/ users.elsa"
 
 
 def check_user_from_file(username: str) -> str:

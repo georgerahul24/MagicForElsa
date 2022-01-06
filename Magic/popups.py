@@ -41,7 +41,7 @@ def resetelsapopup():
         talk("Just run elsa after it shutdowns")
         print("Resetting Elsa")
         time.sleep(1)
-        shutil.rmtree(Path(os.getcwd() + "\\resources"))
+        shutil.rmtree(Path(os.getcwd() + "/resources"))
         try: chat_client.closeClient()  # Closing chat client as it is not daemonic thread
         except: pass
         exit()

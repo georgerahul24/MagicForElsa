@@ -54,7 +54,7 @@ def deleteuser():
                 import json
                 import os
                 from pathlib import Path
-                userdata = json.load(userfile := open(Path(userpth := (os.getcwd() + "\\resources\\ users.elsa"))))
+                userdata = json.load(userfile := open(Path(userpth := (os.getcwd() + "/resources/ users.elsa"))))
                 userfile.close()
                 try:
                     if userdata[name_delete] == password:

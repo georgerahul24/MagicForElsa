@@ -17,18 +17,18 @@ def folderchooser() -> None:
 
 def filesInstaller() -> None:
     """Add all the files that should be initially written"""
-    folderpath = pathlib.Path((os.getcwd() + "\\resources"))
+    folderpath = pathlib.Path((os.getcwd() + "/resources"))
     if not os.path.exists(folderpath): os.makedirs(folderpath)  # Make the resources folder if it does not exists
-    dummytpth = os.getcwd() + "\\resources\\ dummy.elsa"
+    dummytpth = os.getcwd() + "/resources/ dummy.elsa"
     with open(dummytpth, "w") as f:
         f.write("Hey!The file you are looking is not found.Try again later")
-    initpth = os.getcwd() + "\\resources\\ initial.elsa"
+    initpth = os.getcwd() + "/resources/ initial.elsa"
     with open(initpth, "w") as f:
         f.write("black;purple;light green\n#The order is bg,font color,button colour\n#Please remember to use ';' to separate colours :D")
-    indexerpth = os.getcwd() + "\\resources\\ indexerpaths.elsa"
+    indexerpth = os.getcwd() + "/resources/ indexerpaths.elsa"
     with open(indexerpth, "w") as f:
         json.dump([],f)  # Dumping an empty list for additional indexed paths
-    userpth = os.getcwd() + "\\resources\\ users.elsa"
+    userpth = os.getcwd() + "/resources/ users.elsa"
     with open(userpth, "w") as f:
         json.dump({"admin": "1234"}, f, indent=4)
     print("Added initial files")

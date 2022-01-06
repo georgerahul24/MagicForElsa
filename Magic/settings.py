@@ -121,7 +121,7 @@ def setting_page(event="", username: str = "", state: bool = True) -> None:
     def resetindexercache() -> None:
         """To reset the indexed data and rebuild it"""
         talk("Reseted the cache")
-        os.remove((os.getcwd() + "\\resources\\ indexer.elsa"))
+        os.remove((os.getcwd() + "/resources/ indexer.elsa"))
         print("'indexer.elsa' is removed")
         # files will be re - indexed when settings page is quit
 

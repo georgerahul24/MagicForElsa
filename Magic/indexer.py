@@ -5,22 +5,26 @@ import webbrowser
 from difflib import get_close_matches
 from pathlib import Path
 from threading import Thread
-
+import platform
 from talk1 import talk1
 
-indexerpth, indexerfolderpth = (os.getcwd() + "\\resources\\ indexer.elsa"), (os.getcwd() + "\\resources\\ indexerfolder.elsa")
-directories = [desktop := Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Desktop")),
-               documents := Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Documents")),
-               downloads := Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Downloads")),
-               music := Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Music")),
-               videos := Path(os.path.join(os.path.join(os.environ["USERPROFILE"]), "Videos"))]
+if platform.system() == 'Windows':
+    homedir = os.environ["USERPROFILE"]
+else: homedir = os.path.expanduser('~')
+
+indexerpth, indexerfolderpth = (os.getcwd() + "/resources/ indexer.elsa"), (os.getcwd() + "/resources/ indexerfolder.elsa")
+directories = [desktop := Path(os.path.join(os.path.join(homedir), "Desktop")),
+               documents := Path(os.path.join(os.path.join(homedir), "Documents")),
+               downloads := Path(os.path.join(os.path.join(homedir), "Downloads")),
+               music := Path(os.path.join(os.path.join(homedir), "Music")),
+               videos := Path(os.path.join(os.path.join(homedir), "Videos"))]
 cacheData = dict()
 
 
-def read_indexer_folders(event="") -> list:
+def read_indexer_folders(event = "") -> list:
     """To get the list of folders that should be indexed additionally"""
     try:
-        with open((os.getcwd() + "\\resources\\ indexerpaths.elsa")) as f:
+        with open((os.getcwd() + "/resources/ indexerpaths.elsa")) as f:
             return json.load(f)
     except: pass
 
@@ -65,7 +69,7 @@ def index_files() -> None:
             except: pass
             dataOfDirectories, dataOfFolders, proc = {}, {}, []
             for paths in directories:
-                p = Thread(target=index, args=(dataOfDirectories, dataOfFolders, paths))
+                p = Thread(target = index, args = (dataOfDirectories, dataOfFolders, paths))
                 proc.append(p)
                 p.start()
             print("Indexing Threads:", *proc)
@@ -81,7 +85,7 @@ def index_files() -> None:
             cacheData = {}  # Resetting cache dict to avoid errors and such
         else: print("'indexer.elsa' found")
 
-    Thread(target=_index_files).start()
+    Thread(target = _index_files).start()
 
 
 @cachesearch
@@ -89,7 +93,7 @@ def search_indexed_file(filename: str) -> None:
     """Search and open  a file that is indexed"""
     with open(indexerpth, "rb") as cache:
         cache_dict = pickle.load(cache)
-    print("Approximate to", approx_file := get_close_matches(filename, filenames := [data for data in cache_dict], n=1, cutoff=0.7))
+    print("Approximate to", approx_file := get_close_matches(filename, filenames := [data for data in cache_dict], n = 1, cutoff = 0.7))
     try:
         if len(approx_file) != 0 and len(approx_file[0]) != 0:
             webbrowser.open(srched_filepath := cache_dict[approx_file[0]])
@@ -111,7 +115,7 @@ def search_indexed_folder(filename: str) -> None:
     try:
         with open(indexerfolderpth, "rb") as cache:
             cache_dict = pickle.load(cache)
-        print("Approximate to", approx_folder := get_close_matches(filename, folder_names := [data for data in cache_dict], n=1, cutoff=0.7))
+        print("Approximate to", approx_folder := get_close_matches(filename, folder_names := [data for data in cache_dict], n = 1, cutoff = 0.7))
         try:
             if len(approx_folder) != 0 and len(approx_folder[0]) != 0:
                 webbrowser.open(srched_folderpath := cache_dict[approx_folder[0]])
@@ -128,9 +132,9 @@ def search_indexed_folder(filename: str) -> None:
     except: print("There is a problem with indexed file data.PLease reset the indexer data")
 
 
-def add_indexer_folders(event="", path: str = "") -> None:
+def add_indexer_folders(event = "", path: str = "") -> None:
     """Add additional folders that should be indexed"""
-    folderpth = os.getcwd() + f"\\resources\\ indexerpaths.elsa"
+    folderpth = os.getcwd() + f"/resources/ indexerpaths.elsa"
     try:
         with open(folderpth) as f:
             folders = json.load(f)
@@ -138,10 +142,10 @@ def add_indexer_folders(event="", path: str = "") -> None:
             # ...Keeping it as list itself because other files expect this to be a list due to legacy reasons,etc,etc
             folders = list(set(folders.append(path)))  # ADDING PATH TO THE FOLDERS LIST
         with open(folderpth, "w") as f:
-            json.dump(folders, f, indent=4)
+            json.dump(folders, f, indent = 4)
         del folderpth, folders, f
     except:
         with open(folderpth, "w") as f:
-            json.dump([path], f, indent=4)
-    try: os.remove((os.getcwd() + "\\resources\\ indexer.elsa"))
+            json.dump([path], f, indent = 4)
+    try: os.remove((os.getcwd() + "/resources/ indexer.elsa"))
     except: pass

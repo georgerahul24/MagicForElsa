@@ -1,7 +1,7 @@
 import json
 import socket
 import threading
-import win10toast
+
 from Magic import export_import
 
 
@@ -15,7 +15,11 @@ def jsondec(data: str) -> dict:
     return json.loads(data)
 
 
-noti = win10toast.ToastNotifier()
+try:
+    import win10toast
+
+    noti = win10toast.ToastNotifier()
+except ModuleNotFoundError: print("It would be great if win10toast module can be installed")
 host, port, nickname = "127.0.0.1", 24094, ""
 # SOCK_STREAM. AF_INET  -> address-family ipv4 & SOCK_STREAM -> TCP protocol(see geek for geeks)
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -40,7 +44,8 @@ def recievefromserver() -> None:
                 case "msg":
                     mesg = jsondec(msg)["data"]
                     print("msg received", mesg)
-                    noti.show_toast("Elsa", mesg)
+                    try: noti.show_toast("Elsa", mesg)
+                    except: pass
                     del msg, mesg, rec
                 case "sync":
                     print("Starting to sync from the server")
@@ -66,9 +71,12 @@ def sendThemeToServer():
     data = (nickname, export_import.export('j'))
     client.send(jsonenc("fsync", data).encode("ascii"))
     print('Trying to sync with server')
+
+
 def requestSync():
     client.send(jsonenc("sync", nickname).encode("ascii"))
     print('Trying to get the file from server')
+
 
 def closeClient() -> None:
     """To close the connection of the client with the server"""
