@@ -32,7 +32,7 @@ def broadcast(username: str, message: str) -> None:
     except Exception as e: print(e, "No user found")
 
 
-def handle(client: object) -> str:
+def handle(client: object) -> None:
     """Recieve data from a client"""
     while True:
         try:

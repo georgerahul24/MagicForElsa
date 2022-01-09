@@ -5,8 +5,8 @@ from Magic.tkinterlib import TLabel, TButton, tkinter_initialise, TLabelFrame
 from talk1.talk1 import talk
 
 
-def user_page():
-    """[This function is used to implement the GUI of the add user page]"""
+def user_page()->None:
+    """This function is used to implement the GUI of the add user page"""
     userpage = Tk()
     tkinter_initialise(userpage, 600, 340)
     s = TLabelFrame(userpage, text="Add New User")
@@ -17,7 +17,7 @@ def user_page():
     eu.grid(row=0, column=1)
     ep.grid(row=1, column=1)
 
-    def add(event=""):
+    def add(event="")->None:
         """[Adds the user]"""
         new_user, new_password = eu.get(), ep.get()
         talk(f"Successfully added {new_user}" if (file_database.write_to_file(new_user, new_password)) == 1 else "User already exists. Try again")
@@ -29,8 +29,8 @@ def user_page():
     userpage.mainloop()
 
 
-def deleteuser():
-    """[This function is used to implement the GUI of the delete user page]"""
+def deleteuser()->None:
+    """This function is used to implement the GUI of the delete user page"""
     deleteuserpage = Tk()
     talk("Please enter the username and password to delete")
     tkinter_initialise(deleteuserpage, 600, 340)
@@ -44,7 +44,7 @@ def deleteuser():
     ep.grid(row=1, column=1)
     epr.grid(row=2, column=1)
 
-    def deleteuserfunc(event=""):
+    def deleteuserfunc(event="")->None:
         """[Delete  the user backend]"""
         name_delete = eu.get()
         password = ep.get()

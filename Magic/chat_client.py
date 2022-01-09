@@ -25,7 +25,7 @@ host, port, nickname = "127.0.0.1", 24094, ""
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 
-def getNickname(name: str) -> str:
+def getNickname(name: str) -> None:
     """To get the nickname i.e the username of the client"""
     global nickname
     nickname = name
@@ -67,13 +67,15 @@ def sendtoserver(nickname: str, msg: str) -> None:
     except: pass
 
 
-def sendThemeToServer():
+def sendThemeToServer() -> None:
+    """To send the theme to the server"""
     data = (nickname, export_import.export('j'))
     client.send(jsonenc("fsync", data).encode("ascii"))
     print('Trying to sync with server')
 
 
-def requestSync():
+def requestSync() -> None:
+    """To request the file of the user from the server"""
     client.send(jsonenc("sync", nickname).encode("ascii"))
     print('Trying to get the file from server')
 

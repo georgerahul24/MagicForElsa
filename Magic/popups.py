@@ -7,14 +7,14 @@ from Magic import tkinterlib, chat_client
 from Magic.tkinterlib import TButton, TLabel
 
 
-def popups(srch: str):
+def popups(srch: str)->None:
     """A yes or no gui box to know if the user needs to search things in the internet"""
     popupWindow = Tk()
     screen_height = popupWindow.winfo_screenheight()
     screen_width = popupWindow.winfo_screenwidth()
     tkinterlib.tkinter_initialise(popupWindow, x=screen_width - 130, y=screen_height - 130)
 
-    def srchYes(event=""):
+    def srchYes(event="")->None:
         popupWindow.destroy()
         web(srch)
 
@@ -23,7 +23,7 @@ def popups(srch: str):
     popupWindow.mainloop()
 
 
-def resetelsapopup():
+def resetelsapopup()->None:
     """Gui and backend for resetting Elsa"""
     import os
     import shutil
@@ -36,7 +36,7 @@ def resetelsapopup():
     talk("Are you sure that you want to reset Elsa")
     TLabel(popupWindow, text="Are you sure you want to reset Elsa?").place(x=0, y=0)
 
-    def Yes(event=""):
+    def Yes(event="")->None:
         talk("Please wait for a moment. Elsa is being reset")
         talk("Just run elsa after it shutdowns")
         print("Resetting Elsa")

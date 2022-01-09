@@ -29,7 +29,7 @@ def read_indexer_folders(event = "") -> list:
     except: pass
 
 
-def cachesearch(func):
+def cachesearch(func)->object:
     """To search for file/folder in the cache"""
 
     def _cachesearch(args: tuple):
@@ -149,3 +149,4 @@ def add_indexer_folders(event = "", path: str = "") -> None:
             json.dump([path], f, indent = 4)
     try: os.remove((os.getcwd() + "/resources/ indexer.elsa"))
     except: pass
+    
