@@ -12,10 +12,8 @@ def tkinter_initialise(a, x: int = 0, y: int = 0, top: int = 1, noborders: bool 
     """Used to mordernify tkinter gui boxes"""
     a.withdraw()  # Hide tkinter windows to finish initialization
     a.attributes("-alpha", opacity)  # Opacity of tkinter window
-    if platform.system().lower() == "windows":
-        a.overrideredirect(noborders)  # Remove Borders and default title bars
-    else:
-        a.wm_attributes('-type', 'splash') if noborders else None  # Splash screen
+    if platform.system().lower() == "windows": a.overrideredirect(noborders)  # Remove Borders and default title bars
+    else: a.wm_attributes('-type', 'splash') if noborders else None  # Splash screen
     a.configure(bg = bg_colour)
     a.attributes("-topmost", top)  # Decides if the tkinter windows shld always be on the top of other window
     a.geometry(f"+{x}+{y}")  # positions tkinter windows at x and y coordinate
@@ -40,7 +38,7 @@ def reset_colors() -> None:
     bg_colour, text_color, button_colour = theme.read_theme()
 
 
-def TButton(root: object, text: str = "", command: object = None, relief: str = "ridge") -> object:
+def TButton(root: object, text: str = "", command: object | None = None, relief: str = "ridge") -> object:
     "Customised Tkinter button"
     b = Button(root, text = text, fg = text_color, bd = 0, bg = bg_colour, command = command, relief = relief)
     b.bind("<Enter>", partial(on_enter, but = b))

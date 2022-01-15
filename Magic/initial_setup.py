@@ -11,7 +11,7 @@ def folderchooser() -> None:
     """This function is to add  folder that has to be additionally indexed"""
     from tkinter.filedialog import askdirectory
     folderpath = askdirectory()
-    indexer.add_indexer_folders(path=folderpath)
+    indexer.add_indexer_folders(path = folderpath)
     del folderpath
 
 
@@ -20,17 +20,14 @@ def filesInstaller() -> None:
     folderpath = pathlib.Path((os.getcwd() + "/resources"))
     if not os.path.exists(folderpath): os.makedirs(folderpath)  # Make the resources folder if it does not exists
     dummytpth = os.getcwd() + "/resources/ dummy.elsa"
-    with open(dummytpth, "w") as f:
-        f.write("Hey!The file you are looking is not found.Try again later")
+    with open(dummytpth, "w") as f: f.write("Hey!The file you are looking is not found.Try again later")
     initpth = os.getcwd() + "/resources/ initial.elsa"
-    with open(initpth, "w") as f:
-        f.write("black;purple;light green\n#The order is bg,font color,button colour\n#Please remember to use ';' to separate colours :D")
+    with open(initpth, "w") as f: f.write(
+        "black;purple;light green\n#The order is bg,font color,button colour\n#Please remember to use ';' to separate colours :D")
     indexerpth = os.getcwd() + "/resources/ indexerpaths.elsa"
-    with open(indexerpth, "w") as f:
-        json.dump([],f)  # Dumping an empty list for additional indexed paths
+    with open(indexerpth, "w") as f: json.dump([], f)  # Dumping an empty list for additional indexed paths
     userpth = os.getcwd() + "/resources/ users.elsa"
-    with open(userpth, "w") as f:
-        json.dump({"admin": "1234"}, f, indent=4)
+    with open(userpth, "w") as f: json.dump({"admin": "1234"}, f, indent = 4)
     print("Added initial files")
 
 
@@ -78,19 +75,15 @@ def install_files() -> None:
             self.LicenceContinueButton.setGeometry(QtCore.QRect(630, 510, 101, 51))
             self.stackedWidget.addWidget(self.LiscencePage)
             self.AddUserPage = QtWidgets.QWidget()
-            self.EnterUsernameTextBox = QtWidgets.QLineEdit(self.AddUserPage)
+            self.EnterUsernameTextBox, self.EnterPasswordTextBox = QtWidgets.QLineEdit(self.AddUserPage), QtWidgets.QLineEdit(self.AddUserPage)
             self.EnterUsernameTextBox.setGeometry(QtCore.QRect(330, 150, 281, 31))
-            self.EnterPasswordTextBox = QtWidgets.QLineEdit(self.AddUserPage)
             self.EnterPasswordTextBox.setGeometry(QtCore.QRect(330, 210, 281, 31))
-            self.EnterUserNameLabel = QtWidgets.QLabel(self.AddUserPage)
+            self.EnterUserNameLabel, self.EnterPasswordLabel = QtWidgets.QLabel(self.AddUserPage), QtWidgets.QLabel(self.AddUserPage)
             self.EnterUserNameLabel.setGeometry(QtCore.QRect(160, 150, 151, 31))
             font = QtGui.QFont()
             font.setPointSize(12)
             self.EnterUserNameLabel.setFont(font)
-            self.EnterPasswordLabel = QtWidgets.QLabel(self.AddUserPage)
             self.EnterPasswordLabel.setGeometry(QtCore.QRect(160, 210, 151, 31))
-            font = QtGui.QFont()
-            font.setPointSize(12)
             self.EnterPasswordLabel.setFont(font)
             self.AddNewUserTitleLabel = QtWidgets.QLabel(self.AddUserPage)
             self.AddNewUserTitleLabel.setGeometry(QtCore.QRect(110, 50, 521, 61))
@@ -104,11 +97,10 @@ def install_files() -> None:
             self.AddUserContinueButton.setGeometry(QtCore.QRect(620, 500, 121, 41))
             self.stackedWidget.addWidget(self.AddUserPage)
             self.OthersPage = QtWidgets.QWidget()
-            self.ButtonColorButton = QtWidgets.QPushButton(self.OthersPage)
+            self.ButtonColorButton, self.TextColorButton, self.BackGroundColorButton = QtWidgets.QPushButton(self.OthersPage), QtWidgets.QPushButton(
+                self.OthersPage), QtWidgets.QPushButton(self.OthersPage)
             self.ButtonColorButton.setGeometry(QtCore.QRect(290, 230, 181, 61))
-            self.TextColorButton = QtWidgets.QPushButton(self.OthersPage)
             self.TextColorButton.setGeometry(QtCore.QRect(290, 90, 181, 61))
-            self.BackGroundColorButton = QtWidgets.QPushButton(self.OthersPage)
             self.BackGroundColorButton.setGeometry(QtCore.QRect(290, 160, 181, 61))
             self.NewThemeLabel = QtWidgets.QLabel(self.OthersPage)
             self.NewThemeLabel.setGeometry(QtCore.QRect(210, 10, 371, 91))
