@@ -12,7 +12,7 @@ def tkinter_initialise(a, x: int = 0, y: int = 0, top: int = 1, noborders: bool 
     """Used to mordernify tkinter gui boxes"""
     a.withdraw()  # Hide tkinter windows to finish initialization
     a.attributes("-alpha", opacity)  # Opacity of tkinter window
-    if platform.platform() == "Windows":
+    if platform.system().lower() == "windows":
         a.overrideredirect(noborders)  # Remove Borders and default title bars
     else:
         a.wm_attributes('-type', 'splash') if noborders else None  # Splash screen
