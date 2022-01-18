@@ -17,7 +17,7 @@ def export(mode = 'f') -> None | str:
                 json.dump(datadict, f, indent = 4)
                 f.close()
                 print("Successfully exported the data")
-                del f
+
             except Exception as e: print("Some error happened", e)
         else: print("No file selected")
     elif mode == 'j': return json.dumps(datadict)

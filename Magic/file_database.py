@@ -26,7 +26,6 @@ def write_to_file(username: str, password: str) -> int:
                 json.dump(data, file, indent = 4)
             print(f"Added user {username} ")
             # returns state = 1 so that program knows that writing was successful
-            del file, username, password, data
             return 1
         else:
             print("User already exists or the username is reserved")

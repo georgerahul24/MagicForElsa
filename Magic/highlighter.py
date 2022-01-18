@@ -18,5 +18,4 @@ def syntax_highlighting(event="", Search_box=None) -> None:
             Search_box.delete(0, END)
             Search_box.config(fg=text_color)
         Search_box.insert(0, ord)
-        del Search_box, ord, text_color
     except: pass

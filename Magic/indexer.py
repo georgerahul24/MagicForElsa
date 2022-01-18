@@ -68,7 +68,7 @@ def index_files() -> None:
     """[Check if the indexer.elsa file exists.If it exists,no action is taken.If it doesnt exists,files are indexed]"""
 
     def _index_files():
-        if Path(indexerpth).exists() != True:
+        if not Path(indexerpth).exists():
             print("'indexer.elsa' not found", "\nIndexing files...Wait a moment...")
             try: directories.extend(read_indexer_folders())
             except: pass

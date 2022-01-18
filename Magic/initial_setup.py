@@ -12,7 +12,6 @@ def folderchooser() -> None:
     from tkinter.filedialog import askdirectory
     folderpath = askdirectory()
     indexer.add_indexer_folders(path = folderpath)
-    del folderpath
 
 
 def filesInstaller() -> None:

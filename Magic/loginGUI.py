@@ -1,5 +1,4 @@
-"""Created by George Rahul
-GUI for the login page"""
+"""GUI for the login page"""
 
 from tkinter import Tk, Entry
 
@@ -22,8 +21,7 @@ def SecurityUI() -> tuple:
 
     def password(event="") -> None:
         """Used to get the username and password entered"""
-        password.passgui = e.get()
-        password.usergui = e1.get()
+        password.passgui,password.usergui = e.get(),e1.get()
         win.destroy()
 
     TButton(win, text="Add User", command=user_page).place(x=120, y=60)

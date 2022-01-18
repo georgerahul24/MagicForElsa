@@ -45,7 +45,6 @@ def recievefromserver() -> None:
                     print("msg received", mesg)
                     try: noti.show_toast("Elsa", mesg)
                     except: pass
-                    del msg, mesg, rec
                 case "sync":
                     print("Starting to sync from the server")
                     export_import.import_data(jsondec(msg)["data"])
@@ -62,7 +61,6 @@ def sendtoserver(nickname: str, msg: str) -> None:
     try:
         print("Sending", msg, "to", nickname)
         client.send(jsonenc("msg", (nickname, msg)).encode("ascii"))
-        del msg, nickname
     except: pass
 
 
