@@ -29,7 +29,7 @@ def read_indexer_folders(event = "") -> list:
 
 
 def fsearch(mode, fname) -> None:
-    """To search for file/folder in the cache"""
+    """To search for file/folder"""
     cacheData = cacheDataFile if mode == "file" else cacheDataFolder
     try:
         webbrowser.open(cacheData[fname])
@@ -90,7 +90,7 @@ def index_files() -> None:
 
 def add_indexer_folders(event = "", path: str = "") -> None:
     """Add additional folders that should be indexed"""
-    folderpth = os.getcwd() + '/resources/ indexer-paths.elsa'
+    folderpth = os.getcwd() + '/resources/ indexerpaths.elsa'
     try:
         with open(folderpth) as f:
             folders = json.load(f)
