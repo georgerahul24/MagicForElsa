@@ -18,7 +18,7 @@ def check_user() -> None:
         username, password = SecurityUI()
         # verifying with database
         # .....chechuser.security/loginname will be referenced from Elsa.py
-        check_user.security, check_user.loginname = file_database.check_user_from_file(username), username
+        check_user.security, check_user.loginname = file_database.check_user_from_file(username) == password, username
     except Exception as e:
         print(e)
         check_user.security = False
