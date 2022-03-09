@@ -1,11 +1,7 @@
-import json
-import os
-import pickle
-import webbrowser
+import json, os, pickle, webbrowser, platform
 from difflib import get_close_matches
 from pathlib import Path
 from threading import Thread
-import platform
 from talk1 import talk1
 
 if platform.system() == 'Windows':
@@ -24,7 +20,7 @@ cacheDataFile, cacheDataFolder = dict(), dict()
 def read_indexer_folders(event = "") -> list:
     """To get the list of folders that should be indexed additionally"""
     try:
-        with open((os.getcwd() + "/resources/ indexerpaths.elsa")) as f: return json.load(f)
+        with open(f'{os.getcwd()}/resources/ indexerpaths.elsa') as f: return json.load(f)
     except: pass
 
 
@@ -90,7 +86,7 @@ def index_files() -> None:
 
 def add_indexer_folders(event = "", path: str = "") -> None:
     """Add additional folders that should be indexed"""
-    folderpth = os.getcwd() + '/resources/ indexerpaths.elsa'
+    folderpth = f'{os.getcwd()}/resources/ indexerpaths.elsa'
     try:
         with open(folderpth) as f:
             folders = json.load(f)
@@ -100,5 +96,6 @@ def add_indexer_folders(event = "", path: str = "") -> None:
         with open(folderpth, "w") as f: json.dump(folders, f, indent = 4)
     except:
         with open(folderpth, "w") as f: json.dump([path], f, indent = 4)
-    try: os.remove((os.getcwd() + "/resources/ indexer.elsa"))
+    try:
+        os.remove(f'{os.getcwd()}/resources/ indexer.elsa')
     except: pass

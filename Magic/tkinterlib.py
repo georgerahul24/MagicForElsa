@@ -7,6 +7,7 @@ import platform
 bg_colour, text_color, button_colour = theme.read_theme()
 
 
+
 def tkinter_initialise(a, x: int = 0, y: int = 0, top: int = 1, noborders: bool = True, opacity: float = 0.9) -> None:
     """Used to mordernify tkinter gui boxes"""
     a.withdraw()  # Hide tkinter windows to finish initialization

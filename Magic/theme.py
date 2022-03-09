@@ -3,7 +3,6 @@ from tkinter.colorchooser import askcolor
 
 initpth = os.getcwd() + "/resources/ initial.elsa"
 
-
 def read_theme() -> tuple:
     """Reads the theme from the initial.elsa file"""
     try:

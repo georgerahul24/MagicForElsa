@@ -1,7 +1,4 @@
-import json
-import socket
-import threading
-
+import json, socket, threading
 from Magic import export_import
 
 
@@ -17,6 +14,7 @@ def jsondec(data: str) -> dict:
 
 try:
     import win10toast
+
     noti = win10toast.ToastNotifier()
 except ModuleNotFoundError: print("It would be great if win10toast module can be installed")
 host, port, nickname = "127.0.0.1", 24094, ""

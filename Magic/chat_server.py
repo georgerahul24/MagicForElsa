@@ -1,8 +1,5 @@
 # see https://www.youtube.com/watch?v=3UOyky9sEQY for a BASIC IDEA of how this works
-import json
-import os.path
-import socket
-import threading
+import json, socket, threading, os.path
 
 host, port, clients, nicknames = "127.0.0.1", 24094, [], []
 # SOCK_STREAM. AF_INET refers to the address-family ipv4. The SOCK_STREAM means connection-oriented TCP protocol.

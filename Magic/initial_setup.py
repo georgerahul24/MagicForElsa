@@ -1,9 +1,6 @@
-import json
-import os
-import pathlib
+import json, os, pathlib
 from functools import partial
 from tkinter import Tk
-
 from Magic import theme, indexer, file_database
 
 

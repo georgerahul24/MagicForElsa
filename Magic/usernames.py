@@ -1,5 +1,4 @@
 from talk1.talk1 import talk
-
 from Magic import file_database
 from Magic.loginGUI import SecurityUI
 

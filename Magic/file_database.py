@@ -1,6 +1,5 @@
 """This module deals with adding and verifying usernames"""
-import json
-import os
+import json, os
 
 # Get the path of users.elsa
 userpth = os.getcwd() + "/resources/ users.elsa"

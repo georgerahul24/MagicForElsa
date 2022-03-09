@@ -1,14 +1,11 @@
 """This module contains the GUI for settings"""
-import os
-import webbrowser
+import os, webbrowser
 from functools import partial
 from tkinter import Tk, Frame, RIGHT
 from tkinter import ttk
 from tkinter.colorchooser import askcolor
 from tkinter.filedialog import askdirectory
-
 from talk1.talk1 import talk
-
 from Magic import usergui, theme, history, indexer, export_import, popups, tkinterlib
 from Magic.tkinterlib import TButton, TLabel, TLabelFrame
 
