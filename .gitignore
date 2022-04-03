@@ -3,7 +3,5 @@
 *.iml
 *.vira
 *.elsa
-*.json
-*.txt
 /.idea/*
 /Magic/serverdata/*
